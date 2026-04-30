@@ -28,21 +28,29 @@ export default function Home({ onSearch, onExplore, onStats, onUniClick, stats, 
   }, []);
 
   const dynamicUnis = React.useMemo(() => {
+    const normalize = (name: string) => {
+      if (name === '국립국립목포대학교') return '국립목포대학교';
+      if (name === '국립국립목포해양대학교') return '국립목포해양대학교';
+      return name;
+    };
+
     // Count occurrences for each university to sort by popularity
     const counts: Record<string, number> = {};
     admissionCases.forEach(c => {
-      counts[c.universityName] = (counts[c.universityName] || 0) + 1;
+      const name = normalize(c.universityName);
+      counts[name] = (counts[name] || 0) + 1;
     });
 
     const uniMap = new Map();
     admissionCases.forEach(c => {
-      if (!uniMap.has(c.universityName)) {
-        uniMap.set(c.universityName, {
-          id: c.universityName,
-          name: c.universityName,
+      const normName = normalize(c.universityName);
+      if (!uniMap.has(normName)) {
+        uniMap.set(normName, {
+          id: normName,
+          name: normName,
           location: c.location,
-          count: counts[c.universityName],
-          departmentCount: new Set(admissionCases.filter(x => x.universityName === c.universityName).map(x => x.departmentName)).size
+          count: counts[normName],
+          departmentCount: new Set(admissionCases.filter(x => normalize(x.universityName) === normName).map(x => x.departmentName)).size
         });
       }
     });

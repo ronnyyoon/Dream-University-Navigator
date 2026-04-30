@@ -47,12 +47,23 @@ export default function AdminDashboard() {
 
   const [showDeleteConfirm, setShowDeleteConfirm] = React.useState(false);
 
+  const normalizeUniversityName = (name: string) => {
+    if (!name) return '';
+    const trimmed = name.trim();
+    if (trimmed === '국립국립목포대학교') return '국립목포대학교';
+    if (trimmed === '국립국립목포해양대학교') return '국립목포해양대학교';
+    return trimmed;
+  };
+
   const handleStatsJsonUpload = async () => {
     if (!statsJsonInput.trim()) return;
     setUploading(true);
     try {
       const data = JSON.parse(statsJsonInput);
-      const statsArray = Array.isArray(data) ? data : [data];
+      const statsArray = (Array.isArray(data) ? data : [data]).map(s => ({
+        ...s,
+        universityName: normalizeUniversityName(s.universityName)
+      }));
       await uploadOfficialStats(statsArray);
       showStatus(`${statsArray.length}개의 통계 데이터가 성공적으로 업로드되었습니다.`, 'success');
       setStatsJsonInput('');
@@ -109,7 +120,7 @@ export default function AdminDashboard() {
 
             const item: any = {
               location: clean(row[0]) || '부산',
-              universityName: clean(row[1]),
+              universityName: normalizeUniversityName(clean(row[1])),
               departmentName: clean(row[2]),
               admissionType: clean(row[3]),
               detailedType: clean(row[4]),
@@ -287,7 +298,7 @@ export default function AdminDashboard() {
             year: parseInt(getVal(raw, '학년도', 'year') || '2024') || 2024,
             grade: parseFloat(getVal(raw, '내신성적', 'grade') || '0') || 0,
             location: getVal(raw, '지역', 'location') || '',
-            universityName: getVal(raw, '학교명', 'universityName') || '',
+            universityName: normalizeUniversityName(getVal(raw, '학교명', 'universityName') || ''),
             admissionType: getVal(raw, '전형유형', 'admissionType') || '',
             detailedType: getVal(raw, '세부유형', 'detailedType') || '',
             departmentName: getVal(raw, '모집단위(학과)', 'departmentName') || '',
@@ -350,7 +361,7 @@ export default function AdminDashboard() {
             year: parseInt(getVal(raw, '학년도', 'year', 'Year') || '2024') || 2024,
             grade: parseFloat(getVal(raw, '내신성적', 'grade', 'Grade') || '0') || 0,
             location: getVal(raw, '지역', 'location') || '',
-            universityName: getVal(raw, '학교명', 'universityName') || '',
+            universityName: normalizeUniversityName(getVal(raw, '학교명', 'universityName') || ''),
             admissionType: getVal(raw, '전형유형', 'admissionType') || '',
             detailedType: getVal(raw, '세부유형', 'detailedType') || '',
             departmentName: getVal(raw, '모집단위(학과)', 'departmentName') || '',
@@ -754,7 +765,10 @@ export default function AdminDashboard() {
                             {c.grade}
                           </div>
                           <div>
-                            <div className="font-bold text-sm text-white">{c.universityName}</div>
+                            <div className="font-bold text-sm text-white">
+                              {c.universityName === '국립국립목포대학교' ? '국립목포대학교' : 
+                               c.universityName === '국립국립목포해양대학교' ? '국립목포해양대학교' : c.universityName}
+                            </div>
                             <div className="text-[10px] text-text-dim font-bold uppercase tracking-wider">{c.departmentName} · {c.admissionType}</div>
                           </div>
                         </div>

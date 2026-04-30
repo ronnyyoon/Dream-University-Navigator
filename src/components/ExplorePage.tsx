@@ -27,15 +27,22 @@ export default function ExplorePage({ initialUniversity }: ExplorePageProps) {
     fetchAllAdmissionCases().then(setAdmissionCases).finally(() => setLoading(false));
   }, []);
 
-  const universities = ['선택해주세요', ...([...new Set(admissionCases.map(c => c.universityName))].sort())];
+  const universities = ['선택해주세요', ...([...new Set(admissionCases.map(c => {
+    const name = c.universityName;
+    if (name === '국립국립목포대학교') return '국립목포대학교';
+    if (name === '국립국립목포해양대학교') return '국립목포해양대학교';
+    return name;
+  }))].sort())];
   const types = ['전체', ...([...new Set(admissionCases.map(c => c.admissionType))].sort())];
   const years = ['전체', ...([...new Set(admissionCases.map(c => c.year.toString()))].sort().reverse())];
 
-  const baseFiltered = admissionCases.filter(c => 
-    c.universityName === selectedUni && 
-    (selectedType === '전체' || c.admissionType === selectedType) &&
-    (selectedYear === '전체' || c.year.toString() === selectedYear)
-  );
+  const baseFiltered = admissionCases.filter(c => {
+    const normName = c.universityName === '국립국립목포대학교' ? '국립목포대학교' : 
+                     c.universityName === '국립국립목포해양대학교' ? '국립목포해양대학교' : c.universityName;
+    return normName === selectedUni && 
+           (selectedType === '전체' || c.admissionType === selectedType) &&
+           (selectedYear === '전체' || c.year.toString() === selectedYear);
+  });
 
   const calculateStats = (data: AdmissionCase[]) => {
     if (data.length === 0) return { max: '해당없음', avg: '해당없음', min: '해당없음', count: 0 };
@@ -264,7 +271,13 @@ export default function ExplorePage({ initialUniversity }: ExplorePageProps) {
                       <tr key={c.id} className="hover:bg-white/[0.04] transition-colors group">
                         <td className="px-4 py-5 text-center text-text-dim opacity-50 font-mono text-xs">{c.year}</td>
                         <td className="px-4 py-5 font-black text-white text-[13px] text-center bg-white/[0.01]">{c.grade.toFixed(2)}</td>
-                        <td className="px-4 py-5 font-bold text-[13px] truncate text-zinc-100" title={c.departmentName}>{c.departmentName}</td>
+                        <td className="px-4 py-4 border-r border-white/10 bg-white/[0.01] sticky left-0 z-10 shadow-xl" style={{ backgroundColor: '#0A0A0A' }}>
+                          <div className="font-black text-white text-xs">
+                            {c.universityName === '국립국립목포대학교' ? '국립목포대학교' : 
+                             c.universityName === '국립국립목포해양대학교' ? '국립목포해양대학교' : c.universityName}
+                          </div>
+                          <div className="text-[10px] text-text-dim font-bold">{c.departmentName}</div>
+                        </td>
                         <td className="px-4 py-5 font-bold text-sky-400 text-[12px] truncate" title={c.admissionType}>{c.admissionType}</td>
                         <td className="px-4 py-5 text-text-dim truncate text-[11px]" title={c.detailedType}>{c.detailedType}</td>
                         <td className="px-4 py-5 text-center">

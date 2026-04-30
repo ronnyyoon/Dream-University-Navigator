@@ -60,8 +60,14 @@ export default function StatsPage() {
       setStatsData(stats);
       
       // Derive all options
+      const normalize = (name: string) => {
+        if (name === '국립국립목포대학교') return '국립목포대학교';
+        if (name === '국립국립목포해양대학교') return '국립목포해양대학교';
+        return name;
+      };
+
       const locations = Array.from(new Set(stats.map(s => s.location))).filter(Boolean).sort();
-      const unis = Array.from(new Set(stats.map(s => s.universityName))).filter(Boolean).sort();
+      const unis = Array.from(new Set(stats.map(s => normalize(s.universityName)))).filter(Boolean).sort();
       const depts = Array.from(new Set(stats.map(s => s.departmentName))).filter(Boolean).sort();
       const adTypes = Array.from(new Set(stats.map(s => s.admissionType))).filter(Boolean).sort();
       const detTypes = Array.from(new Set(stats.map(s => s.detailedType))).filter(Boolean).sort();
@@ -78,6 +84,12 @@ export default function StatsPage() {
 
   // Dynamic Options calculation
   const dynamicOptions = React.useMemo(() => {
+    const normalize = (name: string) => {
+      if (name === '국립국립목포대학교') return '국립목포대학교';
+      if (name === '국립국립목포해양대학교') return '국립목포해양대학교';
+      return name;
+    };
+
     let filteredForOptions = statsData;
     
     // For Department options: filter by location and university
@@ -85,7 +97,7 @@ export default function StatsPage() {
       filteredForOptions = filteredForOptions.filter(s => s.location === filters.location);
     }
     if (filters.university !== '전체') {
-      filteredForOptions = filteredForOptions.filter(s => s.universityName === filters.university);
+      filteredForOptions = filteredForOptions.filter(s => normalize(s.universityName) === filters.university);
     }
     
     const depts = Array.from(new Set(filteredForOptions.map(s => s.departmentName))).filter(Boolean).sort();
@@ -95,7 +107,7 @@ export default function StatsPage() {
     if (filters.location !== '전체') {
       uniStats = uniStats.filter(s => s.location === filters.location);
     }
-    const unis = Array.from(new Set(uniStats.map(s => s.universityName))).filter(Boolean).sort();
+    const unis = Array.from(new Set(uniStats.map(s => normalize(s.universityName)))).filter(Boolean).sort();
 
     // Admission Types
     const adTypes = Array.from(new Set(filteredForOptions.map(s => s.admissionType))).filter(Boolean).sort();
@@ -113,10 +125,16 @@ export default function StatsPage() {
   const years = ['2024', '2025', '2026'];
 
   const filteredStats = React.useMemo(() => {
+    const normalize = (name: string) => {
+      if (name === '국립국립목포대학교') return '국립목포대학교';
+      if (name === '국립국립목포해양대학교') return '국립목포해양대학교';
+      return name;
+    };
+
     return statsData.filter(item => {
       // Basic Filters
       if (debouncedFilters.location !== '전체' && item.location !== debouncedFilters.location) return false;
-      if (debouncedFilters.university !== '전체' && item.universityName !== debouncedFilters.university) return false;
+      if (debouncedFilters.university !== '전체' && normalize(item.universityName) !== debouncedFilters.university) return false;
       if (debouncedFilters.department !== '전체' && item.departmentName !== debouncedFilters.department) return false;
       if (debouncedFilters.admissionType !== '전체' && item.admissionType !== debouncedFilters.admissionType) return false;
       if (debouncedFilters.detailedType !== '전체' && item.detailedType !== debouncedFilters.detailedType) return false;
@@ -422,7 +440,10 @@ export default function StatsPage() {
                 paginatedStats.map((item) => (
                   <tr key={item.id} className="hover:bg-white/[0.02] transition-colors">
                     <td className="px-4 py-4 border-r border-white/10 bg-white/[0.01] sticky left-0 z-10 shadow-xl" style={{ backgroundColor: '#0A0A0A' }}>
-                      <div className="font-black text-white text-xs">{item.universityName}</div>
+                      <div className="font-black text-white text-xs">
+                        {item.universityName === '국립국립목포대학교' ? '국립목포대학교' : 
+                         item.universityName === '국립국립목포해양대학교' ? '국립목포해양대학교' : item.universityName}
+                      </div>
                       <div className="text-[10px] text-text-dim font-bold">{item.departmentName}</div>
                       <div className="text-[9px] text-primary/60">{item.admissionType} | {item.detailedType}</div>
                     </td>

@@ -88,16 +88,22 @@ export default function SearchPage() {
   const years = getOptions(admissionCases.map(c => c.year.toString()), true);
   const locations = getOptions(admissionCases.map(c => c.location));
   
+  const normalize = (name: string) => {
+    if (name === '국립국립목포대학교') return '국립목포대학교';
+    if (name === '국립국립목포해양대학교') return '국립목포해양대학교';
+    return name;
+  };
+
   // Filter universities based on selected locations
   const filteredUnis = selectedLocations.length === 0
     ? admissionCases
     : admissionCases.filter(c => selectedLocations.includes(c.location));
-  const universities = getOptions(filteredUnis.map(c => c.universityName));
+  const universities = getOptions(filteredUnis.map(c => normalize(c.universityName)));
   
   // Filter departments based on selected universities
   const filteredDepts = selectedUnis.length === 0
     ? filteredUnis 
-    : filteredUnis.filter(c => selectedUnis.includes(c.universityName));
+    : filteredUnis.filter(c => selectedUnis.includes(normalize(c.universityName)));
   const departments = getOptions(filteredDepts.map(c => c.departmentName));
   
   const admissionTypes = getOptions(admissionCases.map(c => c.admissionType));
@@ -136,12 +142,18 @@ export default function SearchPage() {
   };
 
   const filteredCases = React.useMemo(() => {
+    const normalize = (name: string) => {
+      if (name === '국립국립목포대학교') return '국립목포대학교';
+      if (name === '국립국립목포해양대학교') return '국립목포해양대학교';
+      return name;
+    };
+
     const filtered = admissionCases.filter(c => {
       const inGradeRange = c.grade >= gradeRange[0] && c.grade <= gradeRange[1];
-      const matchesSearch = c.universityName.includes(searchQuery) || c.departmentName.includes(searchQuery);
+      const matchesSearch = normalize(c.universityName).includes(searchQuery) || c.departmentName.includes(searchQuery);
       const matchesYear = selectedYears.length === 0 || selectedYears.includes(c.year.toString());
       const matchesLocation = selectedLocations.length === 0 || selectedLocations.includes(c.location);
-      const matchesUni = selectedUnis.length === 0 || selectedUnis.includes(c.universityName);
+      const matchesUni = selectedUnis.length === 0 || selectedUnis.includes(normalize(c.universityName));
       const matchesDept = selectedDepts.length === 0 || selectedDepts.includes(c.departmentName);
       const matchesType = selectedTypes.length === 0 || selectedTypes.includes(c.admissionType);
       const matchesDetailedType = selectedDetailedType === '전체' || c.detailedType === selectedDetailedType;
@@ -302,7 +314,10 @@ export default function SearchPage() {
                   <td className="px-2 py-3 text-center text-text-dim opacity-50 font-mono">{c.year}</td>
                   <td className="px-2 py-3 font-black text-white text-[11px] text-center">{c.grade.toFixed(2)}</td>
                   <td className="px-2 py-3 text-center text-text-dim truncate">{c.location}</td>
-                  <td className="px-2 py-3 font-black text-white text-[11px] truncate" title={c.universityName}>{c.universityName}</td>
+                  <td className="px-2 py-3 font-black text-white text-[11px] truncate">
+                    {c.universityName === '국립국립목포대학교' ? '국립목포대학교' : 
+                     c.universityName === '국립국립목포해양대학교' ? '국립목포해양대학교' : c.universityName}
+                  </td>
                   <td className="px-2 py-3 font-bold text-[11px] truncate" title={c.departmentName}>{c.departmentName}</td>
                   <td className="px-2 py-3 font-bold text-sky-400 text-[11px] truncate" title={c.admissionType}>{c.admissionType}</td>
                   <td className="px-2 py-3 text-text-dim truncate" title={c.detailedType}>{c.detailedType}</td>
