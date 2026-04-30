@@ -34,6 +34,25 @@ export default function StatsPage() {
     gradeRangeMax: '9.0'
   });
 
+  // Debounced filters for expensive calculation
+  const [debouncedFilters, setDebouncedFilters] = React.useState(filters);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedFilters(filters);
+    }, 150); // 150ms delay is enough for responsiveness vs performance
+    return () => clearTimeout(timer);
+  }, [filters]);
+
+  // Pagination state
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const itemsPerPage = 30;
+
+  // Reset page when filters change
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [debouncedFilters]);
+
   // Initial fetch for metadata and data
   React.useEffect(() => {
     setLoading(true);
@@ -96,11 +115,11 @@ export default function StatsPage() {
   const filteredStats = React.useMemo(() => {
     return statsData.filter(item => {
       // Basic Filters
-      if (filters.location !== '전체' && item.location !== filters.location) return false;
-      if (filters.university !== '전체' && item.universityName !== filters.university) return false;
-      if (filters.department !== '전체' && item.departmentName !== filters.department) return false;
-      if (filters.admissionType !== '전체' && item.admissionType !== filters.admissionType) return false;
-      if (filters.detailedType !== '전체' && item.detailedType !== filters.detailedType) return false;
+      if (debouncedFilters.location !== '전체' && item.location !== debouncedFilters.location) return false;
+      if (debouncedFilters.university !== '전체' && item.universityName !== debouncedFilters.university) return false;
+      if (debouncedFilters.department !== '전체' && item.departmentName !== debouncedFilters.department) return false;
+      if (debouncedFilters.admissionType !== '전체' && item.admissionType !== debouncedFilters.admissionType) return false;
+      if (debouncedFilters.detailedType !== '전체' && item.detailedType !== debouncedFilters.detailedType) return false;
 
       // Trend Helpers
       const getVal = (year: string, field: keyof OfficialStat['stats']['2024']) => {
@@ -144,29 +163,29 @@ export default function StatsPage() {
         return true;
       };
 
-      // Registered Count Trend (Under recruitment target)
-      if (filters.registeredTrend !== '전체') {
+      // Registered Count Trend
+      if (debouncedFilters.registeredTrend !== '전체') {
         const checkShortfall = (year: string) => {
           const enroll = getVal(year, 'enrollment');
           const reg = getVal(year, 'registeredCount');
           return enroll !== null && reg !== null && reg < enroll;
         };
 
-        if (filters.registeredTrend === '최근 3년 연속 미달') {
+        if (debouncedFilters.registeredTrend === '최근 3년 연속 미달') {
           if (!checkShortfall('2024') || !checkShortfall('2025') || !checkShortfall('2026')) return false;
-        } else if (filters.registeredTrend === '최근 2년 연속 미달') {
+        } else if (debouncedFilters.registeredTrend === '최근 2년 연속 미달') {
           if (!checkShortfall('2025') || !checkShortfall('2026')) return false;
-        } else if (filters.registeredTrend === '최근 1년 미달') {
+        } else if (debouncedFilters.registeredTrend === '최근 1년 미달') {
           if (!checkShortfall('2026')) return false;
         }
       }
 
       // Other Trends
-      if (!checkTrend('competitionRate', filters.competitionTrend)) return false;
-      if (!checkTrend('average', filters.averageTrend)) return false;
-      if (!checkTrend('cut50', filters.cut50Trend)) return false;
-      if (!checkTrend('cut70', filters.cut70Trend)) return false;
-      if (!checkTrend('cut80', filters.cut80Trend)) return false;
+      if (!checkTrend('competitionRate', debouncedFilters.competitionTrend)) return false;
+      if (!checkTrend('average', debouncedFilters.averageTrend)) return false;
+      if (!checkTrend('cut50', debouncedFilters.cut50Trend)) return false;
+      if (!checkTrend('cut70', debouncedFilters.cut70Trend)) return false;
+      if (!checkTrend('cut80', debouncedFilters.cut80Trend)) return false;
 
       // Grade Range Filter (Based on 3-year average)
       const baseFieldMap: Record<string, keyof OfficialStat['stats']['2024']> = {
@@ -176,23 +195,30 @@ export default function StatsPage() {
         '80% CUT': 'cut80'
       };
       
-      const field = baseFieldMap[filters.gradeBaseField];
+      const field = baseFieldMap[debouncedFilters.gradeBaseField];
       if (field) {
         const values = years.map(y => getVal(y, field)).filter(v => v !== null) as number[];
         if (values.length > 0) {
           const threeYearAvg = values.reduce((a, b) => a + b, 0) / values.length;
-          const min = parseFloat(filters.gradeRangeMin) || 1.0;
-          const max = parseFloat(filters.gradeRangeMax) || 9.0;
+          const min = parseFloat(debouncedFilters.gradeRangeMin) || 1.0;
+          const max = parseFloat(debouncedFilters.gradeRangeMax) || 9.0;
           if (threeYearAvg < Math.min(min, max) || threeYearAvg > Math.max(min, max)) return false;
         } else {
           // If no data at all for these years, we might want to exclude it if a filter is set
-          if (filters.gradeRangeMin !== '1.0' || filters.gradeRangeMax !== '9.0') return false;
+          if (debouncedFilters.gradeRangeMin !== '1.0' || debouncedFilters.gradeRangeMax !== '9.0') return false;
         }
       }
 
       return true;
     });
-  }, [statsData, filters, years]);
+  }, [statsData, debouncedFilters, years]);
+
+  const paginatedStats = React.useMemo(() => {
+    const start = (currentPage - 1) * itemsPerPage;
+    return filteredStats.slice(start, start + itemsPerPage);
+  }, [filteredStats, currentPage, itemsPerPage]);
+
+  const totalPages = Math.ceil(filteredStats.length / itemsPerPage);
 
   if (loading) {
     return (
@@ -392,8 +418,8 @@ export default function StatsPage() {
                     </div>
                   </td>
                 </tr>
-              ) : filteredStats.length > 0 ? (
-                filteredStats.map((item) => (
+              ) : paginatedStats.length > 0 ? (
+                paginatedStats.map((item) => (
                   <tr key={item.id} className="hover:bg-white/[0.02] transition-colors">
                     <td className="px-4 py-4 border-r border-white/10 bg-white/[0.01] sticky left-0 z-10 shadow-xl" style={{ backgroundColor: '#0A0A0A' }}>
                       <div className="font-black text-white text-xs">{item.universityName}</div>
@@ -480,6 +506,51 @@ export default function StatsPage() {
             </tbody>
           </table>
         </div>
+        
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-2 p-6 bg-white/[0.01] border-t border-white/5">
+            <button 
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              className="p-2 rounded-lg hover:bg-white/5 disabled:opacity-30 transition-all text-white"
+            >
+              <ChevronDown className="rotate-90 w-5 h-5" />
+            </button>
+            
+            <div className="flex gap-1">
+              {[...Array(Math.min(5, totalPages))].map((_, i) => {
+                let pageNum = 1;
+                if (totalPages <= 5) pageNum = i + 1;
+                else if (currentPage <= 3) pageNum = i + 1;
+                else if (currentPage >= totalPages - 2) pageNum = totalPages - 4 + i;
+                else pageNum = currentPage - 2 + i;
+
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={`w-10 h-10 rounded-lg font-black text-xs transition-all ${
+                      currentPage === pageNum 
+                        ? 'bg-primary text-secondary' 
+                        : 'hover:bg-white/5 text-text-dim'
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button 
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              className="p-2 rounded-lg hover:bg-white/5 disabled:opacity-30 transition-all text-white"
+            >
+              <ChevronDown className="-rotate-90 w-5 h-5" />
+            </button>
+          </div>
+        )}
       </div>
       
       <div className="mt-8 flex items-center justify-center gap-3 p-6 glass-card border border-white/5">
