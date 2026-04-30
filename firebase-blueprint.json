@@ -1,0 +1,69 @@
+{
+  "entities": {
+    "AdmissionCase": {
+      "title": "Admission Case",
+      "description": "A single university admission result record.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "year": { "type": "integer" },
+        "grade": { "type": "number" },
+        "location": { "type": "string" },
+        "universityName": { "type": "string" },
+        "admissionType": { "type": "string" },
+        "detailedType": { "type": "string" },
+        "departmentName": { "type": "string" },
+        "step1Result": { "type": "string" },
+        "finalResult": { "type": "string" },
+        "failReason": { "type": "string" },
+        "waitlistRank": { "type": "string" },
+        "waitlistHistory": { "type": "string" },
+        "isEnrolled": { "type": "string", "enum": ["Y", "N", "-"] }
+      },
+      "required": ["id", "year", "grade", "location", "universityName", "admissionType", "detailedType", "departmentName", "step1Result", "finalResult", "isEnrolled"]
+    },
+    "OfficialStat": {
+      "title": "Official University Statistics",
+      "description": "3-year official admission statistics from universities.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "location": { "type": "string" },
+        "universityName": { "type": "string" },
+        "departmentName": { "type": "string" },
+        "admissionType": { "type": "string" },
+        "detailedType": { "type": "string" },
+        "stats": {
+          "type": "object",
+          "description": "Yearly statistics mapa"
+        }
+      },
+      "required": ["id", "universityName", "departmentName", "stats"]
+    },
+    "VisitorStats": {
+      "title": "Visitor Statistics",
+      "description": "Daily and total visitor counts.",
+      "type": "object",
+      "properties": {
+        "daily": { "type": "integer" },
+        "total": { "type": "integer" },
+        "lastResetDate": { "type": "string" }
+      },
+      "required": ["daily", "total", "lastResetDate"]
+    }
+  },
+  "firestore": {
+    "admissionCases/{caseId}": {
+      "schema": "AdmissionCase",
+      "description": "Collection of all admission cases."
+    },
+    "officialStats/{statId}": {
+      "schema": "OfficialStat",
+      "description": "Collection of official 3-year statistics."
+    },
+    "system/visitors": {
+      "schema": "VisitorStats",
+      "description": "Global visitor statistics document."
+    }
+  }
+}

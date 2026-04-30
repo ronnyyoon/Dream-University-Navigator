@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isValidAdmissionCase(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.year is int &&
+             data.grade is number &&
+             data.location is string && data.location.size() <= 64 &&
+             data.universityName is string && data.universityName.size() <= 128 &&
+             data.admissionType is string && data.admissionType.size() <= 64 &&
+             data.detailedType is string && data.detailedType.size() <= 128 &&
+             data.departmentName is string && data.departmentName.size() <= 128 &&
+             data.step1Result is string && data.step1Result.size() <= 64 &&
+             data.finalResult is string && data.finalResult.size() <= 64 &&
+             data.isEnrolled in ['Y', 'N', '-'];
+    }
+
+    function isValidOfficialStat(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.universityName is string && data.universityName.size() <= 128 &&
+             data.departmentName is string && data.departmentName.size() <= 128 &&
+             data.stats is map;
+    }
+
+    match /admissionCases/{caseId} {
+      allow read: if true;
+      allow write: if true; // Temporary allow for data setup.
+    }
+
+    match /officialStats/{statId} {
+      allow read: if true;
+      allow write: if true; // Temporary allow for data setup.
+    }
+
+    match /system/visitors {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
