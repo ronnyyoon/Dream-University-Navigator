@@ -7,6 +7,8 @@ import {
   orderBy,
   setDoc,
   doc,
+  deleteDoc,
+  updateDoc,
   writeBatch,
   DocumentData,
   QueryConstraint
@@ -198,6 +200,91 @@ export async function uploadOfficialStats(stats: OfficialStat[]): Promise<void> 
       error: error.message,
       operationType: OperationType.WRITE,
       path: STATS_COLLECTION,
+      authInfo: {
+        userId: auth.currentUser?.uid || '',
+        email: auth.currentUser?.email || '',
+        emailVerified: auth.currentUser?.emailVerified || false,
+        isAnonymous: auth.currentUser?.isAnonymous || true,
+        providerInfo: []
+      }
+    }));
+  }
+}
+
+export async function deleteOfficialStatsByUniversity(universityName: string): Promise<number> {
+  try {
+    let totalDeleted = 0;
+    let hasMore = true;
+
+    while (hasMore) {
+      const q = query(
+        collection(db, STATS_COLLECTION), 
+        where('universityName', '==', universityName),
+        limit(500)
+      );
+      const querySnapshot = await getDocs(q);
+      const docs = querySnapshot.docs;
+
+      if (docs.length === 0) {
+        hasMore = false;
+        break;
+      }
+
+      const batch = writeBatch(db);
+      for (const d of docs) {
+        batch.delete(d.ref);
+      }
+      await batch.commit();
+      totalDeleted += docs.length;
+      
+      if (totalDeleted > 10000) break;
+    }
+    
+    return totalDeleted;
+  } catch (error: any) {
+    throw new Error(JSON.stringify({
+      error: error.message,
+      operationType: OperationType.DELETE,
+      path: STATS_COLLECTION,
+      authInfo: {
+        userId: auth.currentUser?.uid || '',
+        email: auth.currentUser?.email || '',
+        emailVerified: auth.currentUser?.emailVerified || false,
+        isAnonymous: auth.currentUser?.isAnonymous || true,
+        providerInfo: []
+      }
+    }));
+  }
+}
+
+export async function deleteOfficialStat(id: string): Promise<void> {
+  try {
+    await deleteDoc(doc(db, STATS_COLLECTION, id));
+  } catch (error: any) {
+    throw new Error(JSON.stringify({
+      error: error.message,
+      operationType: OperationType.DELETE,
+      path: `${STATS_COLLECTION}/${id}`,
+      authInfo: {
+        userId: auth.currentUser?.uid || '',
+        email: auth.currentUser?.email || '',
+        emailVerified: auth.currentUser?.emailVerified || false,
+        isAnonymous: auth.currentUser?.isAnonymous || true,
+        providerInfo: []
+      }
+    }));
+  }
+}
+
+export async function updateOfficialStat(id: string, data: Partial<OfficialStat>): Promise<void> {
+  try {
+    const { id: _, ...updateData } = data as any;
+    await updateDoc(doc(db, STATS_COLLECTION, id), updateData);
+  } catch (error: any) {
+    throw new Error(JSON.stringify({
+      error: error.message,
+      operationType: OperationType.UPDATE,
+      path: `${STATS_COLLECTION}/${id}`,
       authInfo: {
         userId: auth.currentUser?.uid || '',
         email: auth.currentUser?.email || '',

@@ -21,12 +21,26 @@ import {
   Lock,
   User
 } from 'lucide-react';
-import { fetchAllAdmissionCases, uploadOfficialStats, deleteAllOfficialStats } from '../lib/admissionService';
+import { 
+  fetchAllAdmissionCases, 
+  uploadOfficialStats, 
+  deleteAllOfficialStats, 
+  fetchOfficialStats,
+  deleteOfficialStat,
+  deleteOfficialStatsByUniversity,
+  updateOfficialStat
+} from '../lib/admissionService';
 import { seedInitialData, checkNeedSeeding } from '../lib/dataSeeder';
-import { AdmissionCase } from '../types';
+import { AdmissionCase, OfficialStat } from '../types';
 import Papa from 'papaparse';
 import { collection, writeBatch, doc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
+import { 
+  Edit2,
+  ChevronRight,
+  ChevronDown,
+  X
+} from 'lucide-react';
 
 export default function AdminDashboard() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -46,6 +60,73 @@ export default function AdminDashboard() {
   const [statusMessage, setStatusMessage] = React.useState<{text: string, type: 'success' | 'error' | 'info'} | null>(null);
 
   const [showDeleteConfirm, setShowDeleteConfirm] = React.useState(false);
+
+  // Stats Management State
+  const [statsSearch, setStatsSearch] = React.useState('');
+  const [statsManageList, setStatsManageList] = React.useState<OfficialStat[]>([]);
+  const [loadingStats, setLoadingStats] = React.useState(false);
+  const [editingStat, setEditingStat] = React.useState<OfficialStat | null>(null);
+  const [confirmUniDelete, setConfirmUniDelete] = React.useState<string | null>(null);
+
+  const handleStatsSearch = async () => {
+    if (!statsSearch.trim()) {
+      showStatus("대학명을 입력해주세요.", "info");
+      return;
+    }
+    setLoadingStats(true);
+    try {
+      const results = await fetchOfficialStats({ universityName: statsSearch });
+      setStatsManageList(results);
+      if (results.length === 0) showStatus("검색 결과가 없습니다.", "info");
+    } catch (err: any) {
+      showStatus("데이터를 불러오는데 실패했습니다.", "error");
+    } finally {
+      setLoadingStats(false);
+    }
+  };
+
+  const handleDeleteStat = async (id: string) => {
+    if (!confirm('정말로 이 항목을 삭제하시겠습니까?')) return;
+    try {
+      setUploading(true);
+      await deleteOfficialStat(id);
+      setStatsManageList(prev => prev.filter(s => s.id !== id));
+      showStatus("데이터가 삭제되었습니다.", "success");
+    } catch (err: any) {
+      showStatus("삭제에 실패했습니다.", "error");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleDeleteUniversityStats = async (uniName: string) => {
+    try {
+      setUploading(true);
+      const count = await deleteOfficialStatsByUniversity(uniName);
+      setStatsManageList(prev => prev.filter(s => s.universityName !== uniName));
+      setConfirmUniDelete(null);
+      showStatus(`${uniName}의 ${count}개 데이터가 삭제되었습니다.`, "success");
+    } catch (err: any) {
+      showStatus("삭제에 실패했습니다.", "error");
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleUpdateStat = async () => {
+    if (!editingStat || !editingStat.id) return;
+    try {
+      setUploading(true);
+      await updateOfficialStat(editingStat.id, editingStat);
+      setStatsManageList(prev => prev.map(s => s.id === editingStat.id ? editingStat : s));
+      setEditingStat(null);
+      showStatus("수정되었습니다.", "success");
+    } catch (err: any) {
+      showStatus("수정에 실패했습니다.", "error");
+    } finally {
+      setUploading(false);
+    }
+  };
 
   const normalizeUniversityName = (name: string) => {
     if (!name) return '';
@@ -732,6 +813,227 @@ export default function AdminDashboard() {
                   JSON 데이터 업로드
                 </button>
               </div>
+            </div>
+          )}
+
+          {/* New: Stats Management Section */}
+          {activeTab === 'stats' && (
+            <div className="space-y-6 mb-10">
+              <div className="p-8 glass-card border border-white/10">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <h3 className="text-xl font-bold text-white">데이터 검색 및 개별 관리</h3>
+                    <p className="text-sm text-text-dim mt-1">대학별 또는 모집단위별 데이터를 검색하여 수정하거나 삭제할 수 있습니다.</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 mb-8">
+                  <div className="relative flex-1">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-text-dim" size={18} />
+                    <input 
+                      type="text" 
+                      value={statsSearch}
+                      onChange={(e) => setStatsSearch(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && handleStatsSearch()}
+                      placeholder="대학명을 입력하세요 (예: 서울대)"
+                      className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white font-bold outline-none focus:border-primary/50 transition-all placeholder:text-zinc-600"
+                    />
+                  </div>
+                  <button 
+                    onClick={handleStatsSearch}
+                    disabled={loadingStats}
+                    className="px-6 bg-primary text-secondary font-black rounded-xl hover:scale-105 active:scale-95 transition-all disabled:opacity-50"
+                  >
+                    {loadingStats ? <Loader2 className="animate-spin" size={20} /> : '검색'}
+                  </button>
+                </div>
+
+                {statsManageList.length > 0 && (
+                  <div className="space-y-4">
+                    {/* Universities found grouping */}
+                    {Array.from(new Set(statsManageList.map(s => s.universityName))).map(uni => (
+                      <div key={uni} className="bg-white/5 rounded-2xl overflow-hidden border border-white/5">
+                        <div className="bg-white/[0.03] p-4 flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <span className="text-lg font-black text-white">{uni}</span>
+                            <span className="text-[10px] bg-white/10 text-white/60 px-2 py-0.5 rounded-full font-bold">
+                              {statsManageList.filter(s => s.universityName === uni).length} Items
+                            </span>
+                          </div>
+                          <div className="flex gap-2">
+                             {confirmUniDelete === uni ? (
+                               <div className="flex gap-1 animate-in slide-in-from-right-2">
+                                 <button 
+                                   onClick={() => handleDeleteUniversityStats(uni)}
+                                   className="bg-rose-500 text-white px-3 py-1.5 rounded-lg text-xs font-black"
+                                 >
+                                   전체 삭제 확정
+                                 </button>
+                                 <button 
+                                   onClick={() => setConfirmUniDelete(null)}
+                                   className="bg-white/10 text-white px-3 py-1.5 rounded-lg text-xs font-black"
+                                 >
+                                   취소
+                                 </button>
+                               </div>
+                             ) : (
+                               <button 
+                                 onClick={() => setConfirmUniDelete(uni)}
+                                 className="text-rose-500 hover:bg-rose-500/10 px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-2 transition-all"
+                               >
+                                 <Trash2 size={14} />
+                                 대학 전체 삭제
+                               </button>
+                             )}
+                          </div>
+                        </div>
+                        
+                        <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          {statsManageList.filter(s => s.universityName === uni).map(item => (
+                            <div key={item.id} className="p-4 bg-black/20 rounded-xl border border-white/5 hover:border-white/20 transition-all group relative">
+                              <div className="flex justify-between items-start mb-2">
+                                <div className="flex-1">
+                                  <div className="text-sm font-bold text-white group-hover:text-primary transition-colors">{item.departmentName}</div>
+                                  <div className="text-[10px] text-text-dim font-bold">{item.admissionType} | {item.detailedType}</div>
+                                </div>
+                                <div className="flex gap-1">
+                                  <button 
+                                    onClick={() => setEditingStat(item)}
+                                    className="p-1.5 hover:bg-white/10 rounded-lg text-white/40 hover:text-white transition-all"
+                                  >
+                                    <Edit2 size={14} />
+                                  </button>
+                                  <button 
+                                    onClick={() => item.id && handleDeleteStat(item.id)}
+                                    className="p-1.5 hover:bg-rose-500/20 rounded-lg text-rose-500/40 hover:text-rose-500 transition-all"
+                                  >
+                                    <Trash2 size={14} />
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                {!loadingStats && statsManageList.length === 0 && statsSearch && (
+                  <div className="py-20 text-center text-text-dim text-sm font-bold">
+                    검색 결과가 없습니다.
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Edit Modal */}
+          {editingStat && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                onClick={() => setEditingStat(null)}
+                className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              />
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                className="relative w-full max-w-2xl bg-zinc-900 border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl"
+              >
+                <div className="p-8 border-b border-white/5 flex items-center justify-between">
+                  <div>
+                    <h2 className="text-2xl font-black text-white tracking-tight">통계 데이터 수정</h2>
+                    <p className="text-sm text-text-dim font-bold mt-1">{editingStat.universityName} · {editingStat.departmentName}</p>
+                  </div>
+                  <button onClick={() => setEditingStat(null)} className="p-2 hover:bg-white/5 rounded-xl text-text-dim">
+                    <X size={24} />
+                  </button>
+                </div>
+                
+                <div className="p-8 max-h-[60vh] overflow-y-auto custom-scrollbar space-y-8">
+                  {/* Basic Info */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">대학명</label>
+                      <input 
+                        type="text" 
+                        value={editingStat.universityName}
+                        onChange={(e) => setEditingStat({...editingStat, universityName: e.target.value})}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white font-bold outline-none focus:border-primary/50"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">모집단위</label>
+                      <input 
+                        type="text" 
+                        value={editingStat.departmentName}
+                        onChange={(e) => setEditingStat({...editingStat, departmentName: e.target.value})}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white font-bold outline-none focus:border-primary/50"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">전형유형</label>
+                      <input 
+                        type="text" 
+                        value={editingStat.admissionType}
+                        onChange={(e) => setEditingStat({...editingStat, admissionType: e.target.value})}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white font-bold outline-none focus:border-primary/50"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">세부유형</label>
+                      <input 
+                        type="text" 
+                        value={editingStat.detailedType}
+                        onChange={(e) => setEditingStat({...editingStat, detailedType: e.target.value})}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white font-bold outline-none focus:border-primary/50"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Year Stats */}
+                  {Object.keys(editingStat.stats || {}).sort().reverse().map(year => (
+                    <div key={year} className="p-6 rounded-2xl bg-white/[0.02] border border-white/5 space-y-4">
+                      <div className="text-lg font-black text-primary font-mono">{year}년도 데이터</div>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        {(['enrollment', 'registeredCount', 'competitionRate', 'waitlistLastRank', 'average', 'cut50', 'cut70', 'cut80'] as const).map(field => (
+                          <div key={field} className="space-y-1">
+                            <label className="text-[9px] font-black text-text-dim uppercase">{field}</label>
+                            <input 
+                              type="text" 
+                              value={editingStat.stats[year][field] || ''}
+                              onChange={(e) => {
+                                const newStats = { ...editingStat.stats };
+                                newStats[year] = { ...newStats[year], [field]: e.target.value };
+                                setEditingStat({ ...editingStat, stats: newStats });
+                              }}
+                              className="w-full bg-white/5 border border-white/5 rounded-lg py-2 px-3 text-xs text-white font-bold outline-none focus:border-primary/50"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="p-8 bg-white/[0.02] border-t border-white/5 flex gap-4">
+                  <button 
+                    onClick={() => setEditingStat(null)}
+                    className="flex-1 py-4 rounded-2xl border border-white/10 text-white font-black hover:bg-white/5 transition-all"
+                  >
+                    취소
+                  </button>
+                  <button 
+                    onClick={handleUpdateStat}
+                    disabled={uploading}
+                    className="flex-1 py-4 rounded-2xl bg-primary text-secondary font-black hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50"
+                  >
+                    {uploading ? <Loader2 className="animate-spin" /> : '저장하기'}
+                  </button>
+                </div>
+              </motion.div>
             </div>
           )}
 
