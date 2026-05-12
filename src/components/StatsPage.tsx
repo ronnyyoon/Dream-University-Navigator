@@ -109,9 +109,27 @@ export default function StatsPage() {
     }
     const unis = Array.from(new Set(uniStats.map(s => normalize(s.universityName)))).filter(Boolean).sort();
 
-    // Admission Types
-    const adTypes = Array.from(new Set(filteredForOptions.map(s => s.admissionType))).filter(Boolean).sort();
-    const detTypes = Array.from(new Set(filteredForOptions.map(s => s.detailedType))).filter(Boolean).sort();
+    // Admission Types with custom sort
+    const adTypeOrder = ['학생부종합', '학생부교과', '논술', '실기'];
+    const adTypes = Array.from(new Set(filteredForOptions.map(s => s.admissionType)))
+      .filter((s): s is string => Boolean(s))
+      .sort((a, b) => {
+        const idxA = adTypeOrder.indexOf(a);
+        const idxB = adTypeOrder.indexOf(b);
+        if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+        if (idxA !== -1) return -1;
+        if (idxB !== -1) return 1;
+        return a.localeCompare(b);
+      });
+
+    // Detailed Types: also filter by selected admission type
+    let detTypeStats = filteredForOptions;
+    if (filters.admissionType !== '전체') {
+      detTypeStats = detTypeStats.filter(s => s.admissionType === filters.admissionType);
+    }
+    const detTypes = Array.from(new Set(detTypeStats.map(s => s.detailedType)))
+      .filter((s): s is string => Boolean(s))
+      .sort();
 
     return {
       locations: options.locations, // Locations usually fixed
@@ -120,7 +138,7 @@ export default function StatsPage() {
       admissionTypes: ['전체', ...adTypes],
       detailedTypes: ['전체', ...detTypes]
     };
-  }, [statsData, filters.location, filters.university, options.locations]);
+  }, [statsData, filters.location, filters.university, filters.admissionType, options.locations]);
 
   const years = ['2024', '2025', '2026'];
 
@@ -146,10 +164,10 @@ export default function StatsPage() {
         return Number(String(val).replace(/[^0-9.]/g, ''));
       };
 
-      const checkTrend = (field: string, filterVal: string) => {
+      const checkTrend = (field: keyof OfficialStat['stats']['2024'], filterVal: string) => {
         if (filterVal === '전체') return true;
         
-        const isGradeField = ['average', 'cut50', 'cut70', 'cut80'].includes(field);
+        const isGradeField = ['average', 'cut50', 'cut70', 'cut80'].includes(field as string);
         const v24 = getVal('2024', field);
         const v25 = getVal('2025', field);
         const v26 = getVal('2026', field);
@@ -385,10 +403,10 @@ export default function StatsPage() {
             return (
               <FilterSelect 
                 key={key}
-                label={labels[key]} 
-                value={(filters as any)[key]} 
+                label={labels[key] as string} 
+                value={(filters as any)[key] as string} 
                 options={['전체', '최근 3년 연속 하락', '최근 3년 연속 상승', '최근 2년 연속 하락', '최근 2년 연속 상승', '최근 1년 하락', '최근 1년 상승']}
-                onChange={(val) => setFilters(prev => ({ ...prev, [key]: val }))}
+                onChange={(val: string) => setFilters(prev => ({ ...prev, [key]: val }))}
               />
             );
           })}
@@ -582,7 +600,7 @@ export default function StatsPage() {
   );
 }
 
-function FilterSelect({ label, value, options, onChange }: { label: string, value: string, options: string[], onChange: (v: string) => void }) {
+function FilterSelect({ label, value, options, onChange }: any) {
   return (
     <div className="flex flex-col gap-1.5">
       <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">{label}</label>

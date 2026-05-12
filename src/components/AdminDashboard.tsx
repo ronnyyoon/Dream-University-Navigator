@@ -851,7 +851,7 @@ export default function AdminDashboard() {
                 {statsManageList.length > 0 && (
                   <div className="space-y-4">
                     {/* Universities found grouping */}
-                    {Array.from(new Set(statsManageList.map(s => s.universityName))).map(uni => (
+                    {Array.from(new Set(statsManageList.map(s => s.universityName))).map((uni: any) => (
                       <div key={uni} className="bg-white/5 rounded-2xl overflow-hidden border border-white/5">
                         <div className="bg-white/[0.03] p-4 flex items-center justify-between">
                           <div className="flex items-center gap-3">
