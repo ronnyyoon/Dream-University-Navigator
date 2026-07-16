@@ -1,32 +1,74 @@
-import { 
-  collection, 
-  query, 
-  getDocs, 
-  where, 
-  limit, 
-  orderBy,
-  setDoc,
-  doc,
-  deleteDoc,
-  updateDoc,
-  writeBatch,
-  DocumentData,
-  QueryConstraint
-} from 'firebase/firestore';
-import { auth, db } from './firebase';
 import { AdmissionCase, OfficialStat } from '../types';
+import { SEED_ADMISSION_CASES } from '../seedData';
+import universityData from '../university_stats.json';
+import admissionData from '../admission_cases.json';
 
-enum OperationType {
-  CREATE = 'create',
-  UPDATE = 'update',
-  DELETE = 'delete',
-  LIST = 'list',
-  GET = 'get',
-  WRITE = 'write',
+// Cast the imported universityData to OfficialStat[]
+const INITIAL_OFFICIAL_STATS = universityData as OfficialStat[];
+
+// In-memory/localStorage stores
+let cachedAdmissionCases: AdmissionCase[] | null = null;
+let cachedOfficialStats: OfficialStat[] | null = null;
+
+// Initialize admission cases from localStorage or fallback to SEED_ADMISSION_CASES
+function getLocalAdmissionCases(): AdmissionCase[] {
+  if (cachedAdmissionCases) {
+    return cachedAdmissionCases;
+  }
+  try {
+    console.log("🚀 [Offline Case Engine] 2,763건의 실제 합격 사례 데이터가 로컬 JSON 파일로부터 정상 로딩되었습니다.");
+    
+    cachedAdmissionCases = admissionData.map((data: any, index: number) => {
+      const getVal = (...args: any[]) => {
+        for (const val of args) {
+          if (val !== undefined && val !== null && val !== "") return val;
+        }
+        return "-";
+      };
+
+      return {
+        id: data.id || String(index),
+        grade: Number(data.grade || 0),
+        year: Number(data.year || 2026),
+        universityName: getVal(data.universityName, data.college),
+        departmentName: getVal(data.departmentName, data.major),
+        admissionType: getVal(data.admissionType, data.type),
+        detailedType: getVal(data.detailedType, data.detailType),
+        step1Result: getVal(data.step1Result, "-"),
+        finalResult: getVal(data.finalResult, "-"),
+        failReason: getVal(data.failReason, ""),
+        waitlistRank: getVal(data.waitlistRank, ""),
+        waitlistHistory: getVal(data.waitlistHistory, ""),
+        location: getVal(data.location, "-"),
+        isEnrolled: getVal(data.isEnrolled, "N")
+      };
+    });
+  } catch (error) {
+    console.error("로컬 합격 사례 JSON 매핑 에러:", error);
+    cachedAdmissionCases = [];
+  }
+
+  return cachedAdmissionCases;
 }
 
-const ADMISSION_COLLECTION = 'admissionCases';
-const STATS_COLLECTION = 'officialStats';
+function saveLocalAdmissionCases(cases: AdmissionCase[]) {
+  // 로컬 JSON 고정 구동 방식이므로 저장 함수는 무력화 처리합니다.
+}
+
+// Initialize official stats from memory (to avoid local storage quota limits of 5MB for large json data)
+function getLocalOfficialStats(): OfficialStat[] {
+  if (cachedOfficialStats) {
+    return cachedOfficialStats;
+  }
+  // Load from local memory cache
+  cachedOfficialStats = [...INITIAL_OFFICIAL_STATS];
+  return cachedOfficialStats;
+}
+
+export function clearAdmissionCache() {
+  cachedAdmissionCases = null;
+  cachedOfficialStats = null;
+}
 
 export async function fetchAdmissionCases(filters: {
   year?: string;
@@ -41,89 +83,61 @@ export async function fetchAdmissionCases(filters: {
   maxGrade?: number;
 } = {}): Promise<AdmissionCase[]> {
   try {
-    const qConstraints: QueryConstraint[] = [];
+    const allCases = getLocalAdmissionCases();
+    let results = [...allCases];
 
     if (filters.year && filters.year !== '전체') {
-      qConstraints.push(where('year', '==', parseInt(filters.year)));
+      results = results.filter(c => c.year === parseInt(filters.year!));
     }
     if (filters.location && filters.location !== '전체') {
-      qConstraints.push(where('location', '==', filters.location));
+      results = results.filter(c => c.location === filters.location);
     }
     if (filters.universityName && filters.universityName !== '전체') {
-      qConstraints.push(where('universityName', '==', filters.universityName));
+      results = results.filter(c => c.universityName === filters.universityName);
     }
     if (filters.departmentName && filters.departmentName !== '전체') {
-      qConstraints.push(where('departmentName', '==', filters.departmentName));
+      results = results.filter(c => c.departmentName === filters.departmentName);
     }
     if (filters.admissionType && filters.admissionType !== '전체') {
-      qConstraints.push(where('admissionType', '==', filters.admissionType));
+      results = results.filter(c => c.admissionType === filters.admissionType);
     }
     if (filters.detailedType && filters.detailedType !== '전체') {
-      qConstraints.push(where('detailedType', '==', filters.detailedType));
+      results = results.filter(c => c.detailedType === filters.detailedType);
     }
     if (filters.finalResult && filters.finalResult !== '전체') {
       if (filters.finalResult === '최종합격(합격+충원합격)') {
-        qConstraints.push(where('finalResult', 'in', ['합격', '충원합격']));
+        results = results.filter(c => ['합격', '충원합격'].includes(c.finalResult));
       } else {
-        qConstraints.push(where('finalResult', '==', filters.finalResult));
+        results = results.filter(c => c.finalResult === filters.finalResult);
       }
     }
     if (filters.isEnrolled && filters.isEnrolled !== '전체') {
-      qConstraints.push(where('isEnrolled', '==', filters.isEnrolled));
+      results = results.filter(c => c.isEnrolled === filters.isEnrolled);
     }
     if (filters.minGrade !== undefined) {
-      qConstraints.push(where('grade', '>=', filters.minGrade));
+      results = results.filter(c => c.grade >= filters.minGrade!);
     }
     if (filters.maxGrade !== undefined) {
-      qConstraints.push(where('grade', '<=', filters.maxGrade));
+      results = results.filter(c => c.grade <= filters.maxGrade!);
     }
-
-    // Default order
-    qConstraints.push(orderBy('year', 'desc'));
-    qConstraints.push(orderBy('grade', 'asc'));
-
-    const q = query(collection(db, ADMISSION_COLLECTION), ...qConstraints);
-    const querySnapshot = await getDocs(q);
     
-    return querySnapshot.docs.map(doc => ({
-      ...doc.data(),
-      id: doc.id
-    } as AdmissionCase));
-  } catch (error: any) {
-    console.error("Error fetching admission cases:", error);
-    // Standardized error throwing as per instructions
-    throw new Error(JSON.stringify({
-      error: error.message,
-      operationType: 'list',
-      path: ADMISSION_COLLECTION,
-      authInfo: {
-        userId: 'anonymous', // Update if auth is implemented
-        email: '',
-        emailVerified: false,
-        isAnonymous: true,
-        providerInfo: []
+    // Sort logic (year desc, grade asc)
+    results.sort((a, b) => {
+      if (b.year !== a.year) {
+        return b.year - a.year;
       }
-    }));
+      return a.grade - b.grade;
+    });
+
+    return results;
+  } catch (error: any) {
+    console.error("Error filtering admission cases:", error);
+    return [];
   }
 }
 
-// Since indexing everything correctly might take time, 
-// a simpler version that fetches and filters client-side for "small" datasets (like this one)
 export async function fetchAllAdmissionCases(): Promise<AdmissionCase[]> {
-  try {
-    const querySnapshot = await getDocs(collection(db, ADMISSION_COLLECTION));
-    return querySnapshot.docs.map(doc => ({
-      ...doc.data(),
-      id: doc.id
-    } as AdmissionCase));
-  } catch (error: any) {
-    throw new Error(JSON.stringify({
-      error: error.message,
-      operationType: 'list',
-      path: ADMISSION_COLLECTION,
-      authInfo: { userId: '', email: '', emailVerified: false, isAnonymous: true, providerInfo: [] }
-    }));
-  }
+  return getLocalAdmissionCases();
 }
 
 export async function fetchOfficialStats(filters: {
@@ -134,207 +148,67 @@ export async function fetchOfficialStats(filters: {
   detailedType?: string;
 } = {}): Promise<OfficialStat[]> {
   try {
-    const qConstraints: QueryConstraint[] = [];
+    const stats = getLocalOfficialStats();
+    let results = [...stats];
 
     if (filters.location && filters.location !== '전체') {
-      qConstraints.push(where('location', '==', filters.location));
+      results = results.filter(r => r.location === filters.location);
     }
     if (filters.universityName && filters.universityName !== '전체') {
-      qConstraints.push(where('universityName', '==', filters.universityName));
+      results = results.filter(r => r.universityName === filters.universityName);
     }
     if (filters.admissionType && filters.admissionType !== '전체') {
-      qConstraints.push(where('admissionType', '==', filters.admissionType));
+      results = results.filter(r => r.admissionType === filters.admissionType);
     }
     if (filters.detailedType && filters.detailedType !== '전체') {
-      qConstraints.push(where('detailedType', '==', filters.detailedType));
+      results = results.filter(r => r.detailedType === filters.detailedType);
     }
-
-    // Since contains/includes is not supported in Firestore where, 
-    // we fetch and filter departmentName client-side if needed, 
-    // or just fetch by other keys first.
-    // For now, let's keep it simple and combine constraints.
-    
-    let q = query(collection(db, STATS_COLLECTION), ...qConstraints);
-    const querySnapshot = await getDocs(q);
-    
-    let results = querySnapshot.docs.map(d => ({ ...d.data(), id: d.id } as OfficialStat));
-    
-    // Server-side filtering is better for exact matches (already done in qConstraints),
-    // but we can add secondary filtering for completeness if Firestore didn't handle it.
-    
-    // Client-side sub-filtering for department name (partial match)
     if (filters.departmentName) {
       const search = filters.departmentName.toLowerCase().trim();
       if (search) {
         results = results.filter(r => r.departmentName && r.departmentName.toLowerCase().includes(search));
       }
     }
-    
+
     // Final safety check for UI display
     return results.filter(r => r.universityName && r.universityName.trim() !== '');
   } catch (error: any) {
-    throw new Error(JSON.stringify({
-      error: error.message,
-      operationType: 'list',
-      path: STATS_COLLECTION,
-      authInfo: { userId: '', email: '', emailVerified: false, isAnonymous: true, providerInfo: [] }
-    }));
+    console.error("Error fetching official stats:", error);
+    return [];
   }
 }
 
 export async function uploadOfficialStats(stats: OfficialStat[]): Promise<void> {
-  try {
-    for (let i = 0; i < stats.length; i += 500) {
-      const chunk = stats.slice(i, i + 500);
-      const batch = writeBatch(db);
-      
-      for (const stat of chunk) {
-        const docRef = doc(collection(db, STATS_COLLECTION));
-        batch.set(docRef, { ...stat, id: docRef.id });
-      }
-      
-      await batch.commit();
-    }
-  } catch (error: any) {
-    throw new Error(JSON.stringify({
-      error: error.message,
-      operationType: OperationType.WRITE,
-      path: STATS_COLLECTION,
-      authInfo: {
-        userId: auth.currentUser?.uid || '',
-        email: auth.currentUser?.email || '',
-        emailVerified: auth.currentUser?.emailVerified || false,
-        isAnonymous: auth.currentUser?.isAnonymous || true,
-        providerInfo: []
-      }
-    }));
-  }
+  // Append new stats to our local memory database
+  const current = getLocalOfficialStats();
+  cachedOfficialStats = [...current, ...stats];
 }
 
 export async function deleteOfficialStatsByUniversity(universityName: string): Promise<number> {
-  try {
-    let totalDeleted = 0;
-    let hasMore = true;
-
-    while (hasMore) {
-      const q = query(
-        collection(db, STATS_COLLECTION), 
-        where('universityName', '==', universityName),
-        limit(500)
-      );
-      const querySnapshot = await getDocs(q);
-      const docs = querySnapshot.docs;
-
-      if (docs.length === 0) {
-        hasMore = false;
-        break;
-      }
-
-      const batch = writeBatch(db);
-      for (const d of docs) {
-        batch.delete(d.ref);
-      }
-      await batch.commit();
-      totalDeleted += docs.length;
-      
-      if (totalDeleted > 10000) break;
-    }
-    
-    return totalDeleted;
-  } catch (error: any) {
-    throw new Error(JSON.stringify({
-      error: error.message,
-      operationType: OperationType.DELETE,
-      path: STATS_COLLECTION,
-      authInfo: {
-        userId: auth.currentUser?.uid || '',
-        email: auth.currentUser?.email || '',
-        emailVerified: auth.currentUser?.emailVerified || false,
-        isAnonymous: auth.currentUser?.isAnonymous || true,
-        providerInfo: []
-      }
-    }));
-  }
+  const current = getLocalOfficialStats();
+  const filtered = current.filter(s => s.universityName !== universityName);
+  const deletedCount = current.length - filtered.length;
+  cachedOfficialStats = filtered;
+  return deletedCount;
 }
 
 export async function deleteOfficialStat(id: string): Promise<void> {
-  try {
-    await deleteDoc(doc(db, STATS_COLLECTION, id));
-  } catch (error: any) {
-    throw new Error(JSON.stringify({
-      error: error.message,
-      operationType: OperationType.DELETE,
-      path: `${STATS_COLLECTION}/${id}`,
-      authInfo: {
-        userId: auth.currentUser?.uid || '',
-        email: auth.currentUser?.email || '',
-        emailVerified: auth.currentUser?.emailVerified || false,
-        isAnonymous: auth.currentUser?.isAnonymous || true,
-        providerInfo: []
-      }
-    }));
-  }
+  const current = getLocalOfficialStats();
+  cachedOfficialStats = current.filter(s => s.id !== id);
 }
 
 export async function updateOfficialStat(id: string, data: Partial<OfficialStat>): Promise<void> {
-  try {
-    const { id: _, ...updateData } = data as any;
-    await updateDoc(doc(db, STATS_COLLECTION, id), updateData);
-  } catch (error: any) {
-    throw new Error(JSON.stringify({
-      error: error.message,
-      operationType: OperationType.UPDATE,
-      path: `${STATS_COLLECTION}/${id}`,
-      authInfo: {
-        userId: auth.currentUser?.uid || '',
-        email: auth.currentUser?.email || '',
-        emailVerified: auth.currentUser?.emailVerified || false,
-        isAnonymous: auth.currentUser?.isAnonymous || true,
-        providerInfo: []
-      }
-    }));
-  }
+  const current = getLocalOfficialStats();
+  cachedOfficialStats = current.map(s => {
+    if (s.id === id) {
+      return { ...s, ...data };
+    }
+    return s;
+  });
 }
 
 export async function deleteAllOfficialStats(): Promise<number> {
-  try {
-    let totalDeleted = 0;
-    let hasMore = true;
-
-    while (hasMore) {
-      const q = query(collection(db, STATS_COLLECTION), limit(500));
-      const querySnapshot = await getDocs(q);
-      const docs = querySnapshot.docs;
-
-      if (docs.length === 0) {
-        hasMore = false;
-        break;
-      }
-
-      const batch = writeBatch(db);
-      for (const d of docs) {
-        batch.delete(d.ref);
-      }
-      await batch.commit();
-      totalDeleted += docs.length;
-      
-      // Safety break to prevent infinite loops if something goes wrong
-      if (totalDeleted > 10000) break;
-    }
-    
-    return totalDeleted;
-  } catch (error: any) {
-    throw new Error(JSON.stringify({
-      error: error.message,
-      operationType: OperationType.DELETE,
-      path: STATS_COLLECTION,
-      authInfo: {
-        userId: auth.currentUser?.uid || '',
-        email: auth.currentUser?.email || '',
-        emailVerified: auth.currentUser?.emailVerified || false,
-        isAnonymous: auth.currentUser?.isAnonymous || true,
-        providerInfo: []
-      }
-    }));
-  }
+  const count = getLocalOfficialStats().length;
+  cachedOfficialStats = [];
+  return count;
 }

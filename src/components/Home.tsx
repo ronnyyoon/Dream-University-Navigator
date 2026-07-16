@@ -23,8 +23,7 @@ export default function Home({ onSearch, onExplore, onStats, onUniClick, stats, 
   const [visitorStats, setVisitorStats] = React.useState<VisitorStats | null>(null);
 
   React.useEffect(() => {
-    trackVisit();
-    getVisitorStats().then(setVisitorStats).catch(console.error);
+    trackVisit().then(setVisitorStats).catch(console.error);
   }, []);
 
   const dynamicUnis = React.useMemo(() => {
@@ -64,45 +63,72 @@ export default function Home({ onSearch, onExplore, onStats, onUniClick, stats, 
   return (
     <div className="pt-24 pb-20 relative z-10">
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
-            <span className="text-gradient">데이터로 보는</span> <br />
-            대학입시의 모든 것
-          </h1>
-          <p className="text-text-dim text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-medium">
-            대학별·전형별 상세 사례부터 대학 발표 데이터까지,<br className="hidden md:block" /> 
-            꿈꾸는 대학으로 가는 가장 정확한 길을 제시합니다.
-          </p>
-        </motion.div>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-center lg:text-left">
+          <div className="lg:col-span-7">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
+                <span className="text-gradient">데이터로 보는</span> <br />
+                대학입시의 모든 것
+              </h1>
+              <p className="text-text-dim text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed font-medium">
+                대학별·전형별 상세 사례부터 대학 발표 데이터까지,<br className="hidden md:block" /> 
+                꿈꾸는 대학으로 가는 가장 정확한 길을 제시합니다.
+              </p>
+            </motion.div>
 
-        {/* Visitor Stats Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          className="flex flex-wrap justify-center gap-4 mt-2"
-        >
-          {visitorStats && (
-            <div className="flex items-center gap-6 px-6 py-2.5 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-sm">
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-primary opacity-60" />
-                <span className="text-[11px] font-black text-text-dim uppercase tracking-wider">오늘 방문</span>
-                <span className="text-sm font-black text-white font-mono">{visitorStats.daily.toLocaleString()}</span>
-              </div>
-              <div className="w-[1px] h-3 bg-white/10" />
-              <div className="flex items-center gap-2">
-                <Users className="w-4 h-4 text-primary opacity-60" />
-                <span className="text-[11px] font-black text-text-dim uppercase tracking-wider">누적 방문</span>
-                <span className="text-sm font-black text-white font-mono">{visitorStats.total.toLocaleString()}</span>
+            {/* Visitor Stats Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="flex flex-wrap justify-center lg:justify-start gap-4 mt-2"
+            >
+              {visitorStats && (
+                <div className="flex items-center gap-6 px-6 py-2.5 rounded-2xl bg-white/[0.03] border border-white/5 backdrop-blur-sm">
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-primary opacity-60" />
+                    <span className="text-[11px] font-black text-text-dim uppercase tracking-wider">오늘 방문</span>
+                    <span className="text-sm font-black text-white font-mono">{visitorStats.daily.toLocaleString()}</span>
+                  </div>
+                  <div className="w-[1px] h-3 bg-white/10" />
+                  <div className="flex items-center gap-2">
+                    <Users className="w-4 h-4 text-primary opacity-60" />
+                    <span className="text-[11px] font-black text-text-dim uppercase tracking-wider">누적 방문</span>
+                    <span className="text-sm font-black text-white font-mono">{visitorStats.total.toLocaleString()}</span>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          </div>
+
+          <motion.div
+            className="lg:col-span-5 flex justify-center lg:justify-end mt-6 lg:mt-0"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            {/* Stylish thank you card */}
+            <div className="w-full max-w-sm glass-card p-6 border border-primary/20 bg-gradient-to-br from-primary/10 via-transparent to-transparent relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:scale-150 transition-all duration-500" />
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0 text-primary">
+                  <Trophy size={20} />
+                </div>
+                <div className="text-left">
+                  <div className="text-xs font-semibold text-primary uppercase tracking-wider mb-2">Special Thanks</div>
+                  <p className="text-sm text-white/90 leading-relaxed font-medium">
+                    소수점 하나하나 직접 자료를 수집하는데 도움을 주신 <span className="text-primary font-bold">여수고등학교 3학년 담임선생님들</span>께 감사드립니다.
+                  </p>
+                </div>
               </div>
             </div>
-          )}
-        </motion.div>
+          </motion.div>
+        </div>
       </section>
 
       {/* Stats Cards */}

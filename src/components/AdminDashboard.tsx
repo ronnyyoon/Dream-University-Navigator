@@ -31,6 +31,8 @@ import {
   updateOfficialStat
 } from '../lib/admissionService';
 import { seedInitialData, checkNeedSeeding } from '../lib/dataSeeder';
+import universityData from '../university_stats.json';
+let localUniversityData: any[] = [...universityData];
 import { AdmissionCase, OfficialStat } from '../types';
 import Papa from 'papaparse';
 import { collection, writeBatch, doc } from 'firebase/firestore';
@@ -68,6 +70,19 @@ export default function AdminDashboard() {
   const [editingStat, setEditingStat] = React.useState<OfficialStat | null>(null);
   const [confirmUniDelete, setConfirmUniDelete] = React.useState<string | null>(null);
 
+  const triggerJsonDownload = (data: any[]) => {
+    const jsonString = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonString], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'university_stats.json';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
   const handleStatsSearch = async () => {
     if (!statsSearch.trim()) {
       showStatus("대학명을 입력해주세요.", "info");
@@ -75,7 +90,10 @@ export default function AdminDashboard() {
     }
     setLoadingStats(true);
     try {
-      const results = await fetchOfficialStats({ universityName: statsSearch });
+      const searchLower = statsSearch.toLowerCase().trim();
+      const results = localUniversityData.filter(item => 
+        item.universityName && item.universityName.toLowerCase().includes(searchLower)
+      );
       setStatsManageList(results);
       if (results.length === 0) showStatus("검색 결과가 없습니다.", "info");
     } catch (err: any) {
@@ -89,9 +107,10 @@ export default function AdminDashboard() {
     if (!confirm('정말로 이 항목을 삭제하시겠습니까?')) return;
     try {
       setUploading(true);
-      await deleteOfficialStat(id);
+      localUniversityData = localUniversityData.filter(s => s.id !== id);
       setStatsManageList(prev => prev.filter(s => s.id !== id));
-      showStatus("데이터가 삭제되었습니다.", "success");
+      triggerJsonDownload(localUniversityData);
+      showStatus("선택 항목이 삭제되고 university_stats.json 파일 다운로드가 시작되었습니다.", "success");
     } catch (err: any) {
       showStatus("삭제에 실패했습니다.", "error");
     } finally {
@@ -102,10 +121,15 @@ export default function AdminDashboard() {
   const handleDeleteUniversityStats = async (uniName: string) => {
     try {
       setUploading(true);
-      const count = await deleteOfficialStatsByUniversity(uniName);
+      const originalLength = localUniversityData.length;
+      localUniversityData = localUniversityData.filter(s => s.universityName !== uniName);
+      const count = originalLength - localUniversityData.length;
+      
       setStatsManageList(prev => prev.filter(s => s.universityName !== uniName));
       setConfirmUniDelete(null);
-      showStatus(`${uniName}의 ${count}개 데이터가 삭제되었습니다.`, "success");
+      
+      triggerJsonDownload(localUniversityData);
+      showStatus(`${uniName}의 ${count}개 데이터가 삭제되고 university_stats.json 파일 다운로드가 시작되었습니다.`, "success");
     } catch (err: any) {
       showStatus("삭제에 실패했습니다.", "error");
     } finally {
@@ -117,10 +141,11 @@ export default function AdminDashboard() {
     if (!editingStat || !editingStat.id) return;
     try {
       setUploading(true);
-      await updateOfficialStat(editingStat.id, editingStat);
+      localUniversityData = localUniversityData.map(s => s.id === editingStat.id ? editingStat : s);
       setStatsManageList(prev => prev.map(s => s.id === editingStat.id ? editingStat : s));
       setEditingStat(null);
-      showStatus("수정되었습니다.", "success");
+      triggerJsonDownload(localUniversityData);
+      showStatus("수정되었으며 university_stats.json 파일 다운로드가 시작되었습니다.", "success");
     } catch (err: any) {
       showStatus("수정에 실패했습니다.", "error");
     } finally {
@@ -145,8 +170,32 @@ export default function AdminDashboard() {
         ...s,
         universityName: normalizeUniversityName(s.universityName)
       }));
-      await uploadOfficialStats(statsArray);
-      showStatus(`${statsArray.length}개의 통계 데이터가 성공적으로 업로드되었습니다.`, 'success');
+      
+      const mergedList = [...localUniversityData];
+      statsArray.forEach(newStat => {
+        const existingIndex = mergedList.findIndex(existing => 
+          existing.universityName === newStat.universityName &&
+          existing.departmentName === newStat.departmentName &&
+          existing.admissionType === newStat.admissionType
+        );
+
+        if (existingIndex > -1) {
+          const existingItem = mergedList[existingIndex];
+          existingItem.stats = {
+            ...(existingItem.stats || {}),
+            ...(newStat.stats || {})
+          };
+          existingItem.location = newStat.location || existingItem.location;
+          existingItem.detailedType = newStat.detailedType || existingItem.detailedType;
+        } else {
+          const id = newStat.id || "id_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
+          mergedList.push({ id, ...newStat });
+        }
+      });
+
+      localUniversityData = mergedList;
+      triggerJsonDownload(localUniversityData);
+      showStatus(`${statsArray.length}개의 통계 데이터가 병합되었으며 university_stats.json 파일 다운로드가 시작되었습니다.`, 'success');
       setStatsJsonInput('');
     } catch (error: any) {
       showStatus("통계 데이터 JSON 형식이 올바르지 않거나 업로드에 실패했습니다: " + error.message, 'error');
@@ -155,110 +204,151 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleStatsFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    setUploading(true);
-    
-    const parseConfig = (encoding: string) => ({
-      skipEmptyLines: true,
-      encoding: encoding,
-      complete: async (results: any) => {
-        const allRows = results.data as string[][];
-        if (allRows.length < 3) {
-          // If we tried UTF-8 and it looks empty or corrupted, we will retry in EUC-KR if this isn't already EUC-KR
-          if (encoding === 'UTF-8') {
-            Papa.parse(file, parseConfig('EUC-KR'));
+  const parseSingleCsv = (file: File): Promise<any[]> => {
+    return new Promise((resolve) => {
+      const parseConfig = (encoding: string) => ({
+        skipEmptyLines: true,
+        encoding: encoding,
+        complete: (results: any) => {
+          const allRows = results.data as string[][];
+          if (allRows.length < 3) {
+            if (encoding === 'UTF-8') {
+              Papa.parse(file, parseConfig('EUC-KR'));
+              return;
+            }
+            resolve([]);
             return;
           }
-          showStatus("올바른 양식의 CSV 파일이 아닙니다.", "error");
-          setUploading(false);
-          return;
-        }
 
-        // Quick check if Row 0 or 1 contains readable Korean. 
-        // If it's garbage and we are in UTF-8, retry with EUC-KR.
-        if (encoding === 'UTF-8') {
-          const sample = allRows[0].join('');
-          if (sample.includes('') || /[^a-zA-Z0-9\sㄱ-ㅎㅏ-ㅣ가-힣,()]/.test(sample) && !sample.includes('지역')) {
-             Papa.parse(file, parseConfig('EUC-KR'));
-             return;
+          if (encoding === 'UTF-8') {
+            const sample = allRows[0].join('');
+            if (sample.includes('') || /[^a-zA-Z0-9\sㄱ-ㅎㅏ-ㅣ가-힣,()]/.test(sample) && !sample.includes('지역')) {
+              Papa.parse(file, parseConfig('EUC-KR'));
+              return;
+            }
           }
-        }
 
-        try {
-          // Row 0: Category labels
-          // Row 1: Sub-category labels (Years)
-          // Row 2: Data starts
-          const dataRows = allRows.slice(2);
-          
-          const statsToUpload: any[] = dataRows.map(row => {
-            const clean = (val: any) => (val && val !== '-' ? String(val).trim() : '');
-            
-            // Basic validation: row must have uni name
-            if (!row || row.length < 5 || !clean(row[1])) return null;
+          try {
+            const dataRows = allRows.slice(2);
+            const parsedItems = dataRows.map(row => {
+              const clean = (val: any) => (val && val !== '-' ? String(val).trim() : '');
+              if (!row || row.length < 5 || !clean(row[1])) return null;
 
-            const item: any = {
-              location: clean(row[0]) || '부산',
-              universityName: normalizeUniversityName(clean(row[1])),
-              departmentName: clean(row[2]),
-              admissionType: clean(row[3]),
-              detailedType: clean(row[4]),
-              stats: {}
-            };
-
-            const years = ['2024', '2025', '2026'];
-            years.forEach((year, yIdx) => {
-              item.stats[year] = {
-                enrollment: clean(row[5 + yIdx]),
-                registeredCount: clean(row[8 + yIdx]),
-                competitionRate: clean(row[11 + yIdx]),
-                waitlistLastRank: clean(row[14 + yIdx]),
-                average: clean(row[17 + yIdx]),
-                cut50: clean(row[20 + yIdx]),
-                cut70: clean(row[23 + yIdx]),
-                cut80: clean(row[26 + yIdx]),
+              const item: any = {
+                location: clean(row[0]) || '부산',
+                universityName: normalizeUniversityName(clean(row[1])),
+                departmentName: clean(row[2]),
+                admissionType: clean(row[3]),
+                detailedType: clean(row[4]),
+                stats: {}
               };
-            });
 
-            return item;
-          }).filter(item => item !== null);
+              const years = ['2024', '2025', '2026'];
+              years.forEach((year, yIdx) => {
+                item.stats[year] = {
+                  enrollment: clean(row[5 + yIdx]),
+                  registeredCount: clean(row[8 + yIdx]),
+                  competitionRate: clean(row[11 + yIdx]),
+                  waitlistLastRank: clean(row[14 + yIdx]),
+                  average: clean(row[17 + yIdx]),
+                  cut50: clean(row[20 + yIdx]),
+                  cut70: clean(row[23 + yIdx]),
+                  cut80: clean(row[26 + yIdx]),
+                };
+              });
 
-          if (statsToUpload.length === 0) {
-             showStatus("업로드할 유효한 데이터가 없습니다. CSV 형식을 확인해주세요.", "error");
-             setUploading(false);
-             return;
+              return item;
+            }).filter(item => item !== null);
+
+            resolve(parsedItems);
+          } catch (err) {
+            console.error(err);
+            resolve([]);
           }
-
-          await uploadOfficialStats(statsToUpload);
-          showStatus(`${statsToUpload.length}개의 통계 데이터가 성공적으로 업로드되었습니다.`, "success");
-        } catch (err: any) {
-          showStatus('데이터 분석 중 오류가 발생했습니다: ' + err.message, "error");
-        } finally {
-          setUploading(false);
-          if (event.target) event.target.value = '';
+        },
+        error: (err: any) => {
+          console.error(err);
+          resolve([]);
         }
-      },
-      error: (err: any) => {
-        showStatus('CSV 파싱 오류: ' + err.message, "error");
-        setUploading(false);
-      }
-    });
+      });
 
-    Papa.parse(file, parseConfig('UTF-8'));
+      Papa.parse(file, parseConfig('UTF-8'));
+    });
+  };
+
+  const handleMultipleCsvUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(event.target.files || []) as File[];
+    if (files.length === 0) return;
+
+    setUploading(true);
+    showStatus(`${files.length}개의 파일을 파싱하는 중...`, "info");
+
+    try {
+      const parsedResults = await Promise.all(files.map(file => parseSingleCsv(file)));
+      const allNewStats = parsedResults.flat();
+
+      if (allNewStats.length === 0) {
+        showStatus("업로드할 유효한 데이터가 없습니다. CSV 형식을 확인해주세요.", "error");
+        return;
+      }
+
+      const mergedList = [...localUniversityData];
+
+      allNewStats.forEach(newStat => {
+        const existingIndex = mergedList.findIndex(existing => 
+          existing.universityName === newStat.universityName &&
+          existing.departmentName === newStat.departmentName &&
+          existing.admissionType === newStat.admissionType
+        );
+
+        if (existingIndex > -1) {
+          const existingItem = mergedList[existingIndex];
+          existingItem.stats = {
+            ...(existingItem.stats || {}),
+            ...(newStat.stats || {})
+          };
+          existingItem.location = newStat.location || existingItem.location;
+          existingItem.detailedType = newStat.detailedType || existingItem.detailedType;
+        } else {
+          const id = newStat.id || "id_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
+          mergedList.push({
+            id,
+            ...newStat
+          });
+        }
+      });
+
+      localUniversityData = mergedList;
+      
+      if (statsSearch.trim()) {
+        const searchLower = statsSearch.toLowerCase().trim();
+        const results = localUniversityData.filter(item => 
+          item.universityName && item.universityName.toLowerCase().includes(searchLower)
+        );
+        setStatsManageList(results);
+      }
+
+      triggerJsonDownload(localUniversityData);
+      showStatus(`성공적으로 ${allNewStats.length}개의 데이터를 병합하여 university_stats.json 다운로드를 시작했습니다.`, "success");
+    } catch (err: any) {
+      showStatus("파일 업로드 및 병합 중 에러가 발생했습니다: " + err.message, "error");
+    } finally {
+      setUploading(false);
+      event.target.value = '';
+    }
   };
 
   const handleClearAllStats = async () => {
     try {
       setUploading(true);
       setShowDeleteConfirm(false);
-      showStatus('모든 통계 데이터를 삭제하는 중...', 'info');
-      const count = await deleteAllOfficialStats();
-      showStatus(`${count}개의 모든 통계 데이터가 삭제되었습니다.`, "success");
+      localUniversityData = [];
+      setStatsManageList([]);
+      triggerJsonDownload(localUniversityData);
+      showStatus("모든 통계 데이터가 삭제되고 빈 university_stats.json 다운로드가 시작되었습니다.", "success");
     } catch (err: any) {
       console.error("Delete Error:", err);
-      showStatus('삭제 중 오류 발생: ' + (err.message || 'Firestore 권한을 확인해주세요.'), "error");
+      showStatus('삭제 중 오류 발생', "error");
     } finally {
       setUploading(false);
     }
@@ -752,7 +842,7 @@ export default function AdminDashboard() {
                       {uploading ? <Loader2 className="animate-spin" size={18} /> : <FileUp size={18} />}
                       {uploading ? '업로드 중...' : 'CSV 파일 선택'}
                     </div>
-                    <input type="file" accept=".csv" onChange={handleStatsFileUpload} className="hidden" disabled={uploading} />
+                    <input type="file" multiple accept=".csv" onChange={handleMultipleCsvUpload} className="hidden" disabled={uploading} />
                   </label>
                   {showDeleteConfirm ? (
                     <div className="flex-1 flex flex-col gap-2 p-2 bg-rose-500/10 border border-rose-500/20 rounded-xl">

@@ -268,8 +268,18 @@ export default function StatsPage() {
   return (
     <div className="pt-24 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 font-sans">
       <div className="mb-12 text-center lg:text-left">
-        <h1 className="text-4xl font-black tracking-tight mb-3 text-white">대학발표 3개년 통계</h1>
-        <p className="text-text-dim font-medium text-base">각 대학교에서 공식 발표한 최근 3개년 입시 결과를 통합 분석하여 제공합니다.</p>
+        <h1 className="text-4xl font-black tracking-tight mb-3 text-white">지역·대학·학과·전형별 검색</h1>
+        <p className="text-text-dim font-medium text-base mb-3">각 대학교에서 공식 발표한 최근 3개년 입시 결과를 통합하여 세부 조건별로 검색하고 비교해 보세요.</p>
+        <div className="flex flex-col gap-1.5 text-xs text-text-dim/85 font-medium mt-4 bg-white/[0.02] border border-white/5 rounded-xl p-4 inline-block max-w-4xl text-left">
+          <div className="flex items-start gap-2">
+            <span className="text-primary mt-0.5">•</span>
+            <span>학생부종합 전형의 경우 평균, 50% CUT, 70% CUT에서 역전 현상이 발생할 수 있습니다.</span>
+          </div>
+          <div className="flex items-start gap-2">
+            <span className="text-primary mt-0.5">•</span>
+            <span>대학교 입학처 홈페이지 발표자료를 기반으로 하되, 부족한 자료는 대학어디가 자료를 참고하였음을 밝힙니다.</span>
+          </div>
+        </div>
       </div>
 
       {/* Conditional Search Box */}

@@ -134,8 +134,8 @@ export default function ExplorePage({ initialUniversity }: ExplorePageProps) {
   return (
     <div className="pt-24 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 font-sans">
       <div className="mb-12 text-center lg:text-left">
-        <h1 className="text-5xl font-black tracking-tight mb-3 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">대학 탐색 리포트</h1>
-        <p className="text-text-dim font-bold text-lg">우리 고등학교 입시 결과 데이터를 기반으로 대학별 합격 가능성을 분석합니다.</p>
+        <h1 className="text-5xl font-black tracking-tight mb-3 bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">대학·전형별 합격 사례 통계</h1>
+        <p className="text-text-dim font-bold text-lg">대학 및 전형별 합격자 통계(최고, 평균, 최저 내신 등급)를 상세하게 확인해 보세요.</p>
       </div>
 
       {/* Main Report Table */}

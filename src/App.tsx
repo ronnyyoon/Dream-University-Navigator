@@ -5,13 +5,14 @@ import SearchPage from './components/SearchPage';
 import ExplorePage from './components/ExplorePage';
 import AdminDashboard from './components/AdminDashboard';
 import StatsPage from './components/StatsPage';
+import StatsGraphPage from './components/StatsGraphPage';
 import { motion, AnimatePresence } from 'motion/react';
 import { getStats } from './constants';
 import { fetchAllAdmissionCases } from './lib/admissionService';
 import { AdmissionCase } from './types';
 
 export default function App() {
-  const [currentView, setCurrentView] = React.useState<'home' | 'search' | 'admin' | 'explore' | 'stats'>('home');
+  const [currentView, setCurrentView] = React.useState<'home' | 'search' | 'admin' | 'explore' | 'stats' | 'stats-graph'>('home');
   const [selectedUniForExplore, setSelectedUniForExplore] = React.useState<string | undefined>(undefined);
   const [admissionCases, setAdmissionCases] = React.useState<AdmissionCase[]>([]);
 
@@ -45,6 +46,8 @@ export default function App() {
         return <ExplorePage initialUniversity={selectedUniForExplore} />;
       case 'stats':
         return <StatsPage />;
+      case 'stats-graph':
+        return <StatsGraphPage />;
       case 'admin':
         return <AdminDashboard />;
       default:
@@ -89,7 +92,7 @@ export default function App() {
             </div>
 
             <div className="text-sm text-zinc-500">
-              © 2024 Dream University Navigator. All rights reserved.
+              © 2026 Dream University Navigator. All rights reserved.
             </div>
           </div>
         </div>
