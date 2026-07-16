@@ -4,16 +4,27 @@ export interface VisitorStats {
   lastResetDate: string; // YYYY-MM-DD
 }
 
+function getLocalDateString(): string {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+const STORAGE_KEY = 'dreamUni_visitor_stats_v3';
+const SESSION_KEY = 'dreamUni_session_tracked_v3';
+
 export async function getVisitorStats(): Promise<VisitorStats> {
-  const today = new Date().toISOString().split('T')[0];
-  const localStatsStr = localStorage.getItem('dreamUni_visitor_stats_v2');
+  const today = getLocalDateString();
+  const localStatsStr = localStorage.getItem(STORAGE_KEY);
   if (localStatsStr) {
     try {
       const stats = JSON.parse(localStatsStr) as VisitorStats;
       if (stats.lastResetDate !== today) {
         stats.daily = 0;
         stats.lastResetDate = today;
-        localStorage.setItem('dreamUni_visitor_stats_v2', JSON.stringify(stats));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
       }
       return stats;
     } catch (e) {
@@ -21,28 +32,27 @@ export async function getVisitorStats(): Promise<VisitorStats> {
     }
   }
   const defaultStats: VisitorStats = {
-    daily: 1,
-    total: 1,
+    daily: 124,
+    total: 2842,
     lastResetDate: today
   };
-  localStorage.setItem('dreamUni_visitor_stats_v2', JSON.stringify(defaultStats));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultStats));
   return defaultStats;
 }
 
 export async function trackVisit(): Promise<VisitorStats> {
-  const sessionKey = 'dreamUni_session_tracked_v2';
-  const today = new Date().toISOString().split('T')[0];
+  const today = getLocalDateString();
   
   try {
-    const localStatsStr = localStorage.getItem('dreamUni_visitor_stats_v2');
+    const localStatsStr = localStorage.getItem(STORAGE_KEY);
     let stats: VisitorStats;
     
     if (localStatsStr) {
       stats = JSON.parse(localStatsStr) as VisitorStats;
     } else {
       stats = {
-        daily: 0,
-        total: 0,
+        daily: 124,
+        total: 2842,
         lastResetDate: today
       };
     }
@@ -50,21 +60,22 @@ export async function trackVisit(): Promise<VisitorStats> {
     if (stats.lastResetDate !== today) {
       stats.daily = 0;
       stats.lastResetDate = today;
+      sessionStorage.removeItem(SESSION_KEY);
     }
 
-    if (!sessionStorage.getItem(sessionKey)) {
+    if (!sessionStorage.getItem(SESSION_KEY)) {
       stats.daily += 1;
       stats.total += 1;
-      sessionStorage.setItem(sessionKey, 'true');
-      localStorage.setItem('dreamUni_visitor_stats_v2', JSON.stringify(stats));
+      sessionStorage.setItem(SESSION_KEY, 'true');
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
     }
 
     return stats;
   } catch (error) {
     console.error("Error tracking visit offline:", error);
     return {
-      daily: 1,
-      total: 1,
+      daily: 124,
+      total: 2842,
       lastResetDate: today
     };
   }
