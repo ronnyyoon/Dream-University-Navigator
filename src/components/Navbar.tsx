@@ -29,44 +29,6 @@ export default function Navbar({ onNavigate, currentView }: NavbarProps) {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            {/* 합격 사례 Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setActiveDropdown('cases')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button 
-                className={`text-sm font-bold transition-colors hover:text-primary flex items-center gap-1.5 py-2 ${['explore', 'search'].includes(currentView) ? 'text-primary' : 'text-text-dim'}`}
-              >
-                합격 사례
-                <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === 'cases' ? 'rotate-180' : ''}`} />
-              </button>
-              
-              <AnimatePresence>
-                {activeDropdown === 'cases' && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    className="absolute top-full left-0 mt-1 w-64 bg-zinc-950/95 backdrop-blur-md border border-white/10 rounded-2xl p-2 shadow-xl flex flex-col gap-1 z-50"
-                  >
-                    <button
-                      onClick={() => { onNavigate('explore'); setActiveDropdown(null); }}
-                      className={`text-left text-xs font-black px-4 py-3 rounded-xl transition-all hover:bg-white/5 ${currentView === 'explore' ? 'text-primary bg-white/5' : 'text-text-dim'}`}
-                    >
-                      대학·전형별 합격 사례 통계
-                    </button>
-                    <button
-                      onClick={() => { onNavigate('search'); setActiveDropdown(null); }}
-                      className={`text-left text-xs font-black px-4 py-3 rounded-xl transition-all hover:bg-white/5 ${currentView === 'search' ? 'text-primary bg-white/5' : 'text-text-dim'}`}
-                    >
-                      합격사례 검색
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
             {/* 3개년 통계 Dropdown */}
             <div 
               className="relative"
@@ -99,6 +61,44 @@ export default function Navbar({ onNavigate, currentView }: NavbarProps) {
                       className={`text-left text-xs font-black px-4 py-3 rounded-xl transition-all hover:bg-white/5 ${currentView === 'stats-graph' ? 'text-primary bg-white/5' : 'text-text-dim'}`}
                     >
                       그래프 검색
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* 합격 사례 Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('cases')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button 
+                className={`text-sm font-bold transition-colors hover:text-primary flex items-center gap-1.5 py-2 ${['explore', 'search'].includes(currentView) ? 'text-primary' : 'text-text-dim'}`}
+              >
+                합격 사례
+                <ChevronDown size={14} className={`transition-transform duration-200 ${activeDropdown === 'cases' ? 'rotate-180' : ''}`} />
+              </button>
+              
+              <AnimatePresence>
+                {activeDropdown === 'cases' && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute top-full left-0 mt-1 w-64 bg-zinc-950/95 backdrop-blur-md border border-white/10 rounded-2xl p-2 shadow-xl flex flex-col gap-1 z-50"
+                  >
+                    <button
+                      onClick={() => { onNavigate('explore'); setActiveDropdown(null); }}
+                      className={`text-left text-xs font-black px-4 py-3 rounded-xl transition-all hover:bg-white/5 ${currentView === 'explore' ? 'text-primary bg-white/5' : 'text-text-dim'}`}
+                    >
+                      대학·전형별 합격 사례 통계
+                    </button>
+                    <button
+                      onClick={() => { onNavigate('search'); setActiveDropdown(null); }}
+                      className={`text-left text-xs font-black px-4 py-3 rounded-xl transition-all hover:bg-white/5 ${currentView === 'search' ? 'text-primary bg-white/5' : 'text-text-dim'}`}
+                    >
+                      합격사례 검색
                     </button>
                   </motion.div>
                 )}
@@ -139,25 +139,6 @@ export default function Navbar({ onNavigate, currentView }: NavbarProps) {
                 홈
               </button>
 
-              {/* Admission Cases Group */}
-              <div className="space-y-1.5">
-                <div className="text-xs font-black text-text-dim uppercase tracking-wider px-4">합격 사례</div>
-                <div className="pl-4 flex flex-col gap-1">
-                  <button 
-                    onClick={() => { onNavigate('explore'); setIsOpen(false); }}
-                    className={`text-sm font-bold text-left px-4 py-2.5 rounded-lg hover:bg-white/5 ${currentView === 'explore' ? 'text-primary bg-white/5' : 'text-white'}`}
-                  >
-                    대학·전형별 합격 사례 통계
-                  </button>
-                  <button 
-                    onClick={() => { onNavigate('search'); setIsOpen(false); }}
-                    className={`text-sm font-bold text-left px-4 py-2.5 rounded-lg hover:bg-white/5 ${currentView === 'search' ? 'text-primary bg-white/5' : 'text-white'}`}
-                  >
-                    합격사례 검색
-                  </button>
-                </div>
-              </div>
-
               {/* 3-Year Stats Group */}
               <div className="space-y-1.5">
                 <div className="text-xs font-black text-text-dim uppercase tracking-wider px-4">3개년 통계</div>
@@ -173,6 +154,25 @@ export default function Navbar({ onNavigate, currentView }: NavbarProps) {
                     className={`text-sm font-bold text-left px-4 py-2.5 rounded-lg hover:bg-white/5 ${currentView === 'stats-graph' ? 'text-primary bg-white/5' : 'text-white'}`}
                   >
                     그래프 검색
+                  </button>
+                </div>
+              </div>
+
+              {/* Admission Cases Group */}
+              <div className="space-y-1.5">
+                <div className="text-xs font-black text-text-dim uppercase tracking-wider px-4">합격 사례</div>
+                <div className="pl-4 flex flex-col gap-1">
+                  <button 
+                    onClick={() => { onNavigate('explore'); setIsOpen(false); }}
+                    className={`text-sm font-bold text-left px-4 py-2.5 rounded-lg hover:bg-white/5 ${currentView === 'explore' ? 'text-primary bg-white/5' : 'text-white'}`}
+                  >
+                    대학·전형별 합격 사례 통계
+                  </button>
+                  <button 
+                    onClick={() => { onNavigate('search'); setIsOpen(false); }}
+                    className={`text-sm font-bold text-left px-4 py-2.5 rounded-lg hover:bg-white/5 ${currentView === 'search' ? 'text-primary bg-white/5' : 'text-white'}`}
+                  >
+                    합격사례 검색
                   </button>
                 </div>
               </div>

@@ -1,3 +1,6 @@
+import { doc, getDoc, runTransaction } from 'firebase/firestore';
+import { db } from './firebase';
+
 export interface VisitorStats {
   daily: number;
   total: number;
@@ -15,8 +18,31 @@ function getLocalDateString(): string {
 const STORAGE_KEY = 'dreamUni_visitor_stats_v3';
 const SESSION_KEY = 'dreamUni_session_tracked_v3';
 
+// Base offline fallback counts
+const BASE_DAILY = 124;
+const BASE_TOTAL = 2842;
+
 export async function getVisitorStats(): Promise<VisitorStats> {
   const today = getLocalDateString();
+  try {
+    const docRef = doc(db, 'system', 'visitors');
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      const data = docSnap.data() as VisitorStats;
+      if (data.lastResetDate !== today) {
+        return {
+          daily: 0,
+          total: data.total,
+          lastResetDate: today
+        };
+      }
+      return data;
+    }
+  } catch (error) {
+    console.warn("Firestore visitor fetch failed, using local fallback:", error);
+  }
+
+  // Fallback to local storage if Firestore fails
   const localStatsStr = localStorage.getItem(STORAGE_KEY);
   if (localStatsStr) {
     try {
@@ -28,31 +54,79 @@ export async function getVisitorStats(): Promise<VisitorStats> {
       }
       return stats;
     } catch (e) {
-      // fallback
+      // ignore
     }
   }
-  const defaultStats: VisitorStats = {
-    daily: 124,
-    total: 2842,
+  return {
+    daily: BASE_DAILY,
+    total: BASE_TOTAL,
     lastResetDate: today
   };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultStats));
-  return defaultStats;
 }
 
 export async function trackVisit(): Promise<VisitorStats> {
   const today = getLocalDateString();
-  
+  const isSessionTracked = sessionStorage.getItem(SESSION_KEY) === 'true';
+
   try {
+    const docRef = doc(db, 'system', 'visitors');
+    
+    const updatedStats = await runTransaction(db, async (transaction) => {
+      const docSnap = await transaction.get(docRef);
+      let stats: VisitorStats;
+      
+      if (docSnap.exists()) {
+        stats = docSnap.data() as VisitorStats;
+      } else {
+        stats = {
+          daily: BASE_DAILY,
+          total: BASE_TOTAL,
+          lastResetDate: today
+        };
+      }
+
+      if (stats.lastResetDate !== today) {
+        stats.daily = 0;
+        stats.lastResetDate = today;
+      }
+
+      if (!isSessionTracked) {
+        stats.daily += 1;
+        stats.total += 1;
+      }
+
+      transaction.set(docRef, stats);
+      return stats;
+    });
+
+    if (!isSessionTracked) {
+      sessionStorage.setItem(SESSION_KEY, 'true');
+    }
+    
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedStats));
+    return updatedStats;
+
+  } catch (error) {
+    console.warn("Firestore transaction failed, tracking offline:", error);
+    
+    // Offline local storage fallback
     const localStatsStr = localStorage.getItem(STORAGE_KEY);
     let stats: VisitorStats;
     
     if (localStatsStr) {
-      stats = JSON.parse(localStatsStr) as VisitorStats;
+      try {
+        stats = JSON.parse(localStatsStr) as VisitorStats;
+      } catch (e) {
+        stats = {
+          daily: BASE_DAILY,
+          total: BASE_TOTAL,
+          lastResetDate: today
+        };
+      }
     } else {
       stats = {
-        daily: 124,
-        total: 2842,
+        daily: BASE_DAILY,
+        total: BASE_TOTAL,
         lastResetDate: today
       };
     }
@@ -71,13 +145,5 @@ export async function trackVisit(): Promise<VisitorStats> {
     }
 
     return stats;
-  } catch (error) {
-    console.error("Error tracking visit offline:", error);
-    return {
-      daily: 124,
-      total: 2842,
-      lastResetDate: today
-    };
   }
 }
-

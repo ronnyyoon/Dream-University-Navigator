@@ -154,7 +154,7 @@ export default function ExplorePage({ initialUniversity }: ExplorePageProps) {
               onChange={e => setSelectedYear(e.target.value)}
               className="bg-transparent outline-none font-black text-base w-full text-center text-white cursor-pointer hover:text-primary transition-colors pr-1"
             >
-              {years.map(y => <option key={y} value={y} className="bg-[#0A0A0A]">{y}</option>)}
+              {years.map((y, idx) => <option key={`${y}-${idx}`} value={y} className="bg-[#0A0A0A]">{y}</option>)}
             </select>
           </div>
           <div className="col-span-2 p-4 border-r border-white/10 flex items-center justify-center bg-white/[0.02]">
@@ -163,7 +163,7 @@ export default function ExplorePage({ initialUniversity }: ExplorePageProps) {
               onChange={e => setSelectedUni(e.target.value)}
               className="bg-transparent outline-none font-black text-base w-full text-center text-white cursor-pointer hover:text-primary transition-colors pr-1"
             >
-              {universities.map(u => <option key={u} value={u} className="bg-[#0A0A0A]">{u}</option>)}
+              {universities.map((u, idx) => <option key={`${u}-${idx}`} value={u} className="bg-[#0A0A0A]">{u}</option>)}
             </select>
           </div>
           <div className="col-span-2 p-4 border-r border-white/10 flex items-center justify-center bg-white/[0.02]">
@@ -172,7 +172,7 @@ export default function ExplorePage({ initialUniversity }: ExplorePageProps) {
               onChange={e => setSelectedType(e.target.value)}
               className="bg-transparent outline-none font-black text-sm w-full text-center text-sky-400 cursor-pointer hover:text-sky-300 transition-colors pr-1"
             >
-              {types.map(t => <option key={t} value={t} className="bg-[#0A0A0A] font-bold">{t}</option>)}
+              {types.map((t, idx) => <option key={`${t}-${idx}`} value={t} className="bg-[#0A0A0A] font-bold">{t}</option>)}
             </select>
           </div>
           <div className="col-span-6">

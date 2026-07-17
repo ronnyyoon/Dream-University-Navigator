@@ -1,19 +1,12 @@
-// src 폴더 아래에 새로 생성한 로컬 JSON 파일을 임포트합니다.
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import firebaseConfig from '../../firebase-applet-config.json';
 import universityData from '../university_stats.json';
 
-// 파이어베이스 원격 호출을 무력화하여 무제한/무료 자체 오프라인 작동 세팅
-const importedConfig: any = {};
-export default importedConfig;
-export const db: any = {};
-export const dbEnv: any = {};
-export const auth: any = {
-  currentUser: {
-    uid: 'mock-uid',
-    email: 'mock-email@example.com',
-    emailVerified: true,
-    isAnonymous: false
-  }
-};
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId);
+export const auth = getAuth();
 
 export interface CollegeStat {
   id: string;

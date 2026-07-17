@@ -161,7 +161,14 @@ export default function StatsPage() {
       const getVal = (year: string, field: keyof OfficialStat['stats']['2024']) => {
         const val = item.stats?.[year]?.[field];
         if (!val || val === '-') return null;
-        return Number(String(val).replace(/[^0-9.]/g, ''));
+        const strVal = String(val).trim();
+        const isGradeField = ['average', 'cut50', 'cut70', 'cut80'].includes(field as string);
+        if (isGradeField) {
+          if (strVal.includes('이하') || !/^\d+(\.\d+)?$/.test(strVal)) {
+            return null;
+          }
+        }
+        return Number(strVal.replace(/[^0-9.]/g, ''));
       };
 
       const checkTrend = (field: keyof OfficialStat['stats']['2024'], filterVal: string) => {
