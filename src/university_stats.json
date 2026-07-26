@@ -802118,5 +802118,6725 @@
         "cut80": ""
       }
     }
+  },
+  {
+    "id": "id_1785080111521_x3bfc",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "한의예과",
+    "admissionType": "학생부종합",
+    "detailedType": "가천의약학",
+    "stats": {
+      "2024": {
+        "enrollment": "10",
+        "registeredCount": "",
+        "competitionRate": "32.3",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.47",
+        "cut80": "3.88"
+      },
+      "2025": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "28.4",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.54",
+        "cut80": "3.42"
+      },
+      "2026": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "35",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "1.99",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111522_pk4lz",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "약학과",
+    "admissionType": "학생부종합",
+    "detailedType": "교육기회균형",
+    "stats": {
+      "2024": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "17",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.63"
+      },
+      "2025": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "18.7",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.87"
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "14.33",
+        "waitlistLastRank": "등록없음",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111523_qrqyb",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "의예과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "17.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.85"
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "15",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.34",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111523_bty6p",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "경영학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "13.3",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.93"
+      },
+      "2025": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "10.3",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.36"
+      },
+      "2026": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "22",
+        "waitlistLastRank": "2",
+        "average": "4.02",
+        "cut50": "4.03",
+        "cut70": "4.95",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111524_qyznl",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "회계세무학과",
+    "admissionType": "학생부종합",
+    "detailedType": "기회균형",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "8",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.82"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "20",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.41",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111524_mf8hu",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "관광경영학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "19",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.67"
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "8",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.37"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "17.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.27",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111525_9joy2",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "의료산업경영학과",
+    "admissionType": "학생부종합",
+    "detailedType": "기회균형",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "10",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.95"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "10",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "6.12"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "24.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.08",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111525_tcjkz",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "금융·빅데이터학부",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "10",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.64"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "19",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.56",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111526_ah9am",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "경제학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "10",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.26"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "12",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.53"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "13",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.02",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111526_p8l6q",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "응용통계학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "11",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.3"
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "6",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.48"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "10",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.64",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111527_qea9b",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "심리학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "11",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.64"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "14.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.74"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "36",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.21",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111527_les26",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "미디어커뮤니케이션학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "29.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.33"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "29",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.41"
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "53",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.82",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111528_23ly5",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "사회복지학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "15",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.98"
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "14",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.47"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "13",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.9",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111528_dohf9",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "유아교육학과",
+    "admissionType": "학생부종합",
+    "detailedType": "기회균형",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "12.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.73"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "17",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.2"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "15.5",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.67",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111529_i78l6",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "패션산업학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "22",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "15",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.38"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "15.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.15",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111529_l1ihk",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "AI인문대학",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "10.8",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.34"
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "25",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.15",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111529_eleco",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "법과대학",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "19.5",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.01"
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "27.33",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.66",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111530_6uydj",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "도시계획·조경학부",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "10.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.14"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "13",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.41"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "12",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.74",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111530_gimm7",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "건축학부",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "23.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.09"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "20.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.48"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "22",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.28",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111530_u0axm",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "건축공학과",
+    "admissionType": "학생부종합",
+    "detailedType": "가천바람개비",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "20.14",
+        "waitlistLastRank": "5",
+        "average": "3.61",
+        "cut50": "3.92",
+        "cut70": "3.95",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111531_9twzi",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "화공생명배터리공학부",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "11.3",
+        "waitlistLastRank": "5",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.29"
+      },
+      "2025": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "11.3",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.79"
+      },
+      "2026": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "7",
+        "waitlistLastRank": "4",
+        "average": "3.68",
+        "cut50": "3.76",
+        "cut70": "3.77",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111531_xljc4",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기계공학부",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "11.3",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.06"
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "20",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.37",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111531_6i7dn",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "건설환경공학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "10",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.38",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111532_tj5s9",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "스마트팩토리학과",
+    "admissionType": "학생부종합",
+    "detailedType": "가천바람개비",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "15.29",
+        "waitlistLastRank": "3",
+        "average": "4.04",
+        "cut50": "4.06",
+        "cut70": "4.22",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111532_rk4i9",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "신소재공학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.87"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "8",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.59"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.68",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111533_wa5z5",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "식품생명공학과",
+    "admissionType": "학생부종합",
+    "detailedType": "기회균형",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "10",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.14"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "15.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.36"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "13",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.51",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111533_k1zsh",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "바이오나노학과",
+    "admissionType": "학생부종합",
+    "detailedType": "기회균형",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "6.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.61"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "12",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.08"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "17.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.67",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111533_irso7",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "생명과학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "21",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "6.79"
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "23",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.06"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "42.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.56",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111534_2yru3",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "반도체물리학과",
+    "admissionType": "학생부종합",
+    "detailedType": "기회균형",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "4.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.62"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.73"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "8.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.4",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111534_akh0p",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "화학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.85"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "15.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.11"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.96",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111534_zhwyo",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "식품영양학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.09"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "15",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.5"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "22.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.07",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111535_wlrzt",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "전기공학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "7.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.23"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "8.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.25"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "13.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.49",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111535_gombm",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "스마트시티학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "10.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "7.37",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111535_v3dgv",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "클라우드공학과",
+    "admissionType": "학생부종합",
+    "detailedType": "가천바람개비",
+    "stats": {
+      "2024": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "21.7",
+        "waitlistLastRank": "5",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.64",
+        "cut80": "2.95"
+      },
+      "2025": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "10.9",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.58",
+        "cut80": "3.59"
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "14",
+        "waitlistLastRank": "2",
+        "average": "3.38",
+        "cut50": "3.42",
+        "cut70": "3.55",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111536_fkkxk",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "컴퓨터공학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "15.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.37"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "11",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.55"
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "11.33",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.67",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111536_fpiyt",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "스마트보안학과",
+    "admissionType": "학생부종합",
+    "detailedType": "가천바람개비",
+    "stats": {
+      "2024": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "43.2",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.91",
+        "cut80": "4.13"
+      },
+      "2025": {
+        "enrollment": "8",
+        "registeredCount": "",
+        "competitionRate": "18.9",
+        "waitlistLastRank": "6",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.75",
+        "cut80": "5.06"
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "45.29",
+        "waitlistLastRank": "5",
+        "average": "3.9",
+        "cut50": "4.05",
+        "cut70": "4.55",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111536_8813d",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "인공지능학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "12",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.51"
+      },
+      "2025": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "8.7",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.46"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "18",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.26",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111537_ypyyg",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "의공학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "9",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.56"
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "8",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "6.42"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "11.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.81",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111538_4f20g",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "운동재활학과",
+    "admissionType": "학생부종합",
+    "detailedType": "가천바람개비",
+    "stats": {
+      "2024": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "80.5",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "4",
+        "cut80": "4.15"
+      },
+      "2025": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "53.3",
+        "waitlistLastRank": "8",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.33",
+        "cut80": "4.55"
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "65.14",
+        "waitlistLastRank": "4",
+        "average": "3.71",
+        "cut50": "3.92",
+        "cut70": "4.13",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111538_qoywx",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "바이오로직스학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.18"
+      },
+      "2025": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "6.4",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.55"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "14",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.05",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111538_kt2ir",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "간호학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "21.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.82"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "17.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.85"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "23",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.73",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111539_eygcx",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "치위생학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "15",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.92"
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "13",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.96"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "18",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.84",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111540_s6iv7",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "응급구조학과",
+    "admissionType": "학생부종합",
+    "detailedType": "가천바람개비",
+    "stats": {
+      "2024": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "66.8",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.1",
+        "cut80": "6.07"
+      },
+      "2025": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "116.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.11",
+        "cut80": "4.35"
+      },
+      "2026": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "83",
+        "waitlistLastRank": "0",
+        "average": "4.13",
+        "cut50": "4.64",
+        "cut70": "4.72",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111540_z3wpy",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "방사선학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "15",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.67"
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "14",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.26"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "15",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.12",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111541_jmx9v",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "물리치료학과",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "30",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "6.05"
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "27",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "5.47"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "49.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.95",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111541_cot8d",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "반도체대학",
+    "admissionType": "학생부종합",
+    "detailedType": "농어촌(종합)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "7.3",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.98"
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "10.67",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.58",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111542_3de37",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "시스템반도체학과",
+    "admissionType": "학생부종합",
+    "detailedType": "가천바람개비",
+    "stats": {
+      "2024": {
+        "enrollment": "31",
+        "registeredCount": "",
+        "competitionRate": "14.2",
+        "waitlistLastRank": "19",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.69",
+        "cut80": "4.06"
+      },
+      "2025": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "9.6",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.78",
+        "cut80": "3.88"
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "13.57",
+        "waitlistLastRank": "2",
+        "average": "3.44",
+        "cut50": "3.56",
+        "cut70": "3.6",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111542_x54by",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "회화전공",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "15",
+        "registeredCount": "",
+        "competitionRate": "11.3",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.82",
+        "cut80": "6.47"
+      },
+      "2025": {
+        "enrollment": "30",
+        "registeredCount": "",
+        "competitionRate": "7.8",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.86",
+        "cut80": "6.8"
+      },
+      "2026": {
+        "enrollment": "30",
+        "registeredCount": "",
+        "competitionRate": "8.07",
+        "waitlistLastRank": "1",
+        "average": "4.92",
+        "cut50": "5.6",
+        "cut70": "6.19",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111542_smv9h",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "조소전공",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "14.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.63",
+        "cut80": "6.38"
+      },
+      "2025": {
+        "enrollment": "25",
+        "registeredCount": "",
+        "competitionRate": "7",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.45",
+        "cut80": "6.42"
+      },
+      "2026": {
+        "enrollment": "25",
+        "registeredCount": "",
+        "competitionRate": "7.28",
+        "waitlistLastRank": "8",
+        "average": "5.6",
+        "cut50": "6",
+        "cut70": "6.78",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111543_iwyyi",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "시각디자인전공",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "30",
+        "registeredCount": "",
+        "competitionRate": "26.5",
+        "waitlistLastRank": "10",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.3",
+        "cut80": "5.7"
+      },
+      "2026": {
+        "enrollment": "30",
+        "registeredCount": "",
+        "competitionRate": "40.13",
+        "waitlistLastRank": "6",
+        "average": "4.71",
+        "cut50": "5",
+        "cut70": "5.5",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111543_toqlb",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "산업디자인전공",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "30",
+        "registeredCount": "",
+        "competitionRate": "18.9",
+        "waitlistLastRank": "9",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.69",
+        "cut80": "6.11"
+      },
+      "2026": {
+        "enrollment": "30",
+        "registeredCount": "",
+        "competitionRate": "23.37",
+        "waitlistLastRank": "10",
+        "average": "5.07",
+        "cut50": "5.39",
+        "cut70": "5.75",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111543_nexkq",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "성악전공(남자)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "7.8",
+        "waitlistLastRank": "6",
+        "average": "",
+        "cut50": "",
+        "cut70": "6.23",
+        "cut80": "6.91"
+      },
+      "2025": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "6.5",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.61",
+        "cut80": "6.55"
+      },
+      "2026": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "10.5",
+        "waitlistLastRank": "5",
+        "average": "5.6",
+        "cut50": "5.88",
+        "cut70": "6",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111544_0gtjo",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "성악전공(여자)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "13.5",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.25",
+        "cut80": "5.88"
+      },
+      "2025": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "13",
+        "waitlistLastRank": "12",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.9",
+        "cut80": "5"
+      },
+      "2026": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "18.17",
+        "waitlistLastRank": "6",
+        "average": "3.54",
+        "cut50": "4.25",
+        "cut70": "5.41",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111544_paiab",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(Violin)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "6.9",
+        "waitlistLastRank": "12",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "15",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "8.57",
+        "waitlistLastRank": "17",
+        "average": "3.34",
+        "cut50": "4.3",
+        "cut70": "5",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111544_xgpj1",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(Viola)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "4",
+        "waitlistLastRank": "6",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "3",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.16",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111545_s4ucf",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(V.Cello)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "4.7",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "9",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "4",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "4",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111545_9gnu1",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(C.Bass)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "3",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "2",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.27",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111546_2esjy",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(Classic Guitar)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "6",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "10",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111546_arx3g",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(Flute)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "50",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "26",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "4",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111547_xxhr8",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(Oboe)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "8",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "10",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.91",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111547_cdcl5",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(Clarinet)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "26",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "13",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.09",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111548_k3y2n",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(Bassoon)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "3",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "2",
+        "waitlistLastRank": "등록없음",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111548_oorw1",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(Horn)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "19",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "9",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.5",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111548_nnscd",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(Trumpet)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "28",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "22",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.9",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111549_qsg9i",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(Tenor Trombone)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "19",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "7",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.3",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111549_pn9aa",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(타악기)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "9",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "22",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.91",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111550_rk4k6",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기악전공(피아노)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "9",
+        "registeredCount": "",
+        "competitionRate": "23.6",
+        "waitlistLastRank": "15",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.71",
+        "cut80": "5.95"
+      },
+      "2025": {
+        "enrollment": "9",
+        "registeredCount": "",
+        "competitionRate": "19.7",
+        "waitlistLastRank": "8",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.77",
+        "cut80": "6.16"
+      },
+      "2026": {
+        "enrollment": "9",
+        "registeredCount": "",
+        "competitionRate": "19.11",
+        "waitlistLastRank": "13",
+        "average": "4.91",
+        "cut50": "5.32",
+        "cut70": "5.38",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111550_234vb",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "작곡전공",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "6.6",
+        "waitlistLastRank": "21",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.77",
+        "cut80": "5.88"
+      },
+      "2025": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "7.6",
+        "waitlistLastRank": "22",
+        "average": "",
+        "cut50": "",
+        "cut70": "6",
+        "cut80": "6.73"
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "6.71",
+        "waitlistLastRank": "22",
+        "average": "6.4",
+        "cut50": "6.6",
+        "cut70": "6.97",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111550_rr4l2",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "체육전공",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "30",
+        "registeredCount": "",
+        "competitionRate": "66.7",
+        "waitlistLastRank": "7",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.5",
+        "cut80": "5.9"
+      },
+      "2025": {
+        "enrollment": "40",
+        "registeredCount": "",
+        "competitionRate": "49.2",
+        "waitlistLastRank": "20",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.39",
+        "cut80": "5.64"
+      },
+      "2026": {
+        "enrollment": "40",
+        "registeredCount": "",
+        "competitionRate": "59.1",
+        "waitlistLastRank": "5",
+        "average": "5.03",
+        "cut50": "5.3",
+        "cut70": "5.56",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111551_l5qh4",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "태권도전공",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "20",
+        "registeredCount": "",
+        "competitionRate": "28",
+        "waitlistLastRank": "11",
+        "average": "",
+        "cut50": "",
+        "cut70": "6",
+        "cut80": "6.62"
+      },
+      "2026": {
+        "enrollment": "30",
+        "registeredCount": "",
+        "competitionRate": "21.73",
+        "waitlistLastRank": "34",
+        "average": "6.48",
+        "cut50": "6.8",
+        "cut70": "7.38",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111551_5rhes",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "연기예술학과(연기)",
+    "admissionType": "실기",
+    "detailedType": "실기우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "24",
+        "registeredCount": "",
+        "competitionRate": "71.5",
+        "waitlistLastRank": "5",
+        "average": "",
+        "cut50": "",
+        "cut70": "6",
+        "cut80": "7.13"
+      },
+      "2025": {
+        "enrollment": "18",
+        "registeredCount": "",
+        "competitionRate": "84.6",
+        "waitlistLastRank": "12",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.8",
+        "cut80": "6.31"
+      },
+      "2026": {
+        "enrollment": "24",
+        "registeredCount": "",
+        "competitionRate": "80.08",
+        "waitlistLastRank": "12",
+        "average": "5.41",
+        "cut50": "5.92",
+        "cut70": "6.29",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111564_b8i49",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "경영학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "32.25",
+        "waitlistLastRank": "6",
+        "average": "1.71",
+        "cut50": "1.71",
+        "cut70": "1.75",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111564_rx5cd",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "회계세무학과",
+    "admissionType": "학생부교과",
+    "detailedType": "학생부우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "10",
+        "registeredCount": "",
+        "competitionRate": "22.1",
+        "waitlistLastRank": "19",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.93",
+        "cut80": "2.93"
+      },
+      "2025": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "11.7",
+        "waitlistLastRank": "19",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.9",
+        "cut80": "2.92"
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "12.43",
+        "waitlistLastRank": "9",
+        "average": "2.67",
+        "cut50": "2.67",
+        "cut70": "2.73",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111565_cef03",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "관광경영학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "16",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.34",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111565_10opj",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "의료산업경영학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.06",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111565_7b5ly",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "금융·빅데이터학부",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "9.3",
+        "waitlistLastRank": "6",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3"
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "4.33",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.87",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111566_2od2v",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "경제학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "13.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.38",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111566_h3feg",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "응용통계학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "21.5",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.61"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "6",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3"
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "9",
+        "waitlistLastRank": "등록없음",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111566_ut6r9",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "심리학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "16.5",
+        "waitlistLastRank": "10",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.14"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "13",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.61"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "7.5",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.58",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111567_fs1i3",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "미디어커뮤니케이션학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "30",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "1.76",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111567_nlyo0",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "사회복지학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "12.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.38",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111567_vwcl7",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "유아교육학과",
+    "admissionType": "학생부교과",
+    "detailedType": "지역균형",
+    "stats": {
+      "2024": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "9.2",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.13",
+        "cut80": "3.46"
+      },
+      "2025": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "28.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.66",
+        "cut80": "4.83"
+      },
+      "2026": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "27",
+        "waitlistLastRank": "5",
+        "average": "3.13",
+        "cut50": "3.65",
+        "cut70": "3.66",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111568_uuazo",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "패션산업학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "16.33",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.27",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111568_n0nwe",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "AI인문대학",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "9.2",
+        "waitlistLastRank": "6",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.08"
+      },
+      "2026": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "5.25",
+        "waitlistLastRank": "3",
+        "average": "2.67",
+        "cut50": "2.67",
+        "cut70": "2.84",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111568_pehdv",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "법과대학",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "8",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.21",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111569_go544",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "도시계획·조경학부",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "8.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.67",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111569_f2rxq",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "건축학부",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "16",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.15",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111569_tfawd",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "건축공학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "4.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.49",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111570_nq3oo",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "화공생명배터리공학부",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "6.6",
+        "waitlistLastRank": "6",
+        "average": "2.08",
+        "cut50": "2.18",
+        "cut70": "3.13",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111570_qbgfv",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기계공학부",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "15.25",
+        "waitlistLastRank": "1",
+        "average": "1.23",
+        "cut50": "1.38",
+        "cut70": "1.97",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111570_8mqun",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "건설환경공학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9.5",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.72",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111571_c03y6",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "스마트팩토리학과",
+    "admissionType": "학생부교과",
+    "detailedType": "학생부우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "9",
+        "registeredCount": "",
+        "competitionRate": "13.78",
+        "waitlistLastRank": "9",
+        "average": "2.92",
+        "cut50": "2.96",
+        "cut70": "2.97",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111571_b7fpq",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "신소재공학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "12",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.11",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111571_u8v8s",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "식품생명공학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9.5",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.8",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111573_dawu6",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "바이오나노학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "11",
+        "waitlistLastRank": "6",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.84"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "4.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.61"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "5",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.69",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111573_vva5h",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "생명과학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "11.5",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.4"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "4",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.16"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9.5",
+        "waitlistLastRank": "7",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.73",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111574_fpdj6",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "반도체물리학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "25",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.64"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.42"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.05",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111575_l0t49",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "화학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "18.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.38"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "4.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "4.4"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "17.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.95",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111575_qm8ex",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "식품영양학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "30.5",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "1.7",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111576_szxji",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "전기공학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "22",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "1.53",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111576_d9v9j",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "스마트시티학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "12.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.68"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "6",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "1.75"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "4.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.15",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111577_e0z3i",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "클라우드공학과",
+    "admissionType": "학생부교과",
+    "detailedType": "학생부우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "27.9",
+        "waitlistLastRank": "10",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.06",
+        "cut80": "2.33"
+      },
+      "2025": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "6.6",
+        "waitlistLastRank": "7",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.25",
+        "cut80": "3.92"
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "21.43",
+        "waitlistLastRank": "6",
+        "average": "2.44",
+        "cut50": "2.54",
+        "cut70": "2.62",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111577_qzt50",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "컴퓨터공학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "4",
+        "registeredCount": "",
+        "competitionRate": "26.75",
+        "waitlistLastRank": "4",
+        "average": "1.59",
+        "cut50": "1.82",
+        "cut70": "2.13",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111578_fdyla",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "스마트보안학과",
+    "admissionType": "학생부교과",
+    "detailedType": "학생부우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "14",
+        "waitlistLastRank": "7",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.88",
+        "cut80": "2.99"
+      },
+      "2025": {
+        "enrollment": "8",
+        "registeredCount": "",
+        "competitionRate": "7.6",
+        "waitlistLastRank": "8",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.94",
+        "cut80": "3"
+      },
+      "2026": {
+        "enrollment": "8",
+        "registeredCount": "",
+        "competitionRate": "8.63",
+        "waitlistLastRank": "22",
+        "average": "2.87",
+        "cut50": "3.16",
+        "cut70": "3.28",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111578_mgdbh",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "인공지능학과",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "16.33",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.12",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111579_h5d9c",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "의공학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "8.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.72"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "6.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2.61"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "4",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.86",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111579_a79l6",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "한의예과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "16",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "1.24"
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "17",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "1.4"
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "13",
+        "waitlistLastRank": "등록없음",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111579_vmag1",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "운동재활학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "28.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.29"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "10.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "2"
+      },
+      "2026": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "9.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.19",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111580_h0tmj",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "약학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "22",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "1.44"
+      },
+      "2025": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "29",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "1.28"
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "16",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "1.2",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111580_y2rja",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "바이오로직스학과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "3",
+        "registeredCount": "",
+        "competitionRate": "6.67",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.69",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111580_dac9r",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "간호학과",
+    "admissionType": "학생부교과",
+    "detailedType": "지역균형",
+    "stats": {
+      "2024": {
+        "enrollment": "20",
+        "registeredCount": "",
+        "competitionRate": "13.6",
+        "waitlistLastRank": "19",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.22",
+        "cut80": "2.32"
+      },
+      "2025": {
+        "enrollment": "15",
+        "registeredCount": "",
+        "competitionRate": "47.1",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.1",
+        "cut80": "4.39"
+      },
+      "2026": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "40",
+        "waitlistLastRank": "4",
+        "average": "2.3",
+        "cut50": "2.32",
+        "cut70": "2.78",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111581_0qv60",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "치위생학과",
+    "admissionType": "학생부교과",
+    "detailedType": "지역균형",
+    "stats": {
+      "2024": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "7.8",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.25",
+        "cut80": "3.3"
+      },
+      "2025": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "17.8",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "3.99"
+      },
+      "2026": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "11",
+        "waitlistLastRank": "1",
+        "average": "3.17",
+        "cut50": "3.48",
+        "cut70": "3.69",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111581_ycn4z",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "방사선학과",
+    "admissionType": "학생부교과",
+    "detailedType": "지역균형",
+    "stats": {
+      "2024": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "20.4",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.78",
+        "cut80": "2.9"
+      },
+      "2025": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "25",
+        "waitlistLastRank": "6",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.08",
+        "cut80": "4.13"
+      },
+      "2026": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "23.17",
+        "waitlistLastRank": "0",
+        "average": "2.52",
+        "cut50": "2.65",
+        "cut70": "2.83",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111581_uebdm",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "물리치료학과",
+    "admissionType": "학생부교과",
+    "detailedType": "지역균형",
+    "stats": {
+      "2024": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "12.8",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.25",
+        "cut80": "2.27"
+      },
+      "2025": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "38.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.65",
+        "cut80": "3.78"
+      },
+      "2026": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "21",
+        "waitlistLastRank": "3",
+        "average": "2.17",
+        "cut50": "2.41",
+        "cut70": "2.7",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111581_54x94",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "의예과",
+    "admissionType": "학생부교과",
+    "detailedType": "농어촌(교과)",
+    "stats": {
+      "2024": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "24",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "1.27"
+      },
+      "2025": {
+        "enrollment": "2",
+        "registeredCount": "",
+        "competitionRate": "27",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": "1.05"
+      },
+      "2026": {
+        "enrollment": "1",
+        "registeredCount": "",
+        "competitionRate": "24",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "1.14",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111582_ywb06",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "반도체대학",
+    "admissionType": "학생부교과",
+    "detailedType": "특성화고교",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "11.4",
+        "waitlistLastRank": "4",
+        "average": "1.76",
+        "cut50": "1.81",
+        "cut70": "2.31",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111582_n33hq",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "시스템반도체학과",
+    "admissionType": "학생부교과",
+    "detailedType": "학생부우수자",
+    "stats": {
+      "2024": {
+        "enrollment": "26",
+        "registeredCount": "",
+        "competitionRate": "11.5",
+        "waitlistLastRank": "77",
+        "average": "",
+        "cut50": "",
+        "cut70": "2.7",
+        "cut80": "2.76"
+      },
+      "2025": {
+        "enrollment": "9",
+        "registeredCount": "",
+        "competitionRate": "5.9",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.44",
+        "cut80": "3.47"
+      },
+      "2026": {
+        "enrollment": "9",
+        "registeredCount": "",
+        "competitionRate": "17.78",
+        "waitlistLastRank": "6",
+        "average": "2.99",
+        "cut50": "3.01",
+        "cut70": "3.12",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111582_7etz4",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "경영학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "78",
+        "registeredCount": "",
+        "competitionRate": "31.9",
+        "waitlistLastRank": "12",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.65",
+        "cut80": "5.33"
+      },
+      "2025": {
+        "enrollment": "50",
+        "registeredCount": "",
+        "competitionRate": "47.2",
+        "waitlistLastRank": "8",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.37",
+        "cut80": "6.21"
+      },
+      "2026": {
+        "enrollment": "45",
+        "registeredCount": "",
+        "competitionRate": "58.73",
+        "waitlistLastRank": "4",
+        "average": "4.69",
+        "cut50": "5.23",
+        "cut70": "5.98",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111583_48tjw",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "회계세무학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "31.9",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.61",
+        "cut80": "5"
+      },
+      "2025": {
+        "enrollment": "16",
+        "registeredCount": "",
+        "competitionRate": "36.9",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.35",
+        "cut80": "6.27"
+      },
+      "2026": {
+        "enrollment": "16",
+        "registeredCount": "",
+        "competitionRate": "42.06",
+        "waitlistLastRank": "4",
+        "average": "4.11",
+        "cut50": "4.45",
+        "cut70": "4.8",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111583_cky7d",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "관광경영학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "11",
+        "registeredCount": "",
+        "competitionRate": "32.7",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.21",
+        "cut80": "4.41"
+      },
+      "2025": {
+        "enrollment": "11",
+        "registeredCount": "",
+        "competitionRate": "36.6",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.07",
+        "cut80": "5.94"
+      },
+      "2026": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "43.38",
+        "waitlistLastRank": "2",
+        "average": "4.39",
+        "cut50": "4.49",
+        "cut70": "5.57",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111584_sz3o1",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "의료산업경영학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "29.1",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.65",
+        "cut80": "5.02"
+      },
+      "2025": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "33.8",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.85",
+        "cut80": "5.96"
+      },
+      "2026": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "41.08",
+        "waitlistLastRank": "0",
+        "average": "4.59",
+        "cut50": "5",
+        "cut70": "5.77",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111584_l158q",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "금융·빅데이터학부",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "26",
+        "registeredCount": "",
+        "competitionRate": "27.5",
+        "waitlistLastRank": "5",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.2",
+        "cut80": "5.98"
+      },
+      "2026": {
+        "enrollment": "26",
+        "registeredCount": "",
+        "competitionRate": "29.08",
+        "waitlistLastRank": "5",
+        "average": "4.3",
+        "cut50": "4.63",
+        "cut70": "5.35",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111584_9ulv7",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "경제학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "11",
+        "registeredCount": "",
+        "competitionRate": "35.4",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.41",
+        "cut80": "5.26"
+      },
+      "2025": {
+        "enrollment": "15",
+        "registeredCount": "",
+        "competitionRate": "35.1",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.93",
+        "cut80": "5.36"
+      },
+      "2026": {
+        "enrollment": "15",
+        "registeredCount": "",
+        "competitionRate": "43.8",
+        "waitlistLastRank": "1",
+        "average": "4.48",
+        "cut50": "5.22",
+        "cut70": "6.49",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111585_162e9",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "응용통계학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "31.5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.5",
+        "cut80": "4.7"
+      },
+      "2025": {
+        "enrollment": "11",
+        "registeredCount": "",
+        "competitionRate": "34.8",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.03",
+        "cut80": "5.92"
+      },
+      "2026": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "41.38",
+        "waitlistLastRank": "0",
+        "average": "4.74",
+        "cut50": "5.28",
+        "cut70": "5.93",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111585_qmit3",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "심리학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "10",
+        "registeredCount": "",
+        "competitionRate": "39.8",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.94",
+        "cut80": "5"
+      },
+      "2025": {
+        "enrollment": "10",
+        "registeredCount": "",
+        "competitionRate": "47.4",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.82",
+        "cut80": "5.2"
+      },
+      "2026": {
+        "enrollment": "10",
+        "registeredCount": "",
+        "competitionRate": "54.9",
+        "waitlistLastRank": "2",
+        "average": "3.81",
+        "cut50": "4.89",
+        "cut70": "6.56",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111585_mgqhl",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "미디어커뮤니케이션학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "52.9",
+        "waitlistLastRank": "5",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.29",
+        "cut80": "5.11"
+      },
+      "2025": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "62.4",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.33",
+        "cut80": "6.87"
+      },
+      "2026": {
+        "enrollment": "8",
+        "registeredCount": "",
+        "competitionRate": "83.75",
+        "waitlistLastRank": "0",
+        "average": "4.72",
+        "cut50": "4.97",
+        "cut70": "5.53",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111585_5lcaw",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "사회복지학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "11",
+        "registeredCount": "",
+        "competitionRate": "29.2",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.13",
+        "cut80": "4.73"
+      },
+      "2025": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "34",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "5",
+        "cut80": "5.98"
+      },
+      "2026": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "40.33",
+        "waitlistLastRank": "1",
+        "average": "3.82",
+        "cut50": "4.63",
+        "cut70": "6.49",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111586_rq8k9",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "유아교육학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "15",
+        "registeredCount": "",
+        "competitionRate": "24.3",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.87",
+        "cut80": "5.6"
+      },
+      "2025": {
+        "enrollment": "15",
+        "registeredCount": "",
+        "competitionRate": "33.9",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.03",
+        "cut80": "5.71"
+      },
+      "2026": {
+        "enrollment": "15",
+        "registeredCount": "",
+        "competitionRate": "40",
+        "waitlistLastRank": "0",
+        "average": "5.09",
+        "cut50": "5.36",
+        "cut70": "5.62",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111586_4l2e8",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "패션산업학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "8",
+        "registeredCount": "",
+        "competitionRate": "38.4",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.98",
+        "cut80": "4.96"
+      },
+      "2025": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "50.7",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.33",
+        "cut80": "4.43"
+      },
+      "2026": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "44.42",
+        "waitlistLastRank": "1",
+        "average": "4.65",
+        "cut50": "4.92",
+        "cut70": "6.28",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111586_x796y",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "AI인문대학",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "71",
+        "registeredCount": "",
+        "competitionRate": "34.6",
+        "waitlistLastRank": "11",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.03",
+        "cut80": "5.84"
+      },
+      "2026": {
+        "enrollment": "71",
+        "registeredCount": "",
+        "competitionRate": "45.2",
+        "waitlistLastRank": "9",
+        "average": "4.67",
+        "cut50": "5.29",
+        "cut70": "6.16",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111587_n6vmu",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "법과대학",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "44",
+        "registeredCount": "",
+        "competitionRate": "32.8",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.67",
+        "cut80": "5.66"
+      },
+      "2026": {
+        "enrollment": "45",
+        "registeredCount": "",
+        "competitionRate": "42.16",
+        "waitlistLastRank": "1",
+        "average": "4.56",
+        "cut50": "4.85",
+        "cut70": "5.5",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111587_4kmk4",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "도시계획·조경학부",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "20",
+        "registeredCount": "",
+        "competitionRate": "27.8",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.03",
+        "cut80": "5.31"
+      },
+      "2025": {
+        "enrollment": "21",
+        "registeredCount": "",
+        "competitionRate": "30.7",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.01",
+        "cut80": "5.51"
+      },
+      "2026": {
+        "enrollment": "21",
+        "registeredCount": "",
+        "competitionRate": "28.43",
+        "waitlistLastRank": "6",
+        "average": "3.96",
+        "cut50": "4.99",
+        "cut70": "6.23",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111588_vtgfm",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "건축학부",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "30",
+        "registeredCount": "",
+        "competitionRate": "37",
+        "waitlistLastRank": "7",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.74",
+        "cut80": "5.17"
+      },
+      "2025": {
+        "enrollment": "33",
+        "registeredCount": "",
+        "competitionRate": "37.4",
+        "waitlistLastRank": "10",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.16",
+        "cut80": "5.93"
+      },
+      "2026": {
+        "enrollment": "15",
+        "registeredCount": "",
+        "competitionRate": "52.4",
+        "waitlistLastRank": "2",
+        "average": "4.28",
+        "cut50": "5.46",
+        "cut70": "5.98",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111588_k61ax",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "건축공학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "15",
+        "registeredCount": "",
+        "competitionRate": "28.07",
+        "waitlistLastRank": "5",
+        "average": "4.69",
+        "cut50": "5.07",
+        "cut70": "5.76",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111588_jpd0o",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "화공생명배터리공학부",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "46",
+        "registeredCount": "",
+        "competitionRate": "30.4",
+        "waitlistLastRank": "11",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.26",
+        "cut80": "4.94"
+      },
+      "2025": {
+        "enrollment": "58",
+        "registeredCount": "",
+        "competitionRate": "29.7",
+        "waitlistLastRank": "17",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.47",
+        "cut80": "5.26"
+      },
+      "2026": {
+        "enrollment": "57",
+        "registeredCount": "",
+        "competitionRate": "29.65",
+        "waitlistLastRank": "8",
+        "average": "4.17",
+        "cut50": "4.5",
+        "cut70": "5.26",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111589_shks2",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "기계공학부",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "51",
+        "registeredCount": "",
+        "competitionRate": "32",
+        "waitlistLastRank": "13",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.18",
+        "cut80": "6.18"
+      },
+      "2026": {
+        "enrollment": "56",
+        "registeredCount": "",
+        "competitionRate": "32.45",
+        "waitlistLastRank": "8",
+        "average": "4.56",
+        "cut50": "5.12",
+        "cut70": "5.8",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111589_od3k9",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "건설환경공학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "14",
+        "registeredCount": "",
+        "competitionRate": "26.43",
+        "waitlistLastRank": "0",
+        "average": "4.71",
+        "cut50": "5.43",
+        "cut70": "5.79",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111590_23eia",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "스마트팩토리학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2026": {
+        "enrollment": "16",
+        "registeredCount": "",
+        "competitionRate": "28.63",
+        "waitlistLastRank": "4",
+        "average": "4.48",
+        "cut50": "4.8",
+        "cut70": "5.3",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111590_0l09f",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "신소재공학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "36.5",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.03",
+        "cut80": "4.82"
+      },
+      "2025": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "37.8",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.24",
+        "cut80": "6.28"
+      },
+      "2026": {
+        "enrollment": "14",
+        "registeredCount": "",
+        "competitionRate": "35.57",
+        "waitlistLastRank": "0",
+        "average": "4.51",
+        "cut50": "4.69",
+        "cut70": "6.18",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111590_01kia",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "식품생명공학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "14",
+        "registeredCount": "",
+        "competitionRate": "34.3",
+        "waitlistLastRank": "5",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.19",
+        "cut80": "4.55"
+      },
+      "2025": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "33.9",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.34",
+        "cut80": "5.45"
+      },
+      "2026": {
+        "enrollment": "14",
+        "registeredCount": "",
+        "competitionRate": "33.79",
+        "waitlistLastRank": "4",
+        "average": "3.92",
+        "cut50": "4.43",
+        "cut70": "5.26",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111591_uhk1w",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "바이오나노학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "30.9",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.7",
+        "cut80": "5.73"
+      },
+      "2025": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "32.1",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.24",
+        "cut80": "4.62"
+      },
+      "2026": {
+        "enrollment": "14",
+        "registeredCount": "",
+        "competitionRate": "29.5",
+        "waitlistLastRank": "2",
+        "average": "4.48",
+        "cut50": "4.58",
+        "cut70": "5.21",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111591_8zp8j",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "생명과학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "39.3",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.93",
+        "cut80": "4.53"
+      },
+      "2025": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "43.2",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.36",
+        "cut80": "5.15"
+      },
+      "2026": {
+        "enrollment": "15",
+        "registeredCount": "",
+        "competitionRate": "39",
+        "waitlistLastRank": "1",
+        "average": "4.37",
+        "cut50": "4.82",
+        "cut70": "6.34",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111591_pzxcj",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "반도체물리학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "27",
+        "waitlistLastRank": "10",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.43",
+        "cut80": "5.55"
+      },
+      "2025": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "30.8",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.47",
+        "cut80": "5.73"
+      },
+      "2026": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "25.77",
+        "waitlistLastRank": "2",
+        "average": "4.46",
+        "cut50": "4.64",
+        "cut70": "5.76",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111592_3ubji",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "화학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "33.6",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.07",
+        "cut80": "4.8"
+      },
+      "2025": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "28.3",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.71",
+        "cut80": "6.05"
+      },
+      "2026": {
+        "enrollment": "14",
+        "registeredCount": "",
+        "competitionRate": "27.64",
+        "waitlistLastRank": "2",
+        "average": "4.55",
+        "cut50": "4.79",
+        "cut70": "5.79",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111592_f39kn",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "식품영양학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "29.9",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.21",
+        "cut80": "4.73"
+      },
+      "2025": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "30.1",
+        "waitlistLastRank": "5",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.88",
+        "cut80": "5.41"
+      },
+      "2026": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "33.33",
+        "waitlistLastRank": "1",
+        "average": "4.16",
+        "cut50": "4.26",
+        "cut70": "5.19",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111592_ixpuh",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "전기공학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "22",
+        "registeredCount": "",
+        "competitionRate": "33.2",
+        "waitlistLastRank": "12",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.58",
+        "cut80": "5.51"
+      },
+      "2025": {
+        "enrollment": "20",
+        "registeredCount": "",
+        "competitionRate": "34.1",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.09",
+        "cut80": "5.25"
+      },
+      "2026": {
+        "enrollment": "20",
+        "registeredCount": "",
+        "competitionRate": "30.75",
+        "waitlistLastRank": "7",
+        "average": "4.97",
+        "cut50": "5.18",
+        "cut70": "5.83",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111593_ir2nn",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "스마트시티학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "30.6",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.22",
+        "cut80": "4.66"
+      },
+      "2025": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "28.7",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.64",
+        "cut80": "6.31"
+      },
+      "2026": {
+        "enrollment": "16",
+        "registeredCount": "",
+        "competitionRate": "29.56",
+        "waitlistLastRank": "3",
+        "average": "3.82",
+        "cut50": "4.18",
+        "cut70": "4.86",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111593_9c05s",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "클라우드공학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "135",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.04",
+        "cut80": "3.41"
+      },
+      "2025": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "86",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.32",
+        "cut80": "5.83"
+      },
+      "2026": {
+        "enrollment": "7",
+        "registeredCount": "",
+        "competitionRate": "77.29",
+        "waitlistLastRank": "0",
+        "average": "5.2",
+        "cut50": "5.44",
+        "cut70": "5.67",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111593_p19up",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "컴퓨터공학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "35",
+        "registeredCount": "",
+        "competitionRate": "48.3",
+        "waitlistLastRank": "7",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.15",
+        "cut80": "5"
+      },
+      "2025": {
+        "enrollment": "40",
+        "registeredCount": "",
+        "competitionRate": "46.5",
+        "waitlistLastRank": "14",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.25",
+        "cut80": "6.18"
+      },
+      "2026": {
+        "enrollment": "41",
+        "registeredCount": "",
+        "competitionRate": "33.68",
+        "waitlistLastRank": "12",
+        "average": "4.47",
+        "cut50": "4.93",
+        "cut70": "5.55",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111594_3dn4e",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "스마트보안학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "33.4",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.49",
+        "cut80": "5"
+      },
+      "2025": {
+        "enrollment": "17",
+        "registeredCount": "",
+        "competitionRate": "31.1",
+        "waitlistLastRank": "8",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.22",
+        "cut80": "6.08"
+      },
+      "2026": {
+        "enrollment": "18",
+        "registeredCount": "",
+        "competitionRate": "28.17",
+        "waitlistLastRank": "5",
+        "average": "4.44",
+        "cut50": "4.88",
+        "cut70": "5.19",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111594_h3fz6",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "인공지능학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "35",
+        "registeredCount": "",
+        "competitionRate": "35.4",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.48",
+        "cut80": "5.21"
+      },
+      "2025": {
+        "enrollment": "40",
+        "registeredCount": "",
+        "competitionRate": "35.2",
+        "waitlistLastRank": "10",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.32",
+        "cut80": "5.8"
+      },
+      "2026": {
+        "enrollment": "45",
+        "registeredCount": "",
+        "competitionRate": "33.6",
+        "waitlistLastRank": "12",
+        "average": "4.64",
+        "cut50": "5.16",
+        "cut70": "7.18",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111594_b80ds",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "의공학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "12",
+        "registeredCount": "",
+        "competitionRate": "27.2",
+        "waitlistLastRank": "5",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.79",
+        "cut80": "5.46"
+      },
+      "2025": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "30.2",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.5",
+        "cut80": "6.06"
+      },
+      "2026": {
+        "enrollment": "14",
+        "registeredCount": "",
+        "competitionRate": "26.14",
+        "waitlistLastRank": "6",
+        "average": "4.44",
+        "cut50": "5.11",
+        "cut70": "5.81",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111595_o51ft",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "운동재활학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "10",
+        "registeredCount": "",
+        "competitionRate": "29.7",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.48",
+        "cut80": "5.28"
+      },
+      "2025": {
+        "enrollment": "10",
+        "registeredCount": "",
+        "competitionRate": "34.2",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.66",
+        "cut80": "5.01"
+      },
+      "2026": {
+        "enrollment": "13",
+        "registeredCount": "",
+        "competitionRate": "30.54",
+        "waitlistLastRank": "2",
+        "average": "4.83",
+        "cut50": "5.32",
+        "cut70": "5.92",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111595_dhiwu",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "바이오로직스학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "25",
+        "registeredCount": "",
+        "competitionRate": "27.2",
+        "waitlistLastRank": "5",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.44",
+        "cut80": "5.45"
+      },
+      "2025": {
+        "enrollment": "28",
+        "registeredCount": "",
+        "competitionRate": "30.6",
+        "waitlistLastRank": "10",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.75",
+        "cut80": "5.3"
+      },
+      "2026": {
+        "enrollment": "28",
+        "registeredCount": "",
+        "competitionRate": "33.36",
+        "waitlistLastRank": "10",
+        "average": "4.09",
+        "cut50": "4.86",
+        "cut70": "6.34",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111595_9q6le",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "간호학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "83",
+        "registeredCount": "",
+        "competitionRate": "46.4",
+        "waitlistLastRank": "10",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.88",
+        "cut80": "4.6"
+      },
+      "2025": {
+        "enrollment": "83",
+        "registeredCount": "",
+        "competitionRate": "44.6",
+        "waitlistLastRank": "9",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.26",
+        "cut80": "5.01"
+      },
+      "2026": {
+        "enrollment": "77",
+        "registeredCount": "",
+        "competitionRate": "47.68",
+        "waitlistLastRank": "8",
+        "average": "3.93",
+        "cut50": "4.49",
+        "cut70": "5.6",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111595_h1bdk",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "치위생학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "9",
+        "registeredCount": "",
+        "competitionRate": "28.6",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.51",
+        "cut80": "5.12"
+      },
+      "2025": {
+        "enrollment": "9",
+        "registeredCount": "",
+        "competitionRate": "31.3",
+        "waitlistLastRank": "8",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.13",
+        "cut80": "4.44"
+      },
+      "2026": {
+        "enrollment": "9",
+        "registeredCount": "",
+        "competitionRate": "32",
+        "waitlistLastRank": "1",
+        "average": "5.23",
+        "cut50": "5.3",
+        "cut70": "5.92",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111596_ulfo6",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "응급구조학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "28",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.17",
+        "cut80": "4.23"
+      },
+      "2025": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "28.8",
+        "waitlistLastRank": "0",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.86",
+        "cut80": "5.78"
+      },
+      "2026": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "39.83",
+        "waitlistLastRank": "0",
+        "average": "4.81",
+        "cut50": "4.84",
+        "cut70": "5.41",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111596_inr2j",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "방사선학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "10",
+        "registeredCount": "",
+        "competitionRate": "42.7",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.58",
+        "cut80": "5.08"
+      },
+      "2025": {
+        "enrollment": "8",
+        "registeredCount": "",
+        "competitionRate": "59",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.62",
+        "cut80": "4.99"
+      },
+      "2026": {
+        "enrollment": "8",
+        "registeredCount": "",
+        "competitionRate": "64.25",
+        "waitlistLastRank": "0",
+        "average": "4.61",
+        "cut50": "6.07",
+        "cut70": "6.17",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111596_amebd",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "물리치료학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "10",
+        "registeredCount": "",
+        "competitionRate": "70.8",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.78",
+        "cut80": "4.62"
+      },
+      "2025": {
+        "enrollment": "8",
+        "registeredCount": "",
+        "competitionRate": "78.8",
+        "waitlistLastRank": "4",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.75",
+        "cut80": "5.2"
+      },
+      "2026": {
+        "enrollment": "8",
+        "registeredCount": "",
+        "competitionRate": "76.25",
+        "waitlistLastRank": "2",
+        "average": "3.89",
+        "cut50": "4.1",
+        "cut70": "4.67",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111596_kq0n5",
+    "location": "인천광역시",
+    "universityName": "가천대학교(메디컬)",
+    "departmentName": "의예과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "40",
+        "registeredCount": "",
+        "competitionRate": "205.2",
+        "waitlistLastRank": "7",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.31",
+        "cut80": "4"
+      },
+      "2026": {
+        "enrollment": "6",
+        "registeredCount": "",
+        "competitionRate": "577",
+        "waitlistLastRank": "0",
+        "average": "2.05",
+        "cut50": "3.26",
+        "cut70": "3.63",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111597_28s79",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "반도체대학",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "",
+        "registeredCount": "",
+        "competitionRate": "",
+        "waitlistLastRank": "",
+        "average": "",
+        "cut50": "",
+        "cut70": "",
+        "cut80": ""
+      },
+      "2025": {
+        "enrollment": "61",
+        "registeredCount": "",
+        "competitionRate": "34.5",
+        "waitlistLastRank": "14",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.93",
+        "cut80": "5.42"
+      },
+      "2026": {
+        "enrollment": "73",
+        "registeredCount": "",
+        "competitionRate": "33.37",
+        "waitlistLastRank": "18",
+        "average": "4.71",
+        "cut50": "5.22",
+        "cut70": "6.16",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111597_nlbxx",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "시스템반도체학과",
+    "admissionType": "논술",
+    "detailedType": "논술",
+    "stats": {
+      "2024": {
+        "enrollment": "51",
+        "registeredCount": "",
+        "competitionRate": "39.4",
+        "waitlistLastRank": "10",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.63",
+        "cut80": "5.27"
+      },
+      "2025": {
+        "enrollment": "16",
+        "registeredCount": "",
+        "competitionRate": "31.7",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.7",
+        "cut80": "7.04"
+      },
+      "2026": {
+        "enrollment": "16",
+        "registeredCount": "",
+        "competitionRate": "28.5",
+        "waitlistLastRank": "3",
+        "average": "4.36",
+        "cut50": "4.76",
+        "cut70": "6.11",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111635_jsbqn",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "미래자동차학과",
+    "admissionType": "학생부종합",
+    "detailedType": "조기취업",
+    "stats": {
+      "2024": {
+        "enrollment": "40",
+        "registeredCount": "",
+        "competitionRate": "5",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.38",
+        "cut80": "6.33"
+      },
+      "2025": {
+        "enrollment": "40",
+        "registeredCount": "",
+        "competitionRate": "4.3",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.18",
+        "cut80": "5.48"
+      },
+      "2026": {
+        "enrollment": "25",
+        "registeredCount": "",
+        "competitionRate": "6.92",
+        "waitlistLastRank": "2",
+        "average": "4.31",
+        "cut50": "5.35",
+        "cut70": "5.66",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111636_akbsl",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "바이오의료기기학과",
+    "admissionType": "학생부종합",
+    "detailedType": "조기취업",
+    "stats": {
+      "2024": {
+        "enrollment": "40",
+        "registeredCount": "",
+        "competitionRate": "4.9",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.26",
+        "cut80": "6.41"
+      },
+      "2025": {
+        "enrollment": "40",
+        "registeredCount": "",
+        "competitionRate": "3.9",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.38",
+        "cut80": "7.03"
+      },
+      "2026": {
+        "enrollment": "33",
+        "registeredCount": "",
+        "competitionRate": "5.94",
+        "waitlistLastRank": "1",
+        "average": "4.42",
+        "cut50": "4.88",
+        "cut70": "5.08",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111636_ribhz",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "게임·영상학과",
+    "admissionType": "학생부종합",
+    "detailedType": "조기취업",
+    "stats": {
+      "2024": {
+        "enrollment": "60",
+        "registeredCount": "",
+        "competitionRate": "9.5",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.82",
+        "cut80": "5.67"
+      },
+      "2025": {
+        "enrollment": "30",
+        "registeredCount": "",
+        "competitionRate": "18.5",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.37",
+        "cut80": "6.1"
+      },
+      "2026": {
+        "enrollment": "24",
+        "registeredCount": "",
+        "competitionRate": "25.67",
+        "waitlistLastRank": "1",
+        "average": "4.06",
+        "cut50": "4.95",
+        "cut70": "5.31",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111636_5qiss",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "반도체·디스플레이학과",
+    "admissionType": "학생부종합",
+    "detailedType": "조기취업",
+    "stats": {
+      "2024": {
+        "enrollment": "50",
+        "registeredCount": "",
+        "competitionRate": "4.3",
+        "waitlistLastRank": "3",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.08",
+        "cut80": "6.05"
+      },
+      "2025": {
+        "enrollment": "100",
+        "registeredCount": "",
+        "competitionRate": "3.5",
+        "waitlistLastRank": "7",
+        "average": "",
+        "cut50": "",
+        "cut70": "5.78",
+        "cut80": "6.46"
+      },
+      "2026": {
+        "enrollment": "115",
+        "registeredCount": "",
+        "competitionRate": "4.56",
+        "waitlistLastRank": "6",
+        "average": "4.15",
+        "cut50": "4.6",
+        "cut70": "5.2",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111637_lqirb",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "반도체설계학과",
+    "admissionType": "학생부종합",
+    "detailedType": "조기취업",
+    "stats": {
+      "2024": {
+        "enrollment": "50",
+        "registeredCount": "",
+        "competitionRate": "3.6",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.58",
+        "cut80": "5.84"
+      },
+      "2025": {
+        "enrollment": "50",
+        "registeredCount": "",
+        "competitionRate": "3.2",
+        "waitlistLastRank": "1",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.98",
+        "cut80": "6.8"
+      },
+      "2026": {
+        "enrollment": "38",
+        "registeredCount": "",
+        "competitionRate": "4.37",
+        "waitlistLastRank": "1",
+        "average": "4.52",
+        "cut50": "4.81",
+        "cut70": "5.24",
+        "cut80": ""
+      }
+    }
+  },
+  {
+    "id": "id_1785080111638_2jicv",
+    "location": "경기도",
+    "universityName": "가천대학교",
+    "departmentName": "자유전공",
+    "admissionType": "학생부교과",
+    "detailedType": "지역균형",
+    "stats": {
+      "2024": {
+        "enrollment": "5",
+        "registeredCount": "",
+        "competitionRate": "28.6",
+        "waitlistLastRank": "2",
+        "average": "",
+        "cut50": "",
+        "cut70": "3.2",
+        "cut80": "3.27"
+      },
+      "2025": {
+        "enrollment": "321",
+        "registeredCount": "",
+        "competitionRate": "20.5",
+        "waitlistLastRank": "107",
+        "average": "",
+        "cut50": "",
+        "cut70": "4.48",
+        "cut80": "5.14"
+      },
+      "2026": {
+        "enrollment": "321",
+        "registeredCount": "",
+        "competitionRate": "15.88",
+        "waitlistLastRank": "121",
+        "average": "3.01",
+        "cut50": "3.18",
+        "cut70": "3.45",
+        "cut80": ""
+      }
+    }
   }
 ]
