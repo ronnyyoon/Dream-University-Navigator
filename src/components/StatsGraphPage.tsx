@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Loader2, Filter, Info, ChevronDown, ChevronUp, BarChart2 } from 'lucide-react';
 import { fetchOfficialStats } from '../lib/admissionService';
 import { OfficialStat } from '../types';
+import { MultiSelectDropdown } from './MultiSelectDropdown';
 
 export default function StatsGraphPage() {
   const [loading, setLoading] = React.useState(true);
@@ -11,10 +12,10 @@ export default function StatsGraphPage() {
 
   // Filters state (with targetGrade added for request 6)
   const [filters, setFilters] = React.useState({
-    location: '전체',
-    university: '전체',
-    department: '전체',
-    admissionType: '전체', // '학생부종합', '학생부교과', '논술', '실기', '기타'
+    location: ['전체'],
+    university: ['전체'],
+    department: ['전체'],
+    admissionType: ['전체'], // '학생부종합', '학생부교과', '논술', '실기', '기타'
     gradeCriteria: 'cut70', // 'average', 'cut50', 'cut70'
     targetGrade: '', // 특정 성적값 입력 검색 조건 (Request 6)
   });
@@ -63,23 +64,25 @@ export default function StatsGraphPage() {
   };
 
   // Helper to check standard admission type mapping
-  const matchesAdmissionType = (itemType: string, selectedType: string) => {
-    if (selectedType === '전체') return true;
-    if (selectedType === '기타') {
-      return !['학생부종합', '학생부교과', '논술', '실기'].includes(itemType);
-    }
-    return itemType === selectedType;
+  const matchesAdmissionType = (itemType: string, selectedTypes: string[]) => {
+    if (!selectedTypes || selectedTypes.length === 0 || selectedTypes.includes('전체')) return true;
+    return selectedTypes.some(selectedType => {
+      if (selectedType === '기타') {
+        return !['학생부종합', '학생부교과', '논술', '실기'].includes(itemType);
+      }
+      return itemType === selectedType;
+    });
   };
 
   // Dynamic Options for dropdown filters
   const dynamicOptions = React.useMemo(() => {
     let filtered = statsData;
 
-    if (filters.location !== '전체') {
-      filtered = filtered.filter(s => s.location === filters.location);
+    if (filters.location.length > 0 && !filters.location.includes('전체')) {
+      filtered = filtered.filter(s => filters.location.includes(s.location));
     }
-    if (filters.university !== '전체') {
-      filtered = filtered.filter(s => normalize(s.universityName) === filters.university);
+    if (filters.university.length > 0 && !filters.university.includes('전체')) {
+      filtered = filtered.filter(s => filters.university.includes(normalize(s.universityName)));
     }
 
     const locations = Array.from(new Set(statsData.map(s => s.location))).filter(Boolean).sort();
@@ -98,9 +101,9 @@ export default function StatsGraphPage() {
   const universityChartData = React.useMemo(() => {
     // 1. Filter raw data items
     const filteredItems = statsData.filter(item => {
-      if (filters.location !== '전체' && item.location !== filters.location) return false;
-      if (filters.university !== '전체' && normalize(item.universityName) !== filters.university) return false;
-      if (filters.department !== '전체' && item.departmentName !== filters.department) return false;
+      if (filters.location.length > 0 && !filters.location.includes('전체') && !filters.location.includes(item.location)) return false;
+      if (filters.university.length > 0 && !filters.university.includes('전체') && !filters.university.includes(normalize(item.universityName))) return false;
+      if (filters.department.length > 0 && !filters.department.includes('전체') && !filters.department.includes(item.departmentName)) return false;
       if (!matchesAdmissionType(item.admissionType, filters.admissionType)) return false;
       return true;
     });
@@ -170,7 +173,9 @@ export default function StatsGraphPage() {
           };
         });
 
-        if (filters.admissionType === '전체') {
+        const isAllTypes = filters.admissionType.length === 0 || filters.admissionType.includes('전체');
+
+        if (isAllTypes) {
           const getMajorType = (t: string) => {
             if (['학생부종합', '학생부교과', '논술', '실기'].includes(t)) {
               return t;
@@ -220,15 +225,44 @@ export default function StatsGraphPage() {
             });
           }
         } else {
-          const validItems = deptItemsWithGrades.filter(item => item.grade !== null);
-          if (validItems.length > 0) {
-            let bestItem = validItems[0];
-            validItems.forEach(item => {
-              if (item.grade! < bestItem.grade!) {
-                bestItem = item;
-              }
-            });
-            processedGrades.push(bestItem);
+          const getMajorType = (t: string) => {
+            if (['학생부종합', '학생부교과', '논술', '실기'].includes(t)) {
+              return t;
+            }
+            return '기타';
+          };
+
+          const itemsByMajorType: Record<string, typeof deptItemsWithGrades> = {};
+          deptItemsWithGrades.forEach(item => {
+            const major = getMajorType(item.type);
+            if (!itemsByMajorType[major]) {
+              itemsByMajorType[major] = [];
+            }
+            itemsByMajorType[major].push(item);
+          });
+
+          let hasAnyValidGrade = false;
+          const majorRepresentatives: typeof deptItemsWithGrades = [];
+
+          filters.admissionType.forEach(selectedMajor => {
+            const majorItems = itemsByMajorType[selectedMajor] || [];
+            if (majorItems.length === 0) return;
+
+            const validItems = majorItems.filter(item => item.grade !== null);
+            if (validItems.length > 0) {
+              hasAnyValidGrade = true;
+              let bestItem = validItems[0];
+              validItems.forEach(item => {
+                if (item.grade! < bestItem.grade!) {
+                  bestItem = item;
+                }
+              });
+              majorRepresentatives.push(bestItem);
+            }
+          });
+
+          if (hasAnyValidGrade) {
+            processedGrades.push(...majorRepresentatives);
           } else if (deptItemsWithGrades.length > 0) {
             const firstItem = deptItemsWithGrades[0];
             processedGrades.push({
@@ -291,10 +325,10 @@ export default function StatsGraphPage() {
   // Handle resets
   const handleResetFilters = () => {
     setFilters({
-      location: '전체',
-      university: '전체',
-      department: '전체',
-      admissionType: '전체',
+      location: ['전체'],
+      university: ['전체'],
+      department: ['전체'],
+      admissionType: ['전체'],
       gradeCriteria: 'cut70',
       targetGrade: '',
     });
@@ -497,7 +531,7 @@ export default function StatsGraphPage() {
       </div>
 
       {/* Filter Section (Now 6 columns per Request 6) */}
-      <div className="glass-card p-6 border border-white/10 rounded-3xl mb-8 space-y-6">
+      <div className="glass-card p-6 border border-white/10 rounded-3xl mb-8 space-y-6 relative z-30">
         <div className="flex items-center justify-between border-b border-white/5 pb-4">
           <div className="flex items-center gap-2 text-white font-black text-sm">
             <Filter size={16} className="text-primary" />
@@ -513,72 +547,36 @@ export default function StatsGraphPage() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
           {/* Location */}
-          <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">지역</label>
-            <div className="relative">
-              <select 
-                value={filters.location}
-                onChange={(e) => setFilters(prev => ({ ...prev, location: e.target.value, university: '전체', department: '전체' }))}
-                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white text-xs font-bold appearance-none outline-none focus:border-primary/50 transition-all cursor-pointer"
-              >
-                {dynamicOptions.locations.map((loc, idx) => (
-                  <option key={`${loc}-${idx}`} value={loc} className="bg-zinc-950 text-white">{loc}</option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-text-dim pointer-events-none" size={14} />
-            </div>
-          </div>
+          <MultiSelectDropdown 
+            label="지역" 
+            selected={filters.location} 
+            options={dynamicOptions.locations}
+            onChange={(val) => setFilters(prev => ({ ...prev, location: val }))}
+          />
 
           {/* University Name */}
-          <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">학교명</label>
-            <div className="relative">
-              <select 
-                value={filters.university}
-                onChange={(e) => setFilters(prev => ({ ...prev, university: e.target.value, department: '전체' }))}
-                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white text-xs font-bold appearance-none outline-none focus:border-primary/50 transition-all cursor-pointer"
-              >
-                {dynamicOptions.universities.map((uni, idx) => (
-                  <option key={`${uni}-${idx}`} value={uni} className="bg-zinc-950 text-white">{uni}</option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-text-dim pointer-events-none" size={14} />
-            </div>
-          </div>
+          <MultiSelectDropdown 
+            label="학교명" 
+            selected={filters.university} 
+            options={dynamicOptions.universities}
+            onChange={(val) => setFilters(prev => ({ ...prev, university: val }))}
+          />
 
           {/* Department Name */}
-          <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">학과</label>
-            <div className="relative">
-              <select 
-                value={filters.department}
-                onChange={(e) => setFilters(prev => ({ ...prev, department: e.target.value }))}
-                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white text-xs font-bold appearance-none outline-none focus:border-primary/50 transition-all cursor-pointer"
-              >
-                {dynamicOptions.departments.map((dept, idx) => (
-                  <option key={`${dept}-${idx}`} value={dept} className="bg-zinc-950 text-white">{dept}</option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-text-dim pointer-events-none" size={14} />
-            </div>
-          </div>
+          <MultiSelectDropdown 
+            label="학과" 
+            selected={filters.department} 
+            options={dynamicOptions.departments}
+            onChange={(val) => setFilters(prev => ({ ...prev, department: val }))}
+          />
 
           {/* Admission Type */}
-          <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">전형</label>
-            <div className="relative">
-              <select 
-                value={filters.admissionType}
-                onChange={(e) => setFilters(prev => ({ ...prev, admissionType: e.target.value }))}
-                className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white text-xs font-bold appearance-none outline-none focus:border-primary/50 transition-all cursor-pointer"
-              >
-                {dynamicOptions.admissionTypes.map((type, idx) => (
-                  <option key={`${type}-${idx}`} value={type} className="bg-zinc-950 text-white">{type}</option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-text-dim pointer-events-none" size={14} />
-            </div>
-          </div>
+          <MultiSelectDropdown 
+            label="전형" 
+            selected={filters.admissionType} 
+            options={dynamicOptions.admissionTypes}
+            onChange={(val) => setFilters(prev => ({ ...prev, admissionType: val }))}
+          />
 
           {/* Grade Criteria (Request 3: labeled specifically as 2026학년도) */}
           <div className="flex flex-col gap-1.5">

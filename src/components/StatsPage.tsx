@@ -2,6 +2,7 @@ import React from 'react';
 import { Search, Loader2, Database, ChevronDown, Filter } from 'lucide-react';
 import { fetchAllAdmissionCases, fetchOfficialStats } from '../lib/admissionService';
 import { AdmissionCase, OfficialStat } from '../types';
+import { MultiSelectDropdown } from './MultiSelectDropdown';
 
 export default function StatsPage() {
   const [loading, setLoading] = React.useState(true);
@@ -18,11 +19,11 @@ export default function StatsPage() {
 
   // Search state
   const [filters, setFilters] = React.useState({
-    location: '전체',
-    university: '전체',
-    department: '전체',
-    admissionType: '전체',
-    detailedType: '전체',
+    location: ['전체'],
+    university: ['전체'],
+    department: ['전체'],
+    admissionType: ['전체'],
+    detailedType: ['전체'],
     registeredTrend: '전체',
     competitionTrend: '전체',
     averageTrend: '전체',
@@ -93,19 +94,19 @@ export default function StatsPage() {
     let filteredForOptions = statsData;
     
     // For Department options: filter by location and university
-    if (filters.location !== '전체') {
-      filteredForOptions = filteredForOptions.filter(s => s.location === filters.location);
+    if (filters.location.length > 0 && !filters.location.includes('전체')) {
+      filteredForOptions = filteredForOptions.filter(s => filters.location.includes(s.location));
     }
-    if (filters.university !== '전체') {
-      filteredForOptions = filteredForOptions.filter(s => normalize(s.universityName) === filters.university);
+    if (filters.university.length > 0 && !filters.university.includes('전체')) {
+      filteredForOptions = filteredForOptions.filter(s => filters.university.includes(normalize(s.universityName)));
     }
     
     const depts = Array.from(new Set(filteredForOptions.map(s => s.departmentName))).filter(Boolean).sort();
     
     // For University options: filter by location
     let uniStats = statsData;
-    if (filters.location !== '전체') {
-      uniStats = uniStats.filter(s => s.location === filters.location);
+    if (filters.location.length > 0 && !filters.location.includes('전체')) {
+      uniStats = uniStats.filter(s => filters.location.includes(s.location));
     }
     const unis = Array.from(new Set(uniStats.map(s => normalize(s.universityName)))).filter(Boolean).sort();
 
@@ -124,8 +125,8 @@ export default function StatsPage() {
 
     // Detailed Types: also filter by selected admission type
     let detTypeStats = filteredForOptions;
-    if (filters.admissionType !== '전체') {
-      detTypeStats = detTypeStats.filter(s => s.admissionType === filters.admissionType);
+    if (filters.admissionType.length > 0 && !filters.admissionType.includes('전체')) {
+      detTypeStats = detTypeStats.filter(s => filters.admissionType.includes(s.admissionType));
     }
     const detTypes = Array.from(new Set(detTypeStats.map(s => s.detailedType)))
       .filter((s): s is string => Boolean(s))
@@ -151,11 +152,11 @@ export default function StatsPage() {
 
     return statsData.filter(item => {
       // Basic Filters
-      if (debouncedFilters.location !== '전체' && item.location !== debouncedFilters.location) return false;
-      if (debouncedFilters.university !== '전체' && normalize(item.universityName) !== debouncedFilters.university) return false;
-      if (debouncedFilters.department !== '전체' && item.departmentName !== debouncedFilters.department) return false;
-      if (debouncedFilters.admissionType !== '전체' && item.admissionType !== debouncedFilters.admissionType) return false;
-      if (debouncedFilters.detailedType !== '전체' && item.detailedType !== debouncedFilters.detailedType) return false;
+      if (debouncedFilters.location.length > 0 && !debouncedFilters.location.includes('전체') && !debouncedFilters.location.includes(item.location)) return false;
+      if (debouncedFilters.university.length > 0 && !debouncedFilters.university.includes('전체') && !debouncedFilters.university.includes(normalize(item.universityName))) return false;
+      if (debouncedFilters.department.length > 0 && !debouncedFilters.department.includes('전체') && !debouncedFilters.department.includes(item.departmentName)) return false;
+      if (debouncedFilters.admissionType.length > 0 && !debouncedFilters.admissionType.includes('전체') && !debouncedFilters.admissionType.includes(item.admissionType)) return false;
+      if (debouncedFilters.detailedType.length > 0 && !debouncedFilters.detailedType.includes('전체') && !debouncedFilters.detailedType.includes(item.detailedType)) return false;
 
       // Trend Helpers
       const getVal = (year: string, field: keyof OfficialStat['stats']['2024']) => {
@@ -290,36 +291,36 @@ export default function StatsPage() {
       </div>
 
       {/* Conditional Search Box */}
-      <div className="glass-card mb-10 border border-white/10 p-6">
+      <div className="glass-card mb-10 border border-white/10 p-6 relative z-30">
         {/* Row 1: Basic Filters */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-          <FilterSelect 
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+          <MultiSelectDropdown 
             label="지역" 
-            value={filters.location} 
+            selected={filters.location} 
             options={dynamicOptions.locations}
             onChange={(val) => setFilters(prev => ({ ...prev, location: val }))}
           />
-          <FilterSelect 
+          <MultiSelectDropdown 
             label="학교명" 
-            value={filters.university} 
+            selected={filters.university} 
             options={dynamicOptions.universities}
             onChange={(val) => setFilters(prev => ({ ...prev, university: val }))}
           />
-          <FilterSelect 
+          <MultiSelectDropdown 
             label="학과" 
-            value={filters.department} 
+            selected={filters.department} 
             options={dynamicOptions.departments}
             onChange={(val) => setFilters(prev => ({ ...prev, department: val }))}
           />
-          <FilterSelect 
+          <MultiSelectDropdown 
             label="전형" 
-            value={filters.admissionType} 
+            selected={filters.admissionType} 
             options={dynamicOptions.admissionTypes}
             onChange={(val) => setFilters(prev => ({ ...prev, admissionType: val }))}
           />
-          <FilterSelect 
+          <MultiSelectDropdown 
             label="세부전형" 
-            value={filters.detailedType} 
+            selected={filters.detailedType} 
             options={dynamicOptions.detailedTypes}
             onChange={(val) => setFilters(prev => ({ ...prev, detailedType: val }))}
           />
