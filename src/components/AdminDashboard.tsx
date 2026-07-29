@@ -19,7 +19,9 @@ import {
   Code2,
   Trash2,
   Lock,
-  User
+  User,
+  BarChart2,
+  Building2
 } from 'lucide-react';
 import { 
   fetchAllAdmissionCases, 
@@ -73,6 +75,7 @@ export default function AdminDashboard() {
   const [showDeleteConfirm, setShowDeleteConfirm] = React.useState(false);
 
   // Stats Management State
+  const [statsTotalCount, setStatsTotalCount] = React.useState<number>(localUniversityData.length);
   const [statsSearch, setStatsSearch] = React.useState('');
   const [statsManageList, setStatsManageList] = React.useState<OfficialStat[]>([]);
   const [loadingStats, setLoadingStats] = React.useState(false);
@@ -117,6 +120,7 @@ export default function AdminDashboard() {
     try {
       setUploading(true);
       localUniversityData = localUniversityData.filter(s => s.id !== id);
+      setStatsTotalCount(localUniversityData.length);
       setStatsManageList(prev => prev.filter(s => s.id !== id));
       triggerJsonDownload(localUniversityData);
       showStatus("선택 항목이 삭제되고 university_stats.json 파일 다운로드가 시작되었습니다.", "success");
@@ -132,6 +136,7 @@ export default function AdminDashboard() {
       setUploading(true);
       const originalLength = localUniversityData.length;
       localUniversityData = localUniversityData.filter(s => s.universityName !== uniName);
+      setStatsTotalCount(localUniversityData.length);
       const count = originalLength - localUniversityData.length;
       
       setStatsManageList(prev => prev.filter(s => s.universityName !== uniName));
@@ -151,6 +156,7 @@ export default function AdminDashboard() {
     try {
       setUploading(true);
       localUniversityData = localUniversityData.map(s => s.id === editingStat.id ? editingStat : s);
+      setStatsTotalCount(localUniversityData.length);
       setStatsManageList(prev => prev.map(s => s.id === editingStat.id ? editingStat : s));
       setEditingStat(null);
       triggerJsonDownload(localUniversityData);
@@ -191,6 +197,7 @@ export default function AdminDashboard() {
 
       localUniversityData = mergedList;
       setLocalOfficialStats(mergedList);
+      setStatsTotalCount(mergedList.length);
 
       triggerJsonDownload(localUniversityData);
       showStatus(`${statsArray.length}개의 통계 데이터가 병합되었으며 university_stats.json 파일 다운로드가 시작되었습니다. (총 ${mergedList.length.toLocaleString()}건)`, 'success');
@@ -426,6 +433,7 @@ export default function AdminDashboard() {
 
       localUniversityData = mergedList;
       setLocalOfficialStats(mergedList);
+      setStatsTotalCount(mergedList.length);
 
       if (statsSearch.trim()) {
         const searchLower = statsSearch.toLowerCase().trim();
@@ -451,6 +459,8 @@ export default function AdminDashboard() {
       setUploading(true);
       setShowDeleteConfirm(false);
       localUniversityData = [];
+      setLocalOfficialStats([]);
+      setStatsTotalCount(0);
       setStatsManageList([]);
       triggerJsonDownload(localUniversityData);
       showStatus("모든 통계 데이터가 삭제되고 빈 university_stats.json 다운로드가 시작되었습니다.", "success");
@@ -833,9 +843,12 @@ export default function AdminDashboard() {
             </button>
             <button 
               onClick={() => setActiveTab('stats')}
-              className={`px-6 py-2 rounded-lg text-sm font-bold transition-all ${activeTab === 'stats' ? 'bg-primary text-white' : 'text-text-dim hover:text-white'}`}
+              className={`px-6 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-2 ${activeTab === 'stats' ? 'bg-primary text-white' : 'text-text-dim hover:text-white'}`}
             >
-              3개년 통계 관리
+              <span>3개년 통계 관리</span>
+              <span className={`px-2 py-0.5 text-xs rounded-full font-black ${activeTab === 'stats' ? 'bg-black/20 text-white' : 'bg-white/10 text-text-dim'}`}>
+                {statsTotalCount.toLocaleString()}건
+              </span>
             </button>
           </div>
 
@@ -955,17 +968,54 @@ export default function AdminDashboard() {
               </div>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
-              <div className="p-8 glass-card border-dashed border-2 border-white/10">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="p-3 rounded-xl bg-sky-500/10 text-sky-500">
-                    <FileUp size={24} />
+            <>
+              {/* Stats Overview Card */}
+              <div className="p-6 glass-card border border-sky-500/20 rounded-2xl mb-8 flex flex-col sm:flex-row items-center justify-between gap-6 bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-transparent">
+                <div className="flex items-center gap-4">
+                  <div className="p-4 rounded-2xl bg-sky-500/20 text-sky-400 border border-sky-500/30">
+                    <BarChart2 size={32} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white">3개년 통계 대량 업로드 (CSV)</h3>
-                    <p className="text-sm text-text-dim">대학 공식 발표 입결 CSV 파일을 선택하세요.</p>
+                    <div className="flex items-center gap-2">
+                      <h2 className="text-xl font-black text-white tracking-tight">3개년 공식 통계 등록 현황</h2>
+                      <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-300 font-extrabold border border-sky-500/30">
+                        실시간 현황
+                      </span>
+                    </div>
+                    <p className="text-xs text-text-dim font-medium mt-1">
+                      시스템에 등록된 대학 입시 공식 결과 및 3개년 통계 데이터 수량입니다.
+                    </p>
                   </div>
                 </div>
+
+                <div className="flex items-center gap-6 sm:gap-8 bg-black/40 px-6 py-3.5 rounded-2xl border border-white/5">
+                  <div className="text-center sm:text-right">
+                    <div className="text-2xl sm:text-3xl font-black text-sky-400 tracking-tight">
+                      {statsTotalCount.toLocaleString()} <span className="text-xs font-bold text-white/70">건</span>
+                    </div>
+                    <div className="text-[11px] font-bold text-text-dim mt-0.5">총 등록 모집단위</div>
+                  </div>
+                  <div className="h-10 w-px bg-white/10" />
+                  <div className="text-center sm:text-right">
+                    <div className="text-2xl sm:text-3xl font-black text-indigo-400 tracking-tight">
+                      {new Set(localUniversityData.map(u => u.universityName)).size.toLocaleString()} <span className="text-xs font-bold text-white/70">개</span>
+                    </div>
+                    <div className="text-[11px] font-bold text-text-dim mt-0.5">총 등록 대학 수</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-10">
+                <div className="p-8 glass-card border-dashed border-2 border-white/10">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="p-3 rounded-xl bg-sky-500/10 text-sky-500">
+                      <FileUp size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-white">3개년 통계 대량 업로드 (CSV)</h3>
+                      <p className="text-sm text-text-dim">대학 공식 발표 입결 CSV 파일을 선택하세요. (현재 {statsTotalCount.toLocaleString()}건 등록됨)</p>
+                    </div>
+                  </div>
                 
                 <div className="flex flex-col sm:flex-row gap-4 mt-6">
                   <label className="flex-1">
@@ -1035,15 +1085,18 @@ export default function AdminDashboard() {
                 </button>
               </div>
             </div>
-          )}
 
-          {/* New: Stats Management Section */}
-          {activeTab === 'stats' && (
+            {/* Stats Management Section */}
             <div className="space-y-6 mb-10">
               <div className="p-8 glass-card border border-white/10">
                 <div className="flex items-center justify-between mb-6">
                   <div>
-                    <h3 className="text-xl font-bold text-white">데이터 검색 및 개별 관리</h3>
+                    <div className="flex items-center gap-3">
+                      <h3 className="text-xl font-bold text-white">데이터 검색 및 개별 관리</h3>
+                      <span className="text-xs font-black px-3 py-1 bg-sky-500/10 text-sky-400 rounded-full border border-sky-500/20">
+                        등록 데이터 {statsTotalCount.toLocaleString()}건
+                      </span>
+                    </div>
                     <p className="text-sm text-text-dim mt-1">대학별 또는 모집단위별 데이터를 검색하여 수정하거나 삭제할 수 있습니다.</p>
                   </div>
                 </div>
@@ -1147,7 +1200,8 @@ export default function AdminDashboard() {
                 )}
               </div>
             </div>
-          )}
+          </>
+        )}
 
           {/* Edit Modal */}
           {editingStat && (
