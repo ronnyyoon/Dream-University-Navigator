@@ -28,8 +28,15 @@ import {
   fetchOfficialStats,
   deleteOfficialStat,
   deleteOfficialStatsByUniversity,
-  updateOfficialStat
+  updateOfficialStat,
+  setLocalOfficialStats
 } from '../lib/admissionService';
+import { 
+  upsertOfficialStats, 
+  normalizeUniversityName, 
+  makeCompositeKey, 
+  generateUniqueId 
+} from '../lib/statsUtils';
 import { seedInitialData, checkNeedSeeding } from '../lib/dataSeeder';
 import universityData from '../university_stats.json';
 let localUniversityData: any[] = [...universityData];
@@ -170,30 +177,11 @@ export default function AdminDashboard() {
         ...s,
         universityName: normalizeUniversityName(s.universityName)
       }));
-      
-      const mergedList = [...localUniversityData];
-      statsArray.forEach(newStat => {
-        const existingIndex = mergedList.findIndex(existing => 
-          existing.universityName === newStat.universityName &&
-          existing.departmentName === newStat.departmentName &&
-          existing.admissionType === newStat.admissionType
-        );
 
-        if (existingIndex > -1) {
-          const existingItem = mergedList[existingIndex];
-          existingItem.stats = {
-            ...(existingItem.stats || {}),
-            ...(newStat.stats || {})
-          };
-          existingItem.location = newStat.location || existingItem.location;
-          existingItem.detailedType = newStat.detailedType || existingItem.detailedType;
-        } else {
-          const id = newStat.id || "id_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
-          mergedList.push({ id, ...newStat });
-        }
-      });
-
+      const mergedList = upsertOfficialStats(localUniversityData, statsArray);
       localUniversityData = mergedList;
+      setLocalOfficialStats(mergedList);
+
       triggerJsonDownload(localUniversityData);
       showStatus(`${statsArray.length}개의 통계 데이터가 병합되었으며 university_stats.json 파일 다운로드가 시작되었습니다.`, 'success');
       setStatsJsonInput('');
@@ -204,14 +192,26 @@ export default function AdminDashboard() {
     }
   };
 
-  const parseSingleCsv = (file: File): Promise<any[]> => {
+  const parseSingleCsv = (file: File): Promise<OfficialStat[]> => {
     return new Promise((resolve) => {
       const parseConfig = (encoding: string) => ({
         skipEmptyLines: true,
         encoding: encoding,
         complete: (results: any) => {
-          const allRows = results.data as string[][];
-          if (allRows.length < 3) {
+          const allRows = (results.data || []) as string[][];
+
+          if (encoding === 'UTF-8' && allRows.length > 0) {
+            const sample = allRows.slice(0, 5).map(r => (Array.isArray(r) ? r.join('') : '')).join('');
+            if (
+              sample.includes('') || 
+              (/[^a-zA-Z0-9\sㄱ-ㅎㅏ-ㅣ가-힣,()]/.test(sample) && !sample.includes('지역') && !sample.includes('학교') && !sample.includes('학과'))
+            ) {
+              Papa.parse(file, parseConfig('EUC-KR'));
+              return;
+            }
+          }
+
+          if (!allRows || allRows.length < 2) {
             if (encoding === 'UTF-8') {
               Papa.parse(file, parseConfig('EUC-KR'));
               return;
@@ -220,54 +220,154 @@ export default function AdminDashboard() {
             return;
           }
 
-          if (encoding === 'UTF-8') {
-            const sample = allRows[0].join('');
-            if (sample.includes('') || /[^a-zA-Z0-9\sㄱ-ㅎㅏ-ㅣ가-힣,()]/.test(sample) && !sample.includes('지역')) {
-              Papa.parse(file, parseConfig('EUC-KR'));
-              return;
-            }
-          }
-
           try {
-            const dataRows = allRows.slice(2);
-            const parsedItems = dataRows.map(row => {
-              const clean = (val: any) => (val && val !== '-' ? String(val).trim() : '');
-              if (!row || row.length < 5 || !clean(row[1])) return null;
+            const clean = (val: any) => {
+              if (val === null || val === undefined) return '';
+              const str = String(val).trim();
+              return (str === '-' || str === 'N/A' || str === 'null') ? '' : str;
+            };
 
-              const item: any = {
-                location: clean(row[0]) || '부산',
-                universityName: normalizeUniversityName(clean(row[1])),
-                departmentName: clean(row[2]),
-                admissionType: clean(row[3]),
-                detailedType: clean(row[4]),
-                stats: {}
-              };
+            // Find header row if present
+            let headerRowIdx = -1;
+            for (let i = 0; i < Math.min(allRows.length, 10); i++) {
+              const rowStr = (allRows[i] || []).join(' ').toLowerCase();
+              if (
+                rowStr.includes('학교') || 
+                rowStr.includes('대학') || 
+                rowStr.includes('학과') || 
+                rowStr.includes('모집단위') || 
+                rowStr.includes('전형') ||
+                rowStr.includes('university')
+              ) {
+                headerRowIdx = i;
+                break;
+              }
+            }
 
-              const years = ['2024', '2025', '2026'];
-              years.forEach((year, yIdx) => {
-                item.stats[year] = {
-                  enrollment: clean(row[5 + yIdx]),
-                  registeredCount: clean(row[8 + yIdx]),
-                  competitionRate: clean(row[11 + yIdx]),
-                  waitlistLastRank: clean(row[14 + yIdx]),
-                  average: clean(row[17 + yIdx]),
-                  cut50: clean(row[20 + yIdx]),
-                  cut70: clean(row[23 + yIdx]),
-                  cut80: clean(row[26 + yIdx]),
-                };
+            let colMap: Record<string, number> = {
+              loc: -1,
+              uni: -1,
+              dept: -1,
+              adm: -1,
+              det: -1,
+              year: -1,
+              enrollment: -1,
+              registeredCount: -1,
+              competitionRate: -1,
+              waitlistLastRank: -1,
+              average: -1,
+              cut50: -1,
+              cut70: -1,
+              cut80: -1,
+            };
+
+            if (headerRowIdx !== -1) {
+              const headers = allRows[headerRowIdx].map(h => clean(h).toLowerCase().replace(/\s+/g, ''));
+              headers.forEach((h, idx) => {
+                if (h.includes('지역') || h.includes('location') || h.includes('시도')) colMap.loc = idx;
+                if (h.includes('학교') || h.includes('대학') || h.includes('university')) colMap.uni = idx;
+                if (h.includes('학과') || h.includes('모집단위') || h.includes('전공') || h.includes('department')) colMap.dept = idx;
+                if (h === '전형' || h.includes('전형구분') || h.includes('전형유형') || h.includes('입시전형') || h.includes('admissiontype')) colMap.adm = idx;
+                if (h.includes('세부전형') || h.includes('세부전형명') || h.includes('detailedtype')) colMap.det = idx;
+                if (h.includes('학년도') || h.includes('연도') || h.includes('입시연도') || h === 'year') colMap.year = idx;
+
+                if (h.includes('모집인원') || h === '모집' || h.includes('enrollment')) colMap.enrollment = idx;
+                if (h.includes('등록인원') || h === '등록' || h.includes('registered')) colMap.registeredCount = idx;
+                if (h.includes('경쟁률') || h.includes('competition')) colMap.competitionRate = idx;
+                if (h.includes('충원') || h.includes('예비순위') || h.includes('추합') || h.includes('waitlist')) colMap.waitlistLastRank = idx;
+                if (h.includes('평균') || h === 'average') colMap.average = idx;
+                if (h.includes('50%컷') || h.includes('50컷') || h === 'cut50') colMap.cut50 = idx;
+                if (h.includes('70%컷') || h.includes('70컷') || h === 'cut70') colMap.cut70 = idx;
+                if (h.includes('80%컷') || h.includes('80컷') || h === 'cut80') colMap.cut80 = idx;
               });
+            }
 
-              return item;
-            }).filter(item => item !== null);
+            const dataRows = headerRowIdx !== -1 ? allRows.slice(headerRowIdx + 1) : allRows;
+            const csvParsedList: OfficialStat[] = [];
 
-            resolve(parsedItems);
+            dataRows.forEach(row => {
+              if (!row || row.length < 2) return;
+
+              const loc = colMap.loc !== -1 ? clean(row[colMap.loc]) : clean(row[0]) || '부산';
+              const rawUni = colMap.uni !== -1 ? clean(row[colMap.uni]) : clean(row[1]);
+              const dept = colMap.dept !== -1 ? clean(row[colMap.dept]) : clean(row[2]);
+              const adm = colMap.adm !== -1 ? clean(row[colMap.adm]) : clean(row[3]);
+              const det = colMap.det !== -1 ? clean(row[colMap.det]) : clean(row[4]);
+
+              if (!rawUni || !dept || !adm) return; // Must have university, department, and admission type
+
+              const uni = normalizeUniversityName(rawUni);
+              const yearVal = colMap.year !== -1 ? clean(row[colMap.year]) : '';
+              const yearMatch = yearVal.match(/(20\d\d)/);
+              const rowYear = yearMatch ? yearMatch[1] : '';
+
+              const itemStats: Record<string, any> = {};
+
+              if (rowYear) {
+                // Single-year row format
+                const getVal = (colIdx: number) => colIdx !== -1 ? clean(row[colIdx]) : '';
+                itemStats[rowYear] = {
+                  enrollment: getVal(colMap.enrollment),
+                  registeredCount: getVal(colMap.registeredCount),
+                  competitionRate: getVal(colMap.competitionRate),
+                  waitlistLastRank: getVal(colMap.waitlistLastRank),
+                  average: getVal(colMap.average),
+                  cut50: getVal(colMap.cut50),
+                  cut70: getVal(colMap.cut70),
+                  cut80: getVal(colMap.cut80),
+                };
+              } else {
+                // Wide row format (multi-year columns 2024, 2025, 2026)
+                const years = ['2024', '2025', '2026'];
+                years.forEach((year, yIdx) => {
+                  const enrollment = clean(row[5 + yIdx]);
+                  const registeredCount = clean(row[8 + yIdx]);
+                  const competitionRate = clean(row[11 + yIdx]);
+                  const waitlistLastRank = clean(row[14 + yIdx]);
+                  const average = clean(row[17 + yIdx]);
+                  const cut50 = clean(row[20 + yIdx]);
+                  const cut70 = clean(row[23 + yIdx]);
+                  const cut80 = clean(row[26 + yIdx]);
+
+                  if (
+                    enrollment || registeredCount || competitionRate || 
+                    waitlistLastRank || average || cut50 || cut70 || cut80
+                  ) {
+                    itemStats[year] = {
+                      enrollment,
+                      registeredCount,
+                      competitionRate,
+                      waitlistLastRank,
+                      average,
+                      cut50,
+                      cut70,
+                      cut80,
+                    };
+                  }
+                });
+              }
+
+              csvParsedList.push({
+                id: generateUniqueId(),
+                universityName: uni,
+                departmentName: dept,
+                admissionType: adm,
+                detailedType: det,
+                location: loc,
+                stats: itemStats
+              });
+            });
+
+            // Group rows within this single CSV file using composite key
+            const groupedCsvItems = upsertOfficialStats([], csvParsedList);
+            resolve(groupedCsvItems);
           } catch (err) {
-            console.error(err);
+            console.error("CSV parse error:", err);
             resolve([]);
           }
         },
         error: (err: any) => {
-          console.error(err);
+          console.error("PapaParse error:", err);
           resolve([]);
         }
       });
@@ -292,34 +392,11 @@ export default function AdminDashboard() {
         return;
       }
 
-      const mergedList = [...localUniversityData];
-
-      allNewStats.forEach(newStat => {
-        const existingIndex = mergedList.findIndex(existing => 
-          existing.universityName === newStat.universityName &&
-          existing.departmentName === newStat.departmentName &&
-          existing.admissionType === newStat.admissionType
-        );
-
-        if (existingIndex > -1) {
-          const existingItem = mergedList[existingIndex];
-          existingItem.stats = {
-            ...(existingItem.stats || {}),
-            ...(newStat.stats || {})
-          };
-          existingItem.location = newStat.location || existingItem.location;
-          existingItem.detailedType = newStat.detailedType || existingItem.detailedType;
-        } else {
-          const id = newStat.id || "id_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
-          mergedList.push({
-            id,
-            ...newStat
-          });
-        }
-      });
-
+      // Merge with localUniversityData while preserving existing entries and merging stats
+      const mergedList = upsertOfficialStats(localUniversityData, allNewStats);
       localUniversityData = mergedList;
-      
+      setLocalOfficialStats(mergedList);
+
       if (statsSearch.trim()) {
         const searchLower = statsSearch.toLowerCase().trim();
         const results = localUniversityData.filter(item => 
@@ -329,7 +406,7 @@ export default function AdminDashboard() {
       }
 
       triggerJsonDownload(localUniversityData);
-      showStatus(`성공적으로 ${allNewStats.length}개의 데이터를 병합하여 university_stats.json 다운로드를 시작했습니다.`, "success");
+      showStatus(`성공적으로 ${allNewStats.length}개의 데이터를 병합하여 university_stats.json 다운로드를 시작했습니다. (총 ${mergedList.length}건)`, "success");
     } catch (err: any) {
       showStatus("파일 업로드 및 병합 중 에러가 발생했습니다: " + err.message, "error");
     } finally {

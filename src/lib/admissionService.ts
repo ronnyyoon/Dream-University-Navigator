@@ -1,5 +1,6 @@
 import { AdmissionCase, OfficialStat } from '../types';
 import { SEED_ADMISSION_CASES } from '../seedData';
+import { upsertOfficialStats } from './statsUtils';
 import universityData from '../university_stats.json';
 import admissionData from '../admission_cases.json';
 
@@ -179,9 +180,12 @@ export async function fetchOfficialStats(filters: {
 }
 
 export async function uploadOfficialStats(stats: OfficialStat[]): Promise<void> {
-  // Append new stats to our local memory database
   const current = getLocalOfficialStats();
-  cachedOfficialStats = [...current, ...stats];
+  cachedOfficialStats = upsertOfficialStats(current, stats);
+}
+
+export function setLocalOfficialStats(stats: OfficialStat[]): void {
+  cachedOfficialStats = stats;
 }
 
 export async function deleteOfficialStatsByUniversity(universityName: string): Promise<number> {
