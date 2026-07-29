@@ -180,6 +180,7 @@ export default function AdminDashboard() {
     if (!statsJsonInput.trim()) return;
     setUploading(true);
     setUploadProgress({ text: 'JSON 데이터 해석 중...', percent: 0 });
+    const initialCount = localUniversityData.length;
     try {
       const data = JSON.parse(statsJsonInput);
       const statsArray = (Array.isArray(data) ? data : [data]).map(s => ({
@@ -199,8 +200,14 @@ export default function AdminDashboard() {
       setLocalOfficialStats(mergedList);
       setStatsTotalCount(mergedList.length);
 
+      console.log(`================ [JSON Upsert 병합 검증 결과] ================`);
+      console.log(`- 입력된 JSON 레코드 수: ${statsArray.length.toLocaleString()} 건`);
+      console.log(`- 병합 전 기존 JSON 객체 수: ${initialCount.toLocaleString()} 건`);
+      console.log(`- 최종 병합 완료된 JSON 객체 수: ${mergedList.length.toLocaleString()} 건`);
+      console.log(`=============================================================`);
+
       triggerJsonDownload(localUniversityData);
-      showStatus(`${statsArray.length}개의 통계 데이터가 병합되었으며 university_stats.json 파일 다운로드가 시작되었습니다. (총 ${mergedList.length.toLocaleString()}건)`, 'success');
+      showStatus(`JSON 데이터 병합 완료! [입력 레코드 수: ${statsArray.length.toLocaleString()}건 | 기존: ${initialCount.toLocaleString()}건 -> 최종 병합 완료된 JSON 객체 수: ${mergedList.length.toLocaleString()}건]`, 'success');
       setStatsJsonInput('');
     } catch (error: any) {
       showStatus("통계 데이터 JSON 형식이 올바르지 않거나 업로드에 실패했습니다: " + error.message, 'error');
@@ -210,7 +217,7 @@ export default function AdminDashboard() {
     }
   };
 
-  const parseSingleCsv = (file: File): Promise<OfficialStat[]> => {
+  const parseSingleCsv = (file: File): Promise<{ items: OfficialStat[]; rawRowCount: number; parsedRowCount: number }> => {
     return new Promise((resolve) => {
       const parseConfig = (encoding: string) => ({
         skipEmptyLines: true,
@@ -234,7 +241,7 @@ export default function AdminDashboard() {
               Papa.parse(file, parseConfig('EUC-KR'));
               return;
             }
-            resolve([]);
+            resolve({ items: [], rawRowCount: 0, parsedRowCount: 0 });
             return;
           }
 
@@ -378,15 +385,19 @@ export default function AdminDashboard() {
 
             // Group rows within this single CSV file using composite key
             const groupedCsvItems = upsertOfficialStats([], csvParsedList);
-            resolve(groupedCsvItems);
+            resolve({
+              items: groupedCsvItems,
+              rawRowCount: dataRows.length,
+              parsedRowCount: csvParsedList.length
+            });
           } catch (err) {
             console.error("CSV parse error:", err);
-            resolve([]);
+            resolve({ items: [], rawRowCount: 0, parsedRowCount: 0 });
           }
         },
         error: (err: any) => {
           console.error("PapaParse error:", err);
-          resolve([]);
+          resolve({ items: [], rawRowCount: 0, parsedRowCount: 0 });
         }
       });
 
@@ -402,8 +413,13 @@ export default function AdminDashboard() {
     setUploadProgress({ text: `${files.length}개 CSV 파일 읽는 중...`, percent: 0 });
     showStatus(`${files.length}개의 파일 파싱 및 병합을 시작합니다...`, "info");
 
+    const initialCount = localUniversityData.length;
+
     try {
-      const parsedResults: OfficialStat[][] = [];
+      const parsedResults: { items: OfficialStat[]; rawRowCount: number; parsedRowCount: number }[] = [];
+      let totalRawCsvRows = 0;
+      let totalParsedCsvRows = 0;
+
       for (let i = 0; i < files.length; i++) {
         setUploadProgress({
           text: `CSV 파일 파싱 중... (${i + 1}/${files.length} : ${files[i].name})`,
@@ -411,10 +427,12 @@ export default function AdminDashboard() {
         });
         const res = await parseSingleCsv(files[i]);
         parsedResults.push(res);
+        totalRawCsvRows += res.rawRowCount;
+        totalParsedCsvRows += res.parsedRowCount;
         await new Promise(r => setTimeout(r, 0)); // Yield to event loop
       }
 
-      const allNewStats = parsedResults.flat();
+      const allNewStats = parsedResults.flatMap(r => r.items);
 
       if (allNewStats.length === 0) {
         showStatus("업로드할 유효한 데이터가 없습니다. CSV 형식을 확인해주세요.", "error");
@@ -443,8 +461,18 @@ export default function AdminDashboard() {
         setStatsManageList(results);
       }
 
+      // Validation logs
+      console.log(`================ [CSV Upsert 병합 검증 결과] ================`);
+      console.log(`- 입력된 CSV 총 행 수: ${totalRawCsvRows.toLocaleString()} 행 (유효 레코드: ${totalParsedCsvRows.toLocaleString()} 건)`);
+      console.log(`- CSV 내 고유 모집단위: ${allNewStats.length.toLocaleString()} 건`);
+      console.log(`- 병합 전 기존 JSON 객체 수: ${initialCount.toLocaleString()} 건`);
+      console.log(`- 최종 병합 완료된 JSON 객체 수: ${mergedList.length.toLocaleString()} 건`);
+      console.log(`=============================================================`);
+
       triggerJsonDownload(localUniversityData);
-      showStatus(`성공적으로 ${allNewStats.length}개의 신규 데이터를 병합하여 university_stats.json 다운로드를 시작했습니다. (총 ${mergedList.length.toLocaleString()}건)`, "success");
+
+      const statusMsg = `CSV 병합 성공! [입력 CSV 총 행 수: ${totalRawCsvRows.toLocaleString()}행 | 기존: ${initialCount.toLocaleString()}건 -> 최종 병합 완료된 JSON 객체 수: ${mergedList.length.toLocaleString()}건] university_stats.json 다운로드가 시작되었습니다.`;
+      showStatus(statusMsg, "success");
     } catch (err: any) {
       showStatus("파일 업로드 및 병합 중 에러가 발생했습니다: " + err.message, "error");
     } finally {

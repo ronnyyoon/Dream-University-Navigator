@@ -8,6 +8,10 @@ export const normalizeUniversityName = (name: string): string => {
   return trimmed;
 };
 
+/**
+ * Creates a composite key using: universityName + departmentName + admissionType + detailedType.
+ * Applies .trim() to each component to prevent duplicate/overwrite bugs caused by trailing whitespace.
+ */
 export const makeCompositeKey = (
   universityName: string,
   departmentName: string,
@@ -21,13 +25,16 @@ export const makeCompositeKey = (
   return `${u}|${d}|${a}|${dt}`;
 };
 
+/**
+ * Generates a unique ID combining timestamp and random string.
+ */
 export const generateUniqueId = (): string => {
   return `id_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
 };
 
 /**
  * Synchronous O(1) Map upsert for smaller datasets.
- * Direct property assignment for high performance without deep cloning.
+ * Preserves existing ID & location, shallow updates stats without deep cloning.
  */
 export const upsertOfficialStats = (
   existingList: OfficialStat[],
@@ -71,11 +78,11 @@ export const upsertOfficialStats = (
     const existingItem = resultMap.get(key);
 
     if (existingItem) {
-      // UPDATE: Direct shallow merge of stats, avoiding deep cloning
-      if (normLoc && normLoc !== '-' && normLoc !== '') {
+      // UPDATE: Retain existing id and location; merge year stats
+      if (normLoc && normLoc !== '-' && normLoc !== '' && (!existingItem.location || existingItem.location === '' || existingItem.location === '-')) {
         existingItem.location = normLoc;
       }
-      if (normDet) {
+      if (normDet && (!existingItem.detailedType || existingItem.detailedType === '')) {
         existingItem.detailedType = normDet;
       }
 
@@ -105,7 +112,7 @@ export const upsertOfficialStats = (
         }
       }
     } else {
-      // INSERT: Create fresh object
+      // INSERT: Create fresh object with unique ID
       const newId = newItem.id || generateUniqueId();
       const freshItem: OfficialStat = {
         id: newId,
@@ -124,14 +131,14 @@ export const upsertOfficialStats = (
 };
 
 /**
- * Asynchronous chunked Map upsert to avoid blocking the main UI thread when handling massive datasets.
+ * Asynchronous chunked Map upsert to avoid blocking the main UI thread when handling massive datasets (100+ / 10,000+ items).
  * Yields back to the event loop every `chunkSize` items and reports progress via `onProgress`.
  */
 export const upsertOfficialStatsAsync = async (
   existingList: OfficialStat[],
   newList: OfficialStat[],
   onProgress?: (progressText: string, percent: number) => void,
-  chunkSize = 5000
+  chunkSize = 2500
 ): Promise<OfficialStat[]> => {
   const resultMap = new Map<string, OfficialStat>();
 
@@ -180,10 +187,10 @@ export const upsertOfficialStatsAsync = async (
       const existingItem = resultMap.get(key);
 
       if (existingItem) {
-        if (normLoc && normLoc !== '-' && normLoc !== '') {
+        if (normLoc && normLoc !== '-' && normLoc !== '' && (!existingItem.location || existingItem.location === '' || existingItem.location === '-')) {
           existingItem.location = normLoc;
         }
-        if (normDet) {
+        if (normDet && (!existingItem.detailedType || existingItem.detailedType === '')) {
           existingItem.detailedType = normDet;
         }
 
