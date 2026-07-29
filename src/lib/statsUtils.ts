@@ -26,9 +26,8 @@ export const generateUniqueId = (): string => {
 };
 
 /**
- * Safely upsert (merge/update/insert) new OfficialStat items into an existing list.
- * Grouping is strictly based on composite key: universityName + departmentName + admissionType + detailedType.
- * Preserves original id and location for existing items, merging stats per year.
+ * Synchronous O(1) Map upsert for smaller datasets.
+ * Direct property assignment for high performance without deep cloning.
  */
 export const upsertOfficialStats = (
   existingList: OfficialStat[],
@@ -36,31 +35,26 @@ export const upsertOfficialStats = (
 ): OfficialStat[] => {
   const resultMap = new Map<string, OfficialStat>();
 
-  // 1. Load existing items into resultMap
-  existingList.forEach((item) => {
-    if (!item.universityName || !item.departmentName || !item.admissionType) return;
+  // 1. Index existing items into Map (O(1) lookups)
+  for (let i = 0; i < existingList.length; i++) {
+    const item = existingList[i];
+    if (!item || !item.universityName || !item.departmentName || !item.admissionType) continue;
+
     const key = makeCompositeKey(
       item.universityName,
       item.departmentName,
       item.admissionType,
       item.detailedType
     );
-    const existingId = item.id || generateUniqueId();
-    resultMap.set(key, {
-      ...item,
-      id: existingId,
-      universityName: normalizeUniversityName(item.universityName),
-      departmentName: item.departmentName.trim(),
-      admissionType: item.admissionType.trim(),
-      detailedType: (item.detailedType || '').trim(),
-      location: (item.location || '').trim(),
-      stats: { ...(item.stats || {}) }
-    });
-  });
 
-  // 2. Upsert new items
-  newList.forEach((newItem) => {
-    if (!newItem.universityName || !newItem.departmentName || !newItem.admissionType) return;
+    resultMap.set(key, item);
+  }
+
+  // 2. Merge new items using O(1) lookups
+  for (let i = 0; i < newList.length; i++) {
+    const newItem = newList[i];
+    if (!newItem || !newItem.universityName || !newItem.departmentName || !newItem.admissionType) continue;
+
     const key = makeCompositeKey(
       newItem.universityName,
       newItem.departmentName,
@@ -74,47 +68,44 @@ export const upsertOfficialStats = (
     const normDet = (newItem.detailedType || '').trim();
     const normLoc = (newItem.location || '').trim();
 
-    if (resultMap.has(key)) {
-      // UPDATE existing item
-      const existingItem = resultMap.get(key)!;
+    const existingItem = resultMap.get(key);
 
-      // Retain existing location unless it was missing or default dummy '-'
-      const finalLocation = (existingItem.location && existingItem.location !== '-' && existingItem.location !== '')
-        ? existingItem.location
-        : (normLoc || existingItem.location || '');
-
-      // Merge stats per year
-      const mergedStats: Record<string, any> = { ...(existingItem.stats || {}) };
-
-      if (newItem.stats) {
-        Object.keys(newItem.stats).forEach((year) => {
-          const newYearStats = newItem.stats[year];
-          if (newYearStats) {
-            const existingYearStats = mergedStats[year] || {};
-            const updatedYearStats: Record<string, string> = { ...existingYearStats };
-
-            Object.keys(newYearStats).forEach((field) => {
-              const val = newYearStats[field];
-              if (val !== undefined && val !== null && val !== '') {
-                updatedYearStats[field] = String(val).trim();
-              } else if (updatedYearStats[field] === undefined) {
-                updatedYearStats[field] = '';
-              }
-            });
-
-            mergedStats[year] = updatedYearStats;
-          }
-        });
+    if (existingItem) {
+      // UPDATE: Direct shallow merge of stats, avoiding deep cloning
+      if (normLoc && normLoc !== '-' && normLoc !== '') {
+        existingItem.location = normLoc;
+      }
+      if (normDet) {
+        existingItem.detailedType = normDet;
       }
 
-      resultMap.set(key, {
-        ...existingItem,
-        location: finalLocation,
-        detailedType: normDet || existingItem.detailedType,
-        stats: mergedStats
-      });
+      if (newItem.stats) {
+        if (!existingItem.stats) existingItem.stats = {};
+        const newStats = newItem.stats;
+        const years = Object.keys(newStats);
+
+        for (let y = 0; y < years.length; y++) {
+          const year = years[y];
+          const newYearObj = newStats[year];
+          if (!newYearObj) continue;
+
+          if (!existingItem.stats[year]) {
+            existingItem.stats[year] = { ...newYearObj };
+          } else {
+            const exYearObj = existingItem.stats[year];
+            const fields = Object.keys(newYearObj);
+            for (let f = 0; f < fields.length; f++) {
+              const field = fields[f];
+              const val = newYearObj[field];
+              if (val !== undefined && val !== null && val !== '') {
+                exYearObj[field] = String(val).trim();
+              }
+            }
+          }
+        }
+      }
     } else {
-      // INSERT new item
+      // INSERT: Create fresh object
       const newId = newItem.id || generateUniqueId();
       const freshItem: OfficialStat = {
         id: newId,
@@ -123,11 +114,129 @@ export const upsertOfficialStats = (
         admissionType: normAdm,
         detailedType: normDet,
         location: normLoc,
-        stats: { ...(newItem.stats || {}) }
+        stats: newItem.stats ? { ...newItem.stats } : {}
       };
       resultMap.set(key, freshItem);
     }
-  });
+  }
 
   return Array.from(resultMap.values());
 };
+
+/**
+ * Asynchronous chunked Map upsert to avoid blocking the main UI thread when handling massive datasets.
+ * Yields back to the event loop every `chunkSize` items and reports progress via `onProgress`.
+ */
+export const upsertOfficialStatsAsync = async (
+  existingList: OfficialStat[],
+  newList: OfficialStat[],
+  onProgress?: (progressText: string, percent: number) => void,
+  chunkSize = 5000
+): Promise<OfficialStat[]> => {
+  const resultMap = new Map<string, OfficialStat>();
+
+  // Helper yield to event loop
+  const yieldThread = () => new Promise<void>((resolve) => setTimeout(resolve, 0));
+
+  // 1. Index existing items in chunks
+  const totalExisting = existingList.length;
+  for (let i = 0; i < totalExisting; i++) {
+    const item = existingList[i];
+    if (item && item.universityName && item.departmentName && item.admissionType) {
+      const key = makeCompositeKey(
+        item.universityName,
+        item.departmentName,
+        item.admissionType,
+        item.detailedType
+      );
+      resultMap.set(key, item);
+    }
+
+    if (i > 0 && i % chunkSize === 0) {
+      const pct = Math.round((i / (totalExisting + newList.length || 1)) * 50);
+      onProgress?.(`기존 데이터 색인 중... (${i.toLocaleString()}/${totalExisting.toLocaleString()})`, pct);
+      await yieldThread();
+    }
+  }
+
+  // 2. Merge new items in chunks
+  const totalNew = newList.length;
+  for (let i = 0; i < totalNew; i++) {
+    const newItem = newList[i];
+    if (newItem && newItem.universityName && newItem.departmentName && newItem.admissionType) {
+      const key = makeCompositeKey(
+        newItem.universityName,
+        newItem.departmentName,
+        newItem.admissionType,
+        newItem.detailedType
+      );
+
+      const normUni = normalizeUniversityName(newItem.universityName);
+      const normDept = newItem.departmentName.trim();
+      const normAdm = newItem.admissionType.trim();
+      const normDet = (newItem.detailedType || '').trim();
+      const normLoc = (newItem.location || '').trim();
+
+      const existingItem = resultMap.get(key);
+
+      if (existingItem) {
+        if (normLoc && normLoc !== '-' && normLoc !== '') {
+          existingItem.location = normLoc;
+        }
+        if (normDet) {
+          existingItem.detailedType = normDet;
+        }
+
+        if (newItem.stats) {
+          if (!existingItem.stats) existingItem.stats = {};
+          const newStats = newItem.stats;
+          const years = Object.keys(newStats);
+
+          for (let y = 0; y < years.length; y++) {
+            const year = years[y];
+            const newYearObj = newStats[year];
+            if (!newYearObj) continue;
+
+            if (!existingItem.stats[year]) {
+              existingItem.stats[year] = { ...newYearObj };
+            } else {
+              const exYearObj = existingItem.stats[year];
+              const fields = Object.keys(newYearObj);
+              for (let f = 0; f < fields.length; f++) {
+                const field = fields[f];
+                const val = newYearObj[field];
+                if (val !== undefined && val !== null && val !== '') {
+                  exYearObj[field] = String(val).trim();
+                }
+              }
+            }
+          }
+        }
+      } else {
+        const newId = newItem.id || generateUniqueId();
+        const freshItem: OfficialStat = {
+          id: newId,
+          universityName: normUni,
+          departmentName: normDept,
+          admissionType: normAdm,
+          detailedType: normDet,
+          location: normLoc,
+          stats: newItem.stats ? { ...newItem.stats } : {}
+        };
+        resultMap.set(key, freshItem);
+      }
+    }
+
+    if (i > 0 && i % chunkSize === 0) {
+      const pct = 50 + Math.round((i / (totalNew || 1)) * 50);
+      onProgress?.(`신규 데이터 병합 중... (${i.toLocaleString()}/${totalNew.toLocaleString()})`, pct);
+      await yieldThread();
+    }
+  }
+
+  onProgress?.('데이터 병합 완료!', 100);
+  await yieldThread();
+
+  return Array.from(resultMap.values());
+};
+

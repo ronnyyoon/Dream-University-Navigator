@@ -33,6 +33,7 @@ import {
 } from '../lib/admissionService';
 import { 
   upsertOfficialStats, 
+  upsertOfficialStatsAsync,
   normalizeUniversityName, 
   makeCompositeKey, 
   generateUniqueId 
@@ -67,6 +68,7 @@ export default function AdminDashboard() {
   const [showJsonInput, setShowJsonInput] = React.useState(false);
   const [statsJsonInput, setStatsJsonInput] = React.useState('');
   const [statusMessage, setStatusMessage] = React.useState<{text: string, type: 'success' | 'error' | 'info'} | null>(null);
+  const [uploadProgress, setUploadProgress] = React.useState<{ text: string; percent: number } | null>(null);
 
   const [showDeleteConfirm, setShowDeleteConfirm] = React.useState(false);
 
@@ -171,6 +173,7 @@ export default function AdminDashboard() {
   const handleStatsJsonUpload = async () => {
     if (!statsJsonInput.trim()) return;
     setUploading(true);
+    setUploadProgress({ text: 'JSON 데이터 해석 중...', percent: 0 });
     try {
       const data = JSON.parse(statsJsonInput);
       const statsArray = (Array.isArray(data) ? data : [data]).map(s => ({
@@ -178,17 +181,25 @@ export default function AdminDashboard() {
         universityName: normalizeUniversityName(s.universityName)
       }));
 
-      const mergedList = upsertOfficialStats(localUniversityData, statsArray);
+      const mergedList = await upsertOfficialStatsAsync(
+        localUniversityData, 
+        statsArray,
+        (progressText, percent) => {
+          setUploadProgress({ text: progressText, percent });
+        }
+      );
+
       localUniversityData = mergedList;
       setLocalOfficialStats(mergedList);
 
       triggerJsonDownload(localUniversityData);
-      showStatus(`${statsArray.length}개의 통계 데이터가 병합되었으며 university_stats.json 파일 다운로드가 시작되었습니다.`, 'success');
+      showStatus(`${statsArray.length}개의 통계 데이터가 병합되었으며 university_stats.json 파일 다운로드가 시작되었습니다. (총 ${mergedList.length.toLocaleString()}건)`, 'success');
       setStatsJsonInput('');
     } catch (error: any) {
       showStatus("통계 데이터 JSON 형식이 올바르지 않거나 업로드에 실패했습니다: " + error.message, 'error');
     } finally {
       setUploading(false);
+      setUploadProgress(null);
     }
   };
 
@@ -381,10 +392,21 @@ export default function AdminDashboard() {
     if (files.length === 0) return;
 
     setUploading(true);
-    showStatus(`${files.length}개의 파일을 파싱하는 중...`, "info");
+    setUploadProgress({ text: `${files.length}개 CSV 파일 읽는 중...`, percent: 0 });
+    showStatus(`${files.length}개의 파일 파싱 및 병합을 시작합니다...`, "info");
 
     try {
-      const parsedResults = await Promise.all(files.map(file => parseSingleCsv(file)));
+      const parsedResults: OfficialStat[][] = [];
+      for (let i = 0; i < files.length; i++) {
+        setUploadProgress({
+          text: `CSV 파일 파싱 중... (${i + 1}/${files.length} : ${files[i].name})`,
+          percent: Math.round(((i + 1) / files.length) * 30)
+        });
+        const res = await parseSingleCsv(files[i]);
+        parsedResults.push(res);
+        await new Promise(r => setTimeout(r, 0)); // Yield to event loop
+      }
+
       const allNewStats = parsedResults.flat();
 
       if (allNewStats.length === 0) {
@@ -392,8 +414,16 @@ export default function AdminDashboard() {
         return;
       }
 
-      // Merge with localUniversityData while preserving existing entries and merging stats
-      const mergedList = upsertOfficialStats(localUniversityData, allNewStats);
+      // Merge with localUniversityData using async chunked O(1) Map structure
+      const mergedList = await upsertOfficialStatsAsync(
+        localUniversityData, 
+        allNewStats,
+        (progressText, pct) => {
+          const finalPct = 30 + Math.round((pct / 100) * 70);
+          setUploadProgress({ text: progressText, percent: finalPct });
+        }
+      );
+
       localUniversityData = mergedList;
       setLocalOfficialStats(mergedList);
 
@@ -406,11 +436,12 @@ export default function AdminDashboard() {
       }
 
       triggerJsonDownload(localUniversityData);
-      showStatus(`성공적으로 ${allNewStats.length}개의 데이터를 병합하여 university_stats.json 다운로드를 시작했습니다. (총 ${mergedList.length}건)`, "success");
+      showStatus(`성공적으로 ${allNewStats.length}개의 신규 데이터를 병합하여 university_stats.json 다운로드를 시작했습니다. (총 ${mergedList.length.toLocaleString()}건)`, "success");
     } catch (err: any) {
       showStatus("파일 업로드 및 병합 중 에러가 발생했습니다: " + err.message, "error");
     } finally {
       setUploading(false);
+      setUploadProgress(null);
       event.target.value = '';
     }
   };
@@ -736,6 +767,29 @@ export default function AdminDashboard() {
       <div className="flex">
         {/* Main Content */}
         <main className="flex-1 p-8">
+          {/* Progress Bar for Heavy Operations */}
+          {uploadProgress && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 p-4 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 shadow-lg text-indigo-300 flex flex-col gap-2"
+            >
+              <div className="flex justify-between items-center text-xs font-bold">
+                <span className="flex items-center gap-2">
+                  <Loader2 size={16} className="animate-spin text-primary" />
+                  {uploadProgress.text}
+                </span>
+                <span>{uploadProgress.percent}%</span>
+              </div>
+              <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+                <div 
+                  className="bg-primary h-full transition-all duration-300" 
+                  style={{ width: `${uploadProgress.percent}%` }}
+                />
+              </div>
+            </motion.div>
+          )}
+
           {/* Status Message */}
           {statusMessage && (
             <motion.div 
