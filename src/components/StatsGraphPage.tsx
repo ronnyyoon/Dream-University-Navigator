@@ -156,10 +156,17 @@ export default function StatsGraphPage() {
       });
 
       Object.entries(itemsByDept).forEach(([deptName, deptItems]) => {
-        // Extract 2026 grade for each item
+        // Extract latest available grade (preferring 2026, fallback to 2025/2024 or latest available year)
         const deptItemsWithGrades = deptItems.map(item => {
           let gradeNum: number | null = null;
-          const statsObj = item.stats?.['2026'];
+          let usedYear = '2026';
+
+          const availableYears = Object.keys(item.stats || {}).sort((a, b) => Number(b) - Number(a));
+          const statsObj = item.stats?.['2026'] || (availableYears.length > 0 ? item.stats?.[availableYears[0]] : undefined);
+          if (item.stats && !item.stats['2026'] && availableYears.length > 0) {
+            usedYear = availableYears[0];
+          }
+
           if (statsObj) {
             const rawGrade = statsObj[filters.gradeCriteria as 'average' | 'cut50' | 'cut70' | 'cut80'];
             gradeNum = parseGrade(rawGrade);
@@ -168,7 +175,7 @@ export default function StatsGraphPage() {
             department: item.departmentName,
             type: item.admissionType,
             detail: item.detailedType,
-            year: '2026',
+            year: usedYear,
             grade: gradeNum
           };
         });
