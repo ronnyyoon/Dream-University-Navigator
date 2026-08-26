@@ -35,12 +35,36 @@ export function MultiSelectDropdown({
   }, []);
 
   // Filter options based on search query
+  const queryTrimmed = searchQuery.trim().toLowerCase();
   const filteredOptions = options.filter(opt => 
-    opt.toLowerCase().includes(searchQuery.trim().toLowerCase())
+    opt.toLowerCase().includes(queryTrimmed)
+  );
+  const filteredOptionsWithoutAll = options.filter(opt => 
+    opt !== '전체' && opt.toLowerCase().includes(queryTrimmed)
   );
 
   // Specific selected items excluding '전체'
   const specificSelected = selected.filter(item => item !== '전체');
+
+  // Close dropdown when clicking outside and auto-select matching items if user typed a search word without manually clicking individual items
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        if (isOpen) {
+          if (queryTrimmed && filteredOptionsWithoutAll.length > 0) {
+            // If user typed a search word and didn't manually pick an item from the filtered list, auto-select all matching items
+            const hasManualSelection = filteredOptionsWithoutAll.some(m => selected.includes(m));
+            if (!hasManualSelection || selected.includes('전체') || selected.length === 0) {
+              onChange(filteredOptionsWithoutAll);
+            }
+          }
+          setIsOpen(false);
+        }
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen, queryTrimmed, filteredOptionsWithoutAll, selected, onChange]);
 
   const handleToggleOption = (opt: string) => {
     if (opt === '전체') {
@@ -100,6 +124,15 @@ export function MultiSelectDropdown({
               setSearchQuery(e.target.value);
               if (!isOpen) setIsOpen(true);
             }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.preventDefault();
+                if (queryTrimmed && filteredOptionsWithoutAll.length > 0) {
+                  onChange(filteredOptionsWithoutAll);
+                  setIsOpen(false);
+                }
+              }
+            }}
             onClick={(e) => {
               e.stopPropagation();
               if (!isOpen) setIsOpen(true);
@@ -146,6 +179,22 @@ export function MultiSelectDropdown({
               </div>
             ) : (
               <div className="flex flex-col gap-0.5">
+                {queryTrimmed && filteredOptionsWithoutAll.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onChange(filteredOptionsWithoutAll);
+                      setIsOpen(false);
+                    }}
+                    className="w-full text-left px-3 py-2 rounded-lg text-xs font-black bg-primary/20 text-primary hover:bg-primary/30 border border-primary/30 transition-all flex items-center justify-between mb-1 cursor-pointer"
+                  >
+                    <span className="truncate">"{searchQuery.trim()}" 포함 {label} 전체 선택</span>
+                    <span className="px-1.5 py-0.5 rounded text-[10px] bg-primary text-white font-black shrink-0">
+                      {filteredOptionsWithoutAll.length}개
+                    </span>
+                  </button>
+                )}
                 {filteredOptions.map((opt, idx) => {
                   const isAllOpt = opt === '전체';
                   const isSelected = isAllOpt 

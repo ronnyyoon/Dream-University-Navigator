@@ -99,7 +99,21 @@ export default function StatsGraphPage() {
 
   // Aggregate stats per university for visualization (specifically for 2026 academic year per Request 3 & 4)
   const universityChartData = React.useMemo(() => {
-    // 1. Filter raw data items
+    // 1. Target grade range calculation (±0.5 range)
+    let targetNum: number | null = null;
+    let minAllowedGrade: number | null = null;
+    let maxAllowedGrade: number | null = null;
+
+    if (filters.targetGrade && filters.targetGrade.trim() !== '') {
+      const parsed = parseFloat(filters.targetGrade.trim());
+      if (!isNaN(parsed) && parsed >= 1.0 && parsed <= 9.0) {
+        targetNum = parsed;
+        minAllowedGrade = Math.max(1.0, parsed - 0.5);
+        maxAllowedGrade = Math.min(9.0, parsed + 0.5);
+      }
+    }
+
+    // 2. Filter raw data items
     const filteredItems = statsData.filter(item => {
       if (filters.location.length > 0 && !filters.location.includes('전체') && !filters.location.includes(item.location)) return false;
       if (filters.university.length > 0 && !filters.university.includes('전체') && !filters.university.includes(normalize(item.universityName))) return false;
@@ -108,7 +122,7 @@ export default function StatsGraphPage() {
       return true;
     });
 
-    // 2. Group by university and extract 2026 grade ranges strictly
+    // 3. Group by university and extract 2026 grade ranges strictly
     const uniRawItems: Record<string, {
       universityName: string;
       location: string;
@@ -182,118 +196,81 @@ export default function StatsGraphPage() {
 
         const isAllTypes = filters.admissionType.length === 0 || filters.admissionType.includes('전체');
 
-        if (isAllTypes) {
-          const getMajorType = (t: string) => {
-            if (['학생부종합', '학생부교과', '논술', '실기'].includes(t)) {
-              return t;
-            }
-            return '기타';
-          };
+        const getMajorType = (t: string) => {
+          if (['학생부종합', '학생부교과', '논술', '실기'].includes(t)) {
+            return t;
+          }
+          return '기타';
+        };
 
-          const itemsByMajorType: Record<string, typeof deptItemsWithGrades> = {};
-          deptItemsWithGrades.forEach(item => {
-            const major = getMajorType(item.type);
-            if (!itemsByMajorType[major]) {
-              itemsByMajorType[major] = [];
-            }
-            itemsByMajorType[major].push(item);
-          });
+        const itemsByMajorType: Record<string, typeof deptItemsWithGrades> = {};
+        deptItemsWithGrades.forEach(item => {
+          const major = getMajorType(item.type);
+          if (!itemsByMajorType[major]) {
+            itemsByMajorType[major] = [];
+          }
+          itemsByMajorType[major].push(item);
+        });
 
-          let hasAnyValidGrade = false;
-          const majorRepresentatives: typeof deptItemsWithGrades = [];
+        const majorTypesToCheck = isAllTypes 
+          ? ['학생부종합', '학생부교과', '논술', '실기', '기타']
+          : filters.admissionType;
 
-          ['학생부종합', '학생부교과', '논술', '실기', '기타'].forEach(major => {
-            const majorItems = itemsByMajorType[major] || [];
-            if (majorItems.length === 0) return;
+        let hasAnyValidGrade = false;
+        const majorRepresentatives: typeof deptItemsWithGrades = [];
 
-            const validItems = majorItems.filter(item => item.grade !== null);
-            if (validItems.length > 0) {
-              hasAnyValidGrade = true;
-              let bestItem = validItems[0];
-              validItems.forEach(item => {
-                if (item.grade! < bestItem.grade!) {
-                  bestItem = item;
-                }
-              });
+        majorTypesToCheck.forEach(selectedMajor => {
+          const majorItems = itemsByMajorType[selectedMajor] || [];
+          if (majorItems.length === 0) return;
+
+          const validItems = majorItems.filter(item => item.grade !== null);
+          if (validItems.length > 0) {
+            hasAnyValidGrade = true;
+            let bestItem = validItems[0];
+            validItems.forEach(item => {
+              if (item.grade! < bestItem.grade!) {
+                bestItem = item;
+              }
+            });
+
+            // Target grade ±0.5 filtering: only keep recruitment unit if it falls in range
+            if (targetNum !== null && minAllowedGrade !== null && maxAllowedGrade !== null) {
+              if (bestItem.grade! >= minAllowedGrade - 0.0001 && bestItem.grade! <= maxAllowedGrade + 0.0001) {
+                majorRepresentatives.push(bestItem);
+              }
+            } else {
               majorRepresentatives.push(bestItem);
             }
-          });
-
-          if (hasAnyValidGrade) {
-            processedGrades.push(...majorRepresentatives);
-          } else {
-            const firstItem = deptItemsWithGrades[0];
-            processedGrades.push({
-              department: firstItem.department,
-              type: firstItem.type,
-              detail: firstItem.detail,
-              year: '2026',
-              grade: null
-            });
           }
-        } else {
-          const getMajorType = (t: string) => {
-            if (['학생부종합', '학생부교과', '논술', '실기'].includes(t)) {
-              return t;
-            }
-            return '기타';
-          };
+        });
 
-          const itemsByMajorType: Record<string, typeof deptItemsWithGrades> = {};
-          deptItemsWithGrades.forEach(item => {
-            const major = getMajorType(item.type);
-            if (!itemsByMajorType[major]) {
-              itemsByMajorType[major] = [];
-            }
-            itemsByMajorType[major].push(item);
+        if (majorRepresentatives.length > 0) {
+          processedGrades.push(...majorRepresentatives);
+        } else if (targetNum === null && deptItemsWithGrades.length > 0 && !hasAnyValidGrade) {
+          const firstItem = deptItemsWithGrades[0];
+          processedGrades.push({
+            department: firstItem.department,
+            type: firstItem.type,
+            detail: firstItem.detail,
+            year: '2026',
+            grade: null
           });
-
-          let hasAnyValidGrade = false;
-          const majorRepresentatives: typeof deptItemsWithGrades = [];
-
-          filters.admissionType.forEach(selectedMajor => {
-            const majorItems = itemsByMajorType[selectedMajor] || [];
-            if (majorItems.length === 0) return;
-
-            const validItems = majorItems.filter(item => item.grade !== null);
-            if (validItems.length > 0) {
-              hasAnyValidGrade = true;
-              let bestItem = validItems[0];
-              validItems.forEach(item => {
-                if (item.grade! < bestItem.grade!) {
-                  bestItem = item;
-                }
-              });
-              majorRepresentatives.push(bestItem);
-            }
-          });
-
-          if (hasAnyValidGrade) {
-            processedGrades.push(...majorRepresentatives);
-          } else if (deptItemsWithGrades.length > 0) {
-            const firstItem = deptItemsWithGrades[0];
-            processedGrades.push({
-              department: firstItem.department,
-              type: firstItem.type,
-              detail: firstItem.detail,
-              year: '2026',
-              grade: null
-            });
-          }
         }
       });
 
-      uniGroups[uniName] = {
-        universityName: uniName,
-        location: uniData.location,
-        allGrades: processedGrades,
-        minGrade: 9.0,
-        maxGrade: 1.0
-      };
+      if (processedGrades.length > 0) {
+        uniGroups[uniName] = {
+          universityName: uniName,
+          location: uniData.location,
+          allGrades: processedGrades,
+          minGrade: 9.0,
+          maxGrade: 1.0
+        };
+      }
     });
 
-    // 3. Compute exact ranges based only on valid numeric grades (excluding 1명 이하, etc.)
-    let result = Object.values(uniGroups)
+    // 4. Compute exact ranges based only on valid numeric grades
+    const result = Object.values(uniGroups)
       .map(uni => {
         const gradesOnly = uni.allGrades
           .map(g => g.grade)
@@ -314,16 +291,8 @@ export default function StatsGraphPage() {
           maxGrade: maxVal,
         };
       })
-      // Only show the university in the chart if it has at least one valid grade in 2026
+      // Only show the university in the chart if it has at least one valid grade in range
       .filter(uni => uni.minGrade > 0 && uni.maxGrade > 0);
-
-    // 4. Request 6: Target grade range inclusion search
-    if (filters.targetGrade) {
-      const targetNum = parseFloat(filters.targetGrade);
-      if (!isNaN(targetNum)) {
-        result = result.filter(uni => targetNum >= uni.minGrade && targetNum <= uni.maxGrade);
-      }
-    }
 
     // Sort by best grade (ascending minimum)
     return result.sort((a, b) => a.minGrade - b.minGrade);
@@ -602,9 +571,9 @@ export default function StatsGraphPage() {
             </div>
           </div>
 
-          {/* Specific Grade Search (Request 6) */}
+          {/* Specific Grade Search (Requirement 2 & 3: 성적 범위 내 검색 (등급 ±0.5)) */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">성적 범위 내 검색 (등급)</label>
+            <label className="text-[10px] font-black text-text-dim uppercase tracking-widest pl-1">성적 범위 내 검색 (등급 ±0.5)</label>
             <div className="relative">
               <input 
                 type="number"
@@ -613,10 +582,15 @@ export default function StatsGraphPage() {
                 max="9.0"
                 value={filters.targetGrade}
                 onChange={(e) => setFilters(prev => ({ ...prev, targetGrade: e.target.value }))}
-                placeholder="예: 3.50"
+                placeholder="예: 3.50 (3.00~4.00)"
                 className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 text-white text-xs font-bold outline-none focus:border-primary/50 transition-all placeholder-white/30"
               />
             </div>
+            {filters.targetGrade && !isNaN(parseFloat(filters.targetGrade)) && (
+              <span className="text-[10px] text-primary font-black pl-1">
+                {(Math.max(1.0, parseFloat(filters.targetGrade) - 0.5)).toFixed(2)} ~ {(Math.min(9.0, parseFloat(filters.targetGrade) + 0.5)).toFixed(2)} 등급 범위
+              </span>
+            )}
           </div>
         </div>
       </div>
